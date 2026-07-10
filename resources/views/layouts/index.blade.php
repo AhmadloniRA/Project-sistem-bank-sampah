@@ -217,7 +217,7 @@
                 <li><a href="#kategori" class="nav-link-item text-white/85 font-medium text-[0.95rem] transition-all duration-300 relative hover:text-white">Kategori</a></li>
                 <li><a href="#dampak" class="nav-link-item text-white/85 font-medium text-[0.95rem] transition-all duration-300 relative hover:text-white">Dampak</a></li>
                 <li><a href="#testimoni" class="nav-link-item text-white/85 font-medium text-[0.95rem] transition-all duration-300 relative hover:text-white">Testimoni</a></li>
-                <li><a href="#gabung" class="nav-cta py-2.5 px-6 bg-gradient-to-br from-green-500 to-teal-500 !text-white rounded-full font-semibold text-sm transition-all duration-300 shadow-[0_4px_15px_rgba(16,185,129,0.3)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(16,185,129,0.4)]">Gabung Sekarang</a></li>
+                <li><a href="/login" class="nav-cta py-2.5 px-6 bg-gradient-to-br from-green-500 to-teal-500 !text-white rounded-full font-semibold text-sm transition-all duration-300 shadow-[0_4px_15px_rgba(16,185,129,0.3)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(16,185,129,0.4)]">Gabung Sekarang</a></li>
             </ul>
             <div id="mobileToggle" onclick="toggleNav()" class="hidden max-md:flex flex-col gap-[5px] cursor-pointer p-[5px]">
                 <span class="w-[25px] h-[2.5px] bg-white rounded-sm transition-all duration-300 mobile-bar"></span>
@@ -250,7 +250,7 @@
                     Kelola, pilah, dan tukarkan sampahmu menjadi rupiah sambil menjaga bumi tetap hijau.
                 </p>
                 <div class="flex gap-4 flex-wrap lg:justify-start justify-center max-[480px]:flex-col max-[480px]:items-center">
-                    <a href="#gabung" class="inline-flex items-center gap-2 py-4 px-8 bg-white text-green-700 font-bold text-base rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:-translate-y-[3px] hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)]">
+                    <a href="/login" class="inline-flex items-center gap-2 py-4 px-8 bg-white text-green-700 font-bold text-base rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:-translate-y-[3px] hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)]">
     <img
         src="https://img.icons8.com/?size=100&id=B0YxODenuYvG&format=png&color=000000"
         alt="Mulai"
@@ -665,7 +665,7 @@
                 <h2 class="text-[clamp(2rem,4vw,2.75rem)] font-extrabold text-white mb-4">Siap Mengubah Sampahmu Jadi Berkah?</h2>
                 <p class="text-[1.1rem] text-white/80 mb-10 leading-[1.7]">Bergabung bersama ribuan nasabah Bank Sampah dan mulai perjalananmu menuju lingkungan yang lebih bersih dan kehidupan yang lebih sejahtera.</p>
                 <div class="flex gap-4 justify-center flex-wrap max-[480px]:flex-col max-[480px]:items-center">
-                    <a href="#" class="inline-flex items-center gap-2 py-4 px-10 bg-white text-green-700 font-bold text-[1.05rem] rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:-translate-y-[3px] hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)]">
+                    <a href="/login" class="inline-flex items-center gap-2 py-4 px-10 bg-white text-green-700 font-bold text-[1.05rem] rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:-translate-y-[3px] hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)]">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
 </svg>
