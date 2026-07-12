@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', function () {
     return view('layouts.index');
-})->name('home');
+})->name('homepage');
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +21,8 @@ Route::get('/', function () {
 Route::middleware('guest')->group(function () {
     Route::get('/login', [UserAuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [UserAuthController::class, 'login'])->name('user.login.submit');
+    Route::get('/register', [UserAuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [UserAuthController::class, 'register'])->name('user.register.submit');
 });
 Route::post('/logout', [UserAuthController::class, 'logout'])->name('user.logout')->middleware('auth');
 
@@ -30,11 +32,11 @@ Route::post('/logout', [UserAuthController::class, 'logout'])->name('user.logout
 |--------------------------------------------------------------------------
 */
 Route::prefix('admin')->group(function () {
-    Route::middleware('guest')->group(function () {
+    Route::middleware('guest:admin')->group(function () {
         Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
         Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
     });
-    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout')->middleware('auth');
+    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout')->middleware('auth:admin');
 });
 
 /*
@@ -42,9 +44,9 @@ Route::prefix('admin')->group(function () {
 | Protected Admin Routes
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
-        return 'Admin Dashboard — Coming Soon';
+        return view('admin.dashboard');
     })->name('dashboard');
 
     // Tambahkan route admin lainnya di sini
@@ -57,7 +59,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 */
 Route::middleware(['auth', 'user'])->prefix('user')->name('user.')->group(function () {
     Route::get('/dashboard', function () {
-        return 'User Dashboard — Coming Soon';
+        return view('user.dashboard');
     })->name('dashboard');
 
     // Tambahkan route user lainnya di sini

@@ -13,7 +13,7 @@ class AdminAuthController extends Controller
      */
     public function showLoginForm()
     {
-        if (Auth::check() && Auth::user()->isAdmin()) {
+        if (Auth::guard('admin')->check()) {
             return redirect()->route('admin.dashboard');
         }
 
@@ -30,26 +30,14 @@ class AdminAuthController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials, $request->boolean('remember'))) {
+        if (Auth::guard('admin')->attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
-            // Check if the authenticated user is an admin
-            if (Auth::user()->isAdmin()) {
-                return redirect()->intended(route('admin.dashboard'));
-            }
-
-            // Not an admin — logout and redirect back with error
-            Auth::logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
-
-            return back()->withErrors([
-                'email' => 'Akun Anda tidak memiliki akses admin.',
-            ])->onlyInput('email');
+            return redirect()->intended(route('admin.dashboard'));
         }
 
         return back()->withErrors([
-            'email' => 'Email atau kata sandi salah.',
+            'email' => 'Email atau kata sandi admin salah.',
         ])->onlyInput('email');
     }
 
@@ -58,7 +46,7 @@ class AdminAuthController extends Controller
      */
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('admin')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

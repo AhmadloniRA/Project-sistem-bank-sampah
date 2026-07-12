@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserAuthController extends Controller
 {
@@ -18,6 +20,39 @@ class UserAuthController extends Controller
         }
 
         return view('user.auth.login');
+    }
+
+    /**
+     * Show the user registration form.
+     */
+    public function showRegisterForm()
+    {
+        return view('user.auth.register');
+    }
+
+    /**
+     * Handle user registration request.
+     */
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'kk_number' => ['required', 'string', 'size:16', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'kk_number' => $request->kk_number,
+            'password' => $request->password,
+            'role' => 'user',
+        ]);
+
+        Auth::login($user);
+
+        return redirect()->route('user.dashboard');
     }
 
     /**

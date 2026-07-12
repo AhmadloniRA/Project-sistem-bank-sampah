@@ -170,7 +170,7 @@
                             autofocus
                             autocomplete="username"
                             placeholder="admin@banksampah.com"
-                            class="admin-input pl-11"
+                            class="w-full h-16 pl-14 pr-4 rounded-2xl border border-gray-300 focus:border-emerald-500 focus:ring-emerald-500"
                         >
                     </div>
                 </div>
@@ -193,7 +193,8 @@
                             required
                             autocomplete="current-password"
                             placeholder="••••••••"
-                            class="admin-input pl-11 pr-11"
+                            class="w-full h-16 pl-14 pr-4 rounded-2xl border border-gray-300 focus:border-emerald-500 focus:ring-emerald-500"
+
                         >
                         <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-0 pr-4 flex items-center text-neutral-400 hover:text-emerald-600 transition-colors" tabindex="-1">
                             <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">

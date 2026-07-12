@@ -217,7 +217,7 @@
                 <li><a href="#kategori" class="nav-link-item text-white/85 font-medium text-[0.95rem] transition-all duration-300 relative hover:text-white">Kategori</a></li>
                 <li><a href="#dampak" class="nav-link-item text-white/85 font-medium text-[0.95rem] transition-all duration-300 relative hover:text-white">Dampak</a></li>
                 <li><a href="#testimoni" class="nav-link-item text-white/85 font-medium text-[0.95rem] transition-all duration-300 relative hover:text-white">Testimoni</a></li>
-                <li><a href="/login" class="nav-cta py-2.5 px-6 bg-gradient-to-br from-green-500 to-teal-500 !text-white rounded-full font-semibold text-sm transition-all duration-300 shadow-[0_4px_15px_rgba(16,185,129,0.3)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(16,185,129,0.4)]">Gabung Sekarang</a></li>
+                <li><a href="/login" class="nav-cta py-2.5 px-6 bg-gradient-to-br from-green-500 to-teal-500 !text-white rounded-full font-semibold text-sm transition-all duration-300 shadow-[0_4px_15px_rgba(16,185,129,0.3)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(16,185,129,0.4)]">Login/Daftar</a></li>
             </ul>
             <div id="mobileToggle" onclick="toggleNav()" class="hidden max-md:flex flex-col gap-[5px] cursor-pointer p-[5px]">
                 <span class="w-[25px] h-[2.5px] bg-white rounded-sm transition-all duration-300 mobile-bar"></span>
@@ -266,7 +266,6 @@
     >
     Pelajari Lebih Lanjut
 </a>
-                    </a>
                 </div>
             </div>
 
@@ -300,7 +299,7 @@
     >
 </div>
                             <div class="text-2xl font-extrabold text-white">350<span class="text-lg text-green-300">rb</span></div>
-                            <div class="text-xs text-white/60 mt-1">Total Pendapatan</div>
+                            <div class="text-xs text-white/60 mt-1">Total Pendapatan perbulan</div>
                         </div>
                         <div class="bg-white/8 rounded-lg p-5 text-center border border-white/8 transition-all duration-300 hover:bg-white/15 hover:-translate-y-0.5">
                             <div class="mb-2">
@@ -353,32 +352,48 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="feature-card p-10 rounded-2xl bg-neutral-50 border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] relative overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:border-green-200 animate-on-scroll animate-delay-1">
-                    <div class="w-16 h-16 rounded-lg flex items-center justify-center text-[1.75rem] mb-6 bg-gradient-to-br from-green-50 to-green-100">📱</div>
+                    <div class="w-16 h-16 rounded-lg flex items-center justify-center text-[1.75rem] mb-6 bg-gradient-to-br from-green-50 to-green-100">
+                    <img src="https://img.icons8.com/?size=100&id=L9ByuHGgbUNK&format=png&color=000000" alt="icon phone" class="w-10 h-10">
+                    </div>
                     <h3 class="text-xl font-bold text-neutral-900 mb-3">Pencatatan Digital</h3>
                     <p class="text-[0.95rem] text-neutral-500 leading-[1.65]">Catat setiap setoran sampah secara digital. Pantau riwayat dan saldo Anda kapan saja, di mana saja.</p>
                 </div>
                 <div class="feature-card p-10 rounded-2xl bg-neutral-50 border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] relative overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:border-green-200 animate-on-scroll animate-delay-2">
-                    <div class="w-16 h-16 rounded-lg flex items-center justify-center text-[1.75rem] mb-6 bg-gradient-to-br from-teal-50 to-teal-100">💰</div>
-                    <h3 class="text-xl font-bold text-neutral-900 mb-3">Tabungan Sampah</h3>
+<div class="w-16 h-16 rounded-lg flex items-center justify-center mb-6 bg-gradient-to-br from-teal-50 to-teal-100">
+    <img
+        src="https://img.icons8.com/?size=100&id=h3USDbkfsNWM&format=png&color=000000"
+        alt="Icon Uang"
+        class="w-10 h-10"
+    >
+</div>                    <h3 class="text-xl font-bold text-neutral-900 mb-3">Tabungan Sampah</h3>
                     <p class="text-[0.95rem] text-neutral-500 leading-[1.65]">Setiap sampah yang Anda setorkan memiliki nilai ekonomis. Kumpulkan saldo dan tarik kapan saja.</p>
                 </div>
                 <div class="feature-card p-10 rounded-2xl bg-neutral-50 border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] relative overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:border-green-200 animate-on-scroll animate-delay-3">
-                    <div class="w-16 h-16 rounded-lg flex items-center justify-center text-[1.75rem] mb-6 bg-gradient-to-br from-amber-50 to-amber-100">📊</div>
+                    <div class="w-16 h-16 rounded-lg flex items-center justify-center mb-6 bg-gradient-to-br from-amber-50 to-amber-100">
+    <img src="https://img.icons8.com/?size=100&id=pSKGjhit2j5J&format=png&color=000000"
+        alt="Icon Statistik"
+        class="w-10 h-10"></div>
                     <h3 class="text-xl font-bold text-neutral-900 mb-3">Laporan & Statistik</h3>
                     <p class="text-[0.95rem] text-neutral-500 leading-[1.65]">Lihat laporan lengkap kontribusi Anda dalam menjaga lingkungan melalui grafik interaktif.</p>
                 </div>
                 <div class="feature-card p-10 rounded-2xl bg-neutral-50 border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] relative overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:border-green-200 animate-on-scroll animate-delay-1">
-                    <div class="w-16 h-16 rounded-lg flex items-center justify-center text-[1.75rem] mb-6 bg-gradient-to-br from-emerald-50 to-emerald-200">🏆</div>
+                    <div class="w-16 h-16 rounded-lg flex items-center justify-center text-[1.75rem] mb-6 bg-gradient-to-br from-emerald-50 to-emerald-200">
+                    <img src="https://img.icons8.com/?size=100&id=MR39NpxEXFHr&format=png&color=000000" alt="icon piala" class="w-10 h-10">
+                    </div>
                     <h3 class="text-xl font-bold text-neutral-900 mb-3">Reward & Penghargaan</h3>
                     <p class="text-[0.95rem] text-neutral-500 leading-[1.65]">Dapatkan poin dan penghargaan untuk setiap kontribusi. Jadilah pahlawan lingkungan!</p>
                 </div>
                 <div class="feature-card p-10 rounded-2xl bg-neutral-50 border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] relative overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:border-green-200 animate-on-scroll animate-delay-2">
-                    <div class="w-16 h-16 rounded-lg flex items-center justify-center text-[1.75rem] mb-6 bg-gradient-to-br from-lime-50 to-lime-200">🚛</div>
+                    <div class="w-16 h-16 rounded-lg flex items-center justify-center text-[1.75rem] mb-6 bg-gradient-to-br from-lime-50 to-lime-200">
+                    <img src="https://img.icons8.com/?size=100&id=sH5IBgX3H7wP&format=png&color=000000" alt="icon truck" class="w-10 h-10">
+                    </div>
                     <h3 class="text-xl font-bold text-neutral-900 mb-3">Penjemputan Sampah</h3>
                     <p class="text-[0.95rem] text-neutral-500 leading-[1.65]">Jadwalkan penjemputan sampah langsung dari rumah Anda. Praktis dan mudah.</p>
                 </div>
                 <div class="feature-card p-10 rounded-2xl bg-neutral-50 border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] relative overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:border-green-200 animate-on-scroll animate-delay-3">
-                    <div class="w-16 h-16 rounded-lg flex items-center justify-center text-[1.75rem] mb-6 bg-gradient-to-br from-cyan-50 to-cyan-100">🌍</div>
+                    <div class="w-16 h-16 rounded-lg flex items-center justify-center text-[1.75rem] mb-6 bg-gradient-to-br from-cyan-50 to-cyan-100">
+                    <img src="https://img.icons8.com/?size=100&id=TFeQnEBQv6kG&format=png&color=000000" alt="icon bumi" class="w-10 h-10">
+                    </div>
                     <h3 class="text-xl font-bold text-neutral-900 mb-3">Dampak Lingkungan</h3>
                     <p class="text-[0.95rem] text-neutral-500 leading-[1.65]">Ketahui dampak positif kontribusi Anda terhadap pengurangan emisi karbon dan pelestarian alam.</p>
                 </div>
