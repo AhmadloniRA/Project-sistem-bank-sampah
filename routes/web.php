@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\UserAuthController;
+use App\Http\Controllers\AdminNasabahController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,10 +47,21 @@ Route::prefix('admin')->group(function () {
 */
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
-        return view('admin.dashboard');
+        $totalNasabah = \App\Models\User::where('role', 'user')->count();
+        $nasabahBaruBulanIni = \App\Models\User::where('role', 'user')
+            ->whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year)
+            ->count();
+        return view('admin.dashboard.index', compact('totalNasabah', 'nasabahBaruBulanIni'));
     })->name('dashboard');
 
-    // Tambahkan route admin lainnya di sini
+    Route::get('/nasabah', [AdminNasabahController::class, 'index'])->name('nasabah');
+    Route::put('/nasabah/{nasabah}', [AdminNasabahController::class, 'update'])->name('nasabah.update');
+    Route::delete('/nasabah/{nasabah}', [AdminNasabahController::class, 'destroy'])->name('nasabah.destroy');
+
+    Route::get('/keuangan', function () {
+        return view('admin.keuangan.index');
+    })->name('keuangan');
 });
 
 /*
