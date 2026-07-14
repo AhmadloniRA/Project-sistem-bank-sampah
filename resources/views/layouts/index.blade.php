@@ -272,7 +272,9 @@
             <div class="flex justify-center items-center relative animate-fade-in-right lg:mt-0 mt-8">
                 <div class="bg-white/10 backdrop-blur-[20px] border border-white/15 rounded-2xl p-10 w-full max-w-[420px] relative">
                     <div class="flex items-center gap-4 mb-8">
-                        <div class="w-14 h-14 bg-gradient-to-br from-green-400 to-teal-400 rounded-lg flex items-center justify-center text-2xl">📊</div>
+                        <div class="w-14 h-14 bg-gradient-to-br from-green-400 to-teal-400 rounded-lg flex items-center justify-center text-2xl">
+                        <img src="https://img.icons8.com/?size=100&id=DAoPjn2XoTUN&format=png&color=000000" alt="icon chart" class="w-6 h-6">
+                        </div>
                         <div>
                             <div class="text-white font-bold text-[1.1rem]">Dashboard Sampah</div>
                             <div class="text-white/60 text-[0.85rem]">Ringkasan bulan ini</div>
