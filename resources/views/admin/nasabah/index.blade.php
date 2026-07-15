@@ -9,7 +9,7 @@
     search: '',
     editModalOpen: false, 
     deleteModalOpen: false, 
-    currentNasabah: { id: '', name: '', email: '', phone_number: '', kk_number: '', address: '' } 
+    currentNasabah: { id: '', no_id: '', name: '', email: '', phone_number: '', kk_number: '', address: '' } 
 }">
 
     {{-- Alert Flash Messages --}}
@@ -117,6 +117,7 @@
                 <thead>
                     <tr class="border-b border-gray-50">
                         <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">No</th>
+                        <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">No. ID</th>
                         <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Nama</th>
                         <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Email</th>
                         <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">No. HP</th>
@@ -129,8 +130,9 @@
                 <tbody class="divide-y divide-gray-50">
                     @forelse($nasabah as $item)
                         <tr class="hover:bg-gray-50/50 transition-colors"
-                            x-show="search === '' || '{{ strtolower($item->name) }}'.includes(search.toLowerCase()) || '{{ $item->kk_number }}'.includes(search) || '{{ $item->email }}'.includes(search)">
+                            x-show="search === '' || '{{ strtolower($item->name) }}'.includes(search.toLowerCase()) || '{{ $item->kk_number }}'.includes(search) || '{{ $item->email }}'.includes(search) || '{{ strtolower($item->no_id) }}'.includes(search.toLowerCase())">
                             <td class="px-6 py-4 text-xs font-semibold text-gray-500">{{ $loop->iteration }}</td>
+                            <td class="px-6 py-4 text-xs font-bold text-emerald-600 font-mono">{{ $item->no_id }}</td>
                             <td class="px-6 py-4 text-xs font-bold text-gray-900">{{ $item->name }}</td>
                             <td class="px-6 py-4 text-xs text-gray-600">{{ $item->email }}</td>
                             <td class="px-6 py-4 text-xs text-gray-600 font-mono">{{ $item->phone_number ?? '-' }}</td>
@@ -143,6 +145,7 @@
                                     @click="
                                         currentNasabah = { 
                                             id: '{{ $item->id }}', 
+                                            no_id: '{{ $item->no_id }}', 
                                             name: '{{ addslashes($item->name) }}', 
                                             email: '{{ $item->email }}', 
                                             phone_number: '{{ $item->phone_number ?? '' }}', 
@@ -177,7 +180,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" class="px-6 py-16 text-center">
+                            <td colspan="9" class="px-6 py-16 text-center">
                                 <div class="flex flex-col items-center">
                                     <div class="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center mb-4">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-gray-300" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -240,9 +243,16 @@
 
                     {{-- Modal Inputs --}}
                     <div class="space-y-4">
+                        {{-- No. ID --}}
+                        <div>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">No. ID</label>
+                            <input type="text" x-model="currentNasabah.no_id" readonly
+                                   class="w-full h-11 px-4 rounded-xl border border-gray-200 text-xs bg-gray-100 text-gray-400 cursor-not-allowed outline-none select-none">
+                        </div>
+
                         {{-- Name --}}
                         <div>
-                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Nama Lengka</label>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Nama Lengkap</label>
                             <input type="text" name="name" x-model="currentNasabah.name" required
                                    class="w-full h-11 px-4 rounded-xl border border-gray-200 text-xs focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all">
                         </div>

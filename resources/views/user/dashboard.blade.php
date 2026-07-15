@@ -29,7 +29,8 @@
             <div class="flex items-center gap-4">
                 <div class="text-right hidden sm:block">
                     <div class="font-bold text-sm text-neutral-900">{{ Auth::user()->name ?? 'Nasabah' }}</div>
-                    <div class="text-xs text-neutral-500">{{ Auth::user()->email ?? '' }}</div>
+                    <div class="text-xs text-emerald-600 font-semibold font-mono">{{ Auth::user()->no_id ?? '' }}</div>
+                    <div class="text-[11px] text-neutral-400">{{ Auth::user()->email ?? '' }}</div>
                 </div>
 
                 <form method="POST" action="{{ route('user.logout') }}">

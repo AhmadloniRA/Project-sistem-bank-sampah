@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\UserAuthController;
-use App\Http\Controllers\AdminNasabahController;
+use App\Http\Controllers\Admin\AdminNasabahController;
 use Illuminate\Support\Facades\Route;
 
 /*
