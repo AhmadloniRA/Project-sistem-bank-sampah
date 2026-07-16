@@ -2,7 +2,7 @@
 
 @section('title', 'Data Keuangan')
 @section('page-title', 'Data Keuangan')
-@section('page-subtitle', 'Laporan keuangan dan transaksi bank sampah')
+@section('page-subtitle', 'Laporan keuangan dan transaksi ARUNA')
 
 @section('content')
 
@@ -10,7 +10,7 @@
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div>
             <h2 class="text-lg font-bold text-gray-900">Laporan Keuangan</h2>
-            <p class="text-[13px] text-gray-400 mt-0.5">Data transaksi dan keuangan Bank Sampah</p>
+            <p class="text-[13px] text-gray-400 mt-0.5">Data transaksi dan keuangan ARUNA</p>
         </div>
 
         {{-- Filter --}}
@@ -59,7 +59,7 @@
             <div class="text-xl font-extrabold text-gray-900">Rp 0</div>
         </div>
 
-        {{-- Saldo Bank Sampah --}}
+        {{-- Saldo ARUNA --}}
         <div class="bg-white rounded-xl border border-gray-100 px-5 py-4">
             <div class="flex items-center gap-3 mb-3">
                 <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">

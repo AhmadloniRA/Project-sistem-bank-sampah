@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Admin Portal - Bank Sampah">
-    <title>Admin Portal — Bank Sampah</title>
+    <meta name="description" content="Admin Portal - ARUNA">
+    <title>Admin Portal — ARUNA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -64,11 +64,11 @@
             </div>
             
             <h1 class="text-4xl font-extrabold text-white mb-6 leading-tight">
-                Sistem Manajemen<br>Bank Sampah
+                Sistem Manajemen<br>ARUNA
             </h1>
             
             <p class="text-emerald-100/90 text-lg leading-relaxed mb-10 font-medium">
-                Portal khusus administrator untuk mengelola operasional bank sampah, memantau transaksi, dan mengawasi data nasabah secara real-time.
+                Portal khusus administrator untuk mengelola operasional ARUNA (Administrasi Ramah Untuk Nasabah Bank Sampah), memantau transaksi, dan mengawasi data nasabah secara real-time.
             </p>
             
             <!-- Features list -->
@@ -104,7 +104,7 @@
                     <img src="https://img.icons8.com/?size=100&id=ngxhKjJtc4LX&format=png&color=ffffff" alt="Recycle Logo" class="w-8 h-8">
                 </div>
                 <h1 class="text-2xl font-bold text-neutral-900">Admin Portal</h1>
-                <p class="text-neutral-500 text-sm mt-1">Bank Sampah Management</p>
+                <p class="text-neutral-500 text-sm mt-1">ARUNA Management</p>
             </div>
 
             <!-- Desktop Header -->

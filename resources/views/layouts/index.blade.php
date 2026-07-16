@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bank Sampah - Platform pengelolaan sampah berbasis masyarakat. Tukarkan sampahmu menjadi rupiah, wujudkan lingkungan bersih dan sejahtera.">
-    <title>Bank Sampah — Sampahmu Bernilai, Lingkungan Lestari</title>
+    <meta name="description" content="ARUNA (Administrasi Ramah Untuk Nasabah Bank Sampah) - Platform pengelolaan sampah berbasis masyarakat. Tukarkan sampahmu menjadi rupiah, wujudkan lingkungan bersih dan sejahtera.">
+    <title>ARUNA — Administrasi Ramah Untuk Nasabah Bank Sampah</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -208,7 +208,7 @@
         alt="Recycle Icon"
         class="w-7 h-7"
     >
-</div>Bank Sampah
+</div>ARUNA
             </a>
             <ul id="navLinks" class="flex items-center gap-8 list-none nav-links-list max-md:hidden">
                 <li><a href="#beranda" class="nav-link-item text-white/85 font-medium text-[0.95rem] transition-all duration-300 relative hover:text-white">Beranda</a></li>
@@ -239,7 +239,7 @@
             <div class="animate-fade-in-left lg:text-left text-center">
                 <div class="inline-flex items-center gap-2 py-2 px-5 bg-white/12 backdrop-blur-[10px] border border-white/15 rounded-full text-green-200 text-[0.85rem] font-medium mb-6">
                     <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse-glow"></span>
-                    Platform Bank Sampah Digital
+                    Platform ARUNA — Administrasi Ramah Untuk Nasabah Bank Sampah
                 </div>
                 <h1 class="text-[clamp(2.5rem,5vw,3.75rem)] font-extrabold text-white leading-[1.15] mb-6 max-[480px]:text-[2rem]">
                     Sampahmu <span class="bg-gradient-to-br from-green-300 via-teal-400 to-lime-400 bg-clip-text text-transparent">Bernilai,</span><br>
@@ -474,7 +474,7 @@
     >
 </div>
                     <h3 class="text-[1.1rem] font-bold text-neutral-900 mb-2">Daftar Akun</h3>
-                    <p class="text-sm text-neutral-500 leading-relaxed">Daftarkan diri Anda sebagai nasabah Bank Sampah dengan mudah dan gratis.</p>
+                    <p class="text-sm text-neutral-500 leading-relaxed">Daftarkan diri Anda sebagai nasabah ARUNA dengan mudah dan gratis.</p>
                 </div>
                 <div class="text-center relative z-[1] animate-on-scroll animate-delay-2 group">
                     <div class="w-[72px] h-[72px] mx-auto mb-6 bg-white border-3 border-green-400 rounded-full flex items-center justify-center text-2xl font-extrabold text-green-700 shadow-lg transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-green-500 group-hover:to-teal-500 group-hover:text-white group-hover:scale-110 group-hover:border-green-500">2</div>
@@ -497,8 +497,8 @@
         class="w-16 h-16 mx-auto"
     >
 </div>
-                    <h3 class="text-[1.1rem] font-bold text-neutral-900 mb-2">Setor ke Bank Sampah</h3>
-                    <p class="text-sm text-neutral-500 leading-relaxed">Bawa sampah yang sudah dipilah ke Bank Sampah atau jadwalkan penjemputan.</p>
+                    <h3 class="text-[1.1rem] font-bold text-neutral-900 mb-2">Setor ke ARUNA</h3>
+                    <p class="text-sm text-neutral-500 leading-relaxed">Bawa sampah yang sudah dipilah ke ARUNA atau jadwalkan penjemputan.</p>
                 </div>
                 <div class="text-center relative z-[1] animate-on-scroll animate-delay-4 group">
                     <div class="w-[72px] h-[72px] mx-auto mb-6 bg-white border-3 border-green-400 rounded-full flex items-center justify-center text-2xl font-extrabold text-green-700 shadow-lg transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-green-500 group-hover:to-teal-500 group-hover:text-white group-hover:scale-110 group-hover:border-green-500">4</div>
@@ -529,7 +529,7 @@
     Kategori Sampah
 </div>
                 <h2 class="text-[clamp(2rem,4vw,2.75rem)] font-extrabold text-neutral-900 leading-[1.2] mb-4">Jenis Sampah yang Kami Terima</h2>
-                <p class="text-[1.05rem] text-neutral-500 leading-[1.7]">Berbagai jenis sampah bernilai yang dapat Anda setorkan ke Bank Sampah kami.</p>
+                <p class="text-[1.05rem] text-neutral-500 leading-[1.7]">Berbagai jenis sampah bernilai yang dapat Anda setorkan ke ARUNA.</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                 <div class="p-8 rounded-2xl text-center border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer relative overflow-hidden bg-gradient-to-br from-amber-100 to-amber-50 hover:-translate-y-1.5 hover:shadow-xl hover:border-amber-400 animate-on-scroll animate-delay-1">
@@ -573,7 +573,7 @@
                 <div class="animate-on-scroll">
                     <div class="inline-flex items-center gap-2 py-1.5 px-4 bg-green-50 text-green-700 font-semibold text-[0.85rem] rounded-full mb-4 border border-green-100">🌍 Dampak Positif</div>
                     <h3 class="text-[2.25rem] font-extrabold text-neutral-900 mb-6 leading-[1.2]">Bersama Kita Ciptakan Perubahan Nyata untuk Bumi</h3>
-                    <p class="text-[1.05rem] text-neutral-500 leading-[1.7] mb-8">Setiap kilogram sampah yang Anda setorkan adalah langkah nyata dalam menjaga kelestarian lingkungan. Bersama Bank Sampah, kita bisa membuat perubahan besar.</p>
+                    <p class="text-[1.05rem] text-neutral-500 leading-[1.7] mb-8">Setiap kilogram sampah yang Anda setorkan adalah langkah nyata dalam menjaga kelestarian lingkungan. Bersama ARUNA, kita bisa membuat perubahan besar.</p>
                     <ul class="list-none flex flex-col gap-4">
                         <li class="flex items-center gap-3 text-base text-neutral-700 font-medium">
                             <span class="w-7 h-7 rounded-full bg-gradient-to-br from-green-400 to-teal-400 flex items-center justify-center text-white text-xs shrink-0">✓</span>
@@ -633,13 +633,13 @@
 </svg>
 
                 Testimoni</div>
-                <h2 class="text-[clamp(2rem,4vw,2.75rem)] font-extrabold text-neutral-900 leading-[1.2] mb-4">Apa Kata Mereka tentang Bank Sampah?</h2>
-                <p class="text-[1.05rem] text-neutral-500 leading-[1.7]">Cerita sukses dari para nasabah yang telah merasakan manfaat bergabung dengan Bank Sampah.</p>
+                <h2 class="text-[clamp(2rem,4vw,2.75rem)] font-extrabold text-neutral-900 leading-[1.2] mb-4">Apa Kata Mereka tentang ARUNA?</h2>
+                <p class="text-[1.05rem] text-neutral-500 leading-[1.7]">Cerita sukses dari para nasabah yang telah merasakan manfaat bergabung dengan ARUNA.</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-lg:max-w-[500px] max-lg:mx-auto">
                 <div class="p-8 rounded-2xl bg-neutral-50 border border-neutral-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 animate-on-scroll animate-delay-1">
                     <div class="text-amber-400 text-base mb-4 tracking-[2px]">★★★★★</div>
-                    <p class="text-[0.95rem] text-neutral-600 leading-[1.7] mb-6 italic">"Sejak bergabung dengan Bank Sampah, rumah jadi lebih bersih dan saya bisa menabung dari sampah. Luar biasa!"</p>
+                    <p class="text-[0.95rem] text-neutral-600 leading-[1.7] mb-6 italic">"Sejak bergabung dengan ARUNA, rumah jadi lebih bersih dan saya bisa menabung dari sampah. Luar biasa!"</p>
                     <div class="flex items-center gap-3">
                         <div class="w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold text-white bg-gradient-to-br from-green-400 to-green-600">S</div>
                         <div>
@@ -680,7 +680,7 @@
             <div class="text-center relative z-[1] max-w-[700px] mx-auto animate-on-scroll">
                 <div class="text-[3.5rem] mb-6">🌿</div>
                 <h2 class="text-[clamp(2rem,4vw,2.75rem)] font-extrabold text-white mb-4">Siap Mengubah Sampahmu Jadi Berkah?</h2>
-                <p class="text-[1.1rem] text-white/80 mb-10 leading-[1.7]">Bergabung bersama ribuan nasabah Bank Sampah dan mulai perjalananmu menuju lingkungan yang lebih bersih dan kehidupan yang lebih sejahtera.</p>
+                <p class="text-[1.1rem] text-white/80 mb-10 leading-[1.7]">Bergabung bersama ribuan nasabah ARUNA dan mulai perjalananmu menuju lingkungan yang lebih bersih dan kehidupan yang lebih sejahtera.</p>
                 <div class="flex gap-4 justify-center flex-wrap max-[480px]:flex-col max-[480px]:items-center">
                     <a href="/login" class="inline-flex items-center gap-2 py-4 px-10 bg-white text-green-700 font-bold text-[1.05rem] rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:-translate-y-[3px] hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)]">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -714,7 +714,7 @@
                 <div>
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-11 h-11 bg-gradient-to-br from-green-400 to-teal-400 rounded-lg flex items-center justify-center text-[1.4rem]">♻️</div>
-                        <span class="text-2xl font-extrabold text-white">Bank Sampah</span>
+                        <span class="text-2xl font-extrabold text-white">ARUNA</span>
                     </div>
                     <p class="text-[0.95rem] leading-[1.7] mb-6">
                         Platform pengelolaan sampah berbasis masyarakat yang membantu warga mengubah sampah menjadi nilai ekonomis sambil menjaga kelestarian lingkungan.
@@ -751,13 +751,13 @@
                     <ul class="list-none flex flex-col gap-3">
                         <li><a href="#" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">📍 Jl. Lingkungan Hijau No. 1</a></li>
                         <li><a href="#" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">📞 (021) 123-4567</a></li>
-                        <li><a href="#" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">📧 info@banksampah.id</a></li>
+                        <li><a href="#" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">📧 info@aruna.id</a></li>
                         <li><a href="#" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">🕐 Senin - Sabtu: 08.00 - 16.00</a></li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-neutral-800 py-8 flex items-center justify-between flex-wrap gap-4 max-[480px]:flex-col max-[480px]:text-center">
-                <p class="text-[0.85rem]">&copy; {{ date('Y') }} Bank Sampah. Seluruh hak cipta dilindungi.</p>
+                <p class="text-[0.85rem]">&copy; {{ date('Y') }} ARUNA. Seluruh hak cipta dilindungi.</p>
                 <div class="flex gap-8">
                     <a href="#" class="text-[0.85rem] text-neutral-400 transition-colors duration-300 hover:text-green-400">Kebijakan Privasi</a>
                     <a href="#" class="text-[0.85rem] text-neutral-400 transition-colors duration-300 hover:text-green-400">Syarat & Ketentuan</a>

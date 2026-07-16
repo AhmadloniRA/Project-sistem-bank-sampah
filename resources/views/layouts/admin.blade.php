@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Admin Panel') — Bank Sampah</title>
+    <title>@yield('title', 'Admin Panel') — ARUNA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -134,7 +134,7 @@
                         <div class="absolute -inset-1 rounded-2xl bg-emerald-400/20 blur-sm sidebar-glow -z-10"></div>
                     </div>
                     <div>
-                        <div class="text-white font-extrabold text-[16px] leading-tight tracking-tight">Bank Sampah</div>
+                        <div class="text-white font-extrabold text-[16px] leading-tight tracking-tight">ARUNA</div>
                         <div class="text-emerald-400/60 text-[10.5px] font-semibold tracking-[0.2em] uppercase mt-0.5">Admin Panel</div>
                     </div>
                     {{-- Mobile close --}}
@@ -309,7 +309,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-emerald-500" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M16.403 12.652a3 3 0 0 0 0-5.304 3 3 0 0 0-3.75-3.751 3 3 0 0 0-5.305 0 3 3 0 0 0-3.751 3.75 3 3 0 0 0 0 5.305 3 3 0 0 0 3.75 3.751 3 3 0 0 0 5.305 0 3 3 0 0 0 3.751-3.75Zm-2.546-4.46a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
                         </svg>
-                        &copy; {{ date('Y') }} Bank Sampah. Seluruh hak cipta dilindungi.
+                        &copy; {{ date('Y') }} ARUNA. Seluruh hak cipta dilindungi.
                     </span>
                     <span class="text-gray-300">v1.0.0</span>
                 </div>

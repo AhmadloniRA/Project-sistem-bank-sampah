@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Login ke Bank Sampah — Platform pengelolaan sampah berbasis masyarakat.">
-    <title>Login — Bank Sampah</title>
+    <meta name="description" content="Login ke ARUNA — Administrasi Ramah Untuk Nasabah Bank Sampah.">
+    <title>Login — ARUNA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -102,7 +102,7 @@
                                 class="w-6 h-6"
                             >
                         </div>
-                        <span class="text-xl font-extrabold text-neutral-800">Bank Sampah</span>
+                        <span class="text-xl font-extrabold text-neutral-800">ARUNA</span>
                     </a>
                     <h1 class="text-3xl font-extrabold text-neutral-900 mb-2 tracking-tight">Masuk ke Akun Anda</h1>
                     <p class="text-neutral-500 text-sm font-medium">Selamat datang kembali! Silakan masukkan data Anda.</p>
@@ -281,7 +281,7 @@
                     </h2>
 
                     <p class="text-emerald-100/80 text-base leading-relaxed mb-8 font-medium">
-                        Platform bank sampah digital untuk memudahkan nasabah dalam mengelola, menyetor, dan memantau nilai sampah secara transparan.
+                        ARUNA (Administrasi Ramah Untuk Nasabah Bank Sampah) hadir untuk memudahkan nasabah dalam mengelola, menyetor, dan memantau nilai sampah secara transparan.
                     </p>
 
                     <!-- Feature pills -->

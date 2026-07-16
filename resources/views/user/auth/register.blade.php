@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Daftar akun Bank Sampah — Platform pengelolaan sampah berbasis masyarakat.">
-    <title>Daftar — Bank Sampah</title>
+    <meta name="description" content="Daftar akun ARUNA — Administrasi Ramah Untuk Nasabah Bank Sampah.">
+    <title>Daftar — ARUNA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -89,7 +89,7 @@
                                 class="w-6 h-6"
                             >
                         </div>
-                        <span class="text-xl font-extrabold text-neutral-800">Bank Sampah</span>
+                        <span class="text-xl font-extrabold text-neutral-800">ARUNA</span>
                     </a>
                     <h1 class="text-3xl font-extrabold text-neutral-900 mb-2 tracking-tight">Buat Akun Baru</h1>
                     <p class="text-neutral-500 text-sm font-medium">Bergabunglah bersama kami untuk lingkungan yang lebih bersih.</p>
@@ -333,7 +333,7 @@
                             <div class="w-9 h-9 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-white font-bold text-sm shrink-0">2</div>
                             <div>
                                 <div class="text-white font-bold text-sm">Setor Sampah</div>
-                                <div class="text-emerald-200/60 text-xs font-medium mt-0.5">Kunjungi bank sampah terdekat</div>
+                                <div class="text-emerald-200/60 text-xs font-medium mt-0.5">Kunjungi lokasi ARUNA terdekat</div>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">

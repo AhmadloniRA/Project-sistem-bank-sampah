@@ -2,7 +2,7 @@
 
 @section('title', 'Dashboard')
 @section('page-title', 'Dashboard')
-@section('page-subtitle', 'Ringkasan data dan aktivitas bank sampah')
+@section('page-subtitle', 'Ringkasan data dan aktivitas ARUNA')
 
 @section('content')
 
@@ -19,7 +19,7 @@
             </div>
             <h2 class="text-white text-xl sm:text-2xl font-bold mb-1">Administrator</h2>
             <p class="text-emerald-100/70 text-sm max-w-md">
-                Kelola data bank sampah Anda dari sini. Pantau nasabah, keuangan, dan aktivitas terbaru.
+                Kelola data ARUNA Anda dari sini. Pantau nasabah, keuangan, dan aktivitas terbaru.
             </p>
         </div>
     </div>

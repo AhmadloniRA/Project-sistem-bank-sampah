@@ -2,7 +2,7 @@
 
 @section('title', 'Data Nasabah')
 @section('page-title', 'Data Nasabah')
-@section('page-subtitle', 'Kelola data akun nasabah bank sampah')
+@section('page-subtitle', 'Kelola data akun nasabah ARUNA')
 
 @section('content')
 <div x-data="{ 
@@ -52,7 +52,7 @@
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div>
             <h2 class="text-lg font-bold text-gray-900">Daftar Akun Nasabah</h2>
-            <p class="text-[13px] text-gray-400 mt-0.5">Data seluruh nasabah yang terdaftar di Bank Sampah</p>
+            <p class="text-[13px] text-gray-400 mt-0.5">Data seluruh nasabah yang terdaftar di ARUNA</p>
         </div>
 
         {{-- Search bar --}}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Nasabah — Bank Sampah</title>
+    <title>Dashboard Nasabah — ARUNA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
                 <div class="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20">
                     <img src="https://img.icons8.com/?size=100&id=ngxhKjJtc4LX&format=png&color=ffffff" alt="Recycle Logo" class="w-6 h-6">
                 </div>
-                <span class="font-extrabold text-lg text-neutral-800">Bank Sampah</span>
+                <span class="font-extrabold text-lg text-neutral-800">ARUNA</span>
             </div>
             
             <div class="flex items-center gap-4">
@@ -82,7 +82,7 @@
 
     <!-- Footer -->
     <footer class="py-6 border-t border-neutral-100 bg-white text-center text-xs text-neutral-400">
-        &copy; {{ date('Y') }} Bank Sampah. Seluruh hak cipta dilindungi.
+        &copy; {{ date('Y') }} ARUNA. Seluruh hak cipta dilindungi.
     </footer>
 
 </body>
