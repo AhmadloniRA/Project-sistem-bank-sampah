@@ -10,12 +10,30 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['no_id', 'name', 'email', 'password', 'role', 'kk_number', 'phone_number', 'address'])]
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+#[Fillable(['no_id', 'name', 'email', 'password', 'role', 'kk_number', 'phone_number', 'address', 'total_tabungan'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
+
+    /**
+     * Get the setoran sampah logs for the user.
+     */
+    public function setoranSampah(): HasMany
+    {
+        return $this->hasMany(SetoranSampah::class, 'nasabah_id');
+    }
+
+    /**
+     * Get the financial transactions for the user.
+     */
+    public function transaksiKeuangan(): HasMany
+    {
+        return $this->hasMany(TransaksiKeuanganNasabah::class, 'nasabah_id');
+    }
 
     /**
      * The "booted" method of the model.

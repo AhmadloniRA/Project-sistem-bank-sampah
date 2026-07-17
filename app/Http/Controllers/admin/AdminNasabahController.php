@@ -26,6 +26,43 @@ class AdminNasabahController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone_number' => ['nullable', 'string', 'max:15'],
+            'kk_number' => ['required', 'string', 'size:16', 'unique:users'],
+            'address' => ['nullable', 'string'],
+            'password' => ['required', 'string', 'min:8'],
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'kk_number' => $request->kk_number,
+            'address' => $request->address,
+            'password' => Hash::make($request->password),
+            'role' => 'user',
+            'total_tabungan' => 0,
+        ]);
+
+        return redirect()->back()->with('success', 'Nasabah baru berhasil terdaftar.');
+    }
+
+    /**
+     * Display financial transaction history for the nasabah.
+     */
+    public function history(User $nasabah)
+    {
+        $transactions = $nasabah->transaksiKeuangan()->orderBy('created_at', 'desc')->get();
+        return view('admin.nasabah.history', compact('nasabah', 'transactions'));
+    }
+
+    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, User $nasabah)

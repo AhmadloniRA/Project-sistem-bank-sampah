@@ -7,6 +7,7 @@
 @section('content')
 <div x-data="{ 
     search: '',
+    createModalOpen: false,
     editModalOpen: false, 
     deleteModalOpen: false, 
     currentNasabah: { id: '', no_id: '', name: '', email: '', phone_number: '', kk_number: '', address: '' } 
@@ -55,7 +56,7 @@
             <p class="text-[13px] text-gray-400 mt-0.5">Data seluruh nasabah yang terdaftar di ARUNA</p>
         </div>
 
-        {{-- Search bar --}}
+        {{-- Search & Add Button --}}
         <div class="flex items-center gap-3">
             <div class="relative">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -63,6 +64,13 @@
                 </svg>
                 <input type="text" x-model="search" placeholder="Cari nasabah..." class="h-10 w-full sm:w-64 pl-9 pr-4 rounded-xl border border-gray-200 text-[13px] placeholder-gray-400 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all duration-200 bg-white">
             </div>
+
+            <button @click="createModalOpen = true" class="h-10 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-[13px] font-bold transition-all shadow-md shadow-emerald-600/15 flex items-center gap-2 cursor-pointer border border-transparent">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+                Tambah Nasabah
+            </button>
         </div>
     </div>
 
@@ -123,6 +131,7 @@
                         <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">No. HP</th>
                         <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">No. KK</th>
                         <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Alamat</th>
+                        <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Saldo Tabungan</th>
                         <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Terdaftar</th>
                         <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider text-center">Aksi</th>
                     </tr>
@@ -137,9 +146,19 @@
                             <td class="px-6 py-4 text-xs text-gray-600">{{ $item->email }}</td>
                             <td class="px-6 py-4 text-xs text-gray-600 font-mono">{{ $item->phone_number ?? '-' }}</td>
                             <td class="px-6 py-4 text-xs text-gray-600 font-mono">{{ $item->kk_number }}</td>
-                            <td class="px-6 py-4 text-xs text-gray-600 max-w-[200px] truncate" title="{{ $item->address }}">{{ $item->address ?? '-' }}</td>
+                            <td class="px-6 py-4 text-xs text-gray-600 max-w-[150px] truncate" title="{{ $item->address }}">{{ $item->address ?? '-' }}</td>
+                            <td class="px-6 py-4 text-xs font-bold text-emerald-700 font-mono">Rp {{ number_format($item->total_tabungan, 0, ',', '.') }}</td>
                             <td class="px-6 py-4 text-xs text-gray-500">{{ $item->created_at->translatedFormat('d M Y') }}</td>
-                            <td class="px-6 py-4 text-xs text-center flex items-center justify-center gap-2">
+                            <td class="px-6 py-4 text-xs text-center flex items-center justify-center gap-1.5">
+                                {{-- Book / History Button --}}
+                                <a href="{{ route('admin.nasabah.history', $item) }}"
+                                   class="w-7 h-7 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-600 flex items-center justify-center transition-colors border border-blue-100 cursor-pointer"
+                                   title="Buku Tabungan">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                                    </svg>
+                                </a>
+
                                 {{-- Edit Button --}}
                                 <button 
                                     @click="
@@ -180,7 +199,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="9" class="px-6 py-16 text-center">
+                            <td colspan="10" class="px-6 py-16 text-center">
                                 <div class="flex flex-col items-center">
                                     <div class="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center mb-4">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-gray-300" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -199,6 +218,98 @@
     </div>
 
     {{-- ============================================================ --}}
+    {{-- MODAL REGISTRASI NASABAH BARU --}}
+    {{-- ============================================================ --}}
+    <div 
+        x-show="createModalOpen" 
+        class="fixed inset-0 z-50 overflow-y-auto" 
+        style="display: none;"
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+    >
+        <div class="fixed inset-0 bg-neutral-900/60 backdrop-blur-xs transition-opacity"></div>
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div 
+                class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg border border-gray-100"
+                @click.away="createModalOpen = false"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            >
+                <form action="{{ route('admin.nasabah.store') }}" method="POST" class="p-6">
+                    @csrf
+                    <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-5">
+                        <h3 class="text-sm font-bold text-gray-900">Registrasi Nasabah Baru</h3>
+                        <button type="button" @click="createModalOpen = false" class="text-gray-400 hover:text-gray-600 transition-colors cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Nama Lengkap</label>
+                            <input type="text" name="name" required placeholder="Nama nasabah..."
+                                   class="w-full h-11 px-4 rounded-xl border border-gray-200 text-xs focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all">
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Alamat Email</label>
+                            <input type="email" name="email" required placeholder="email@domain.com"
+                                   class="w-full h-11 px-4 rounded-xl border border-gray-200 text-xs focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Nomor HP</label>
+                                <input type="text" name="phone_number" required placeholder="08xxxxxxxxxx"
+                                       class="w-full h-11 px-4 rounded-xl border border-gray-200 text-xs focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all">
+                            </div>
+
+                            <div>
+                                <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Nomor KK (16 digit)</label>
+                                <input type="text" name="kk_number" required maxlength="16" minlength="16" placeholder="Nomor KK..."
+                                       class="w-full h-11 px-4 rounded-xl border border-gray-200 text-xs focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Alamat Lengkap</label>
+                            <textarea name="address" rows="3" placeholder="Alamat rumah tinggal nasabah..."
+                                      class="w-full p-4 rounded-xl border border-gray-200 text-xs focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all resize-none"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Password Akun</label>
+                            <input type="password" name="password" required placeholder="Minimal 8 karakter"
+                                   class="w-full h-11 px-4 rounded-xl border border-gray-200 text-xs focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-end gap-3 mt-6 pt-4 border-t border-gray-100">
+                        <button type="button" @click="createModalOpen = false"
+                                class="px-5 py-2.5 rounded-xl border border-gray-200 hover:bg-gray-50 text-xs font-semibold text-gray-600 transition-colors cursor-pointer">
+                            Batal
+                        </button>
+                        <button type="submit"
+                                class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-md shadow-emerald-600/15 cursor-pointer">
+                            Daftarkan Nasabah
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{-- ============================================================ --}}
     {{-- MODAL EDIT NASABAH --}}
     {{-- ============================================================ --}}
     <div 
@@ -212,9 +323,7 @@
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
     >
-        {{-- Backdrop --}}
         <div class="fixed inset-0 bg-neutral-900/60 backdrop-blur-xs transition-opacity"></div>
-
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div 
                 class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg border border-gray-100"
@@ -226,12 +335,10 @@
                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-                {{-- Form action is bound to the current nasabah ID --}}
                 <form :action="'{{ url('admin/nasabah') }}/' + currentNasabah.id" method="POST" class="p-6">
                     @csrf
                     @method('PUT')
 
-                    {{-- Modal Header --}}
                     <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-5">
                         <h3 class="text-sm font-bold text-gray-900">Perbarui Data Nasabah</h3>
                         <button type="button" @click="editModalOpen = false" class="text-gray-400 hover:text-gray-600 transition-colors cursor-pointer">
@@ -241,23 +348,19 @@
                         </button>
                     </div>
 
-                    {{-- Modal Inputs --}}
                     <div class="space-y-4">
-                        {{-- No. ID --}}
                         <div>
                             <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">No. ID</label>
                             <input type="text" x-model="currentNasabah.no_id" readonly
                                    class="w-full h-11 px-4 rounded-xl border border-gray-200 text-xs bg-gray-100 text-gray-400 cursor-not-allowed outline-none select-none">
                         </div>
 
-                        {{-- Name --}}
                         <div>
                             <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Nama Lengkap</label>
                             <input type="text" name="name" x-model="currentNasabah.name" required
                                    class="w-full h-11 px-4 rounded-xl border border-gray-200 text-xs focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all">
                         </div>
 
-                        {{-- Email --}}
                         <div>
                             <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Alamat Email</label>
                             <input type="email" name="email" x-model="currentNasabah.email" required
@@ -265,29 +368,25 @@
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            {{-- Phone Number --}}
                             <div>
                                 <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Nomor HP</label>
-                                <input type="text" name="phone_number" x-model="currentNasabah.phone_number" required readonly
-                                       class="w-full h-11 px-4 rounded-xl border border-gray-200 text-xs bg-gray-100 text-gray-400 cursor-not-allowed outline-none select-none">
+                                <input type="text" name="phone_number" x-model="currentNasabah.phone_number" required
+                                       class="w-full h-11 px-4 rounded-xl border border-gray-200 text-xs focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all">
                             </div>
 
-                            {{-- KK Number --}}
                             <div>
                                 <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Nomor KK (16 digit)</label>
-                                <input type="text" name="kk_number" x-model="currentNasabah.kk_number" required maxlength="16" minlength="16" readonly
-                                       class="w-full h-11 px-4 rounded-xl border border-gray-200 text-xs bg-gray-100 text-gray-400 cursor-not-allowed outline-none select-none">
+                                <input type="text" name="kk_number" x-model="currentNasabah.kk_number" required maxlength="16" minlength="16"
+                                       class="w-full h-11 px-4 rounded-xl border border-gray-200 text-xs focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all">
                             </div>
                         </div>
 
-                        {{-- Address --}}
                         <div>
                             <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Alamat Lengkap</label>
-                            <textarea name="address" x-model="currentNasabah.address" rows="3" readonly
-                                      class="w-full p-4 rounded-xl border border-gray-200 text-xs bg-gray-100 text-gray-400 cursor-not-allowed outline-none select-none resize-none"></textarea>
+                            <textarea name="address" x-model="currentNasabah.address" rows="3"
+                                      class="w-full p-4 rounded-xl border border-gray-200 text-xs focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all resize-none"></textarea>
                         </div>
 
-                        {{-- Password (Optional) --}}
                         <div class="pt-2 border-t border-gray-100">
                             <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Password Baru (Opsional)</label>
                             <input type="password" name="password" placeholder="Kosongkan jika tidak diubah"
@@ -295,7 +394,6 @@
                         </div>
                     </div>
 
-                    {{-- Modal Footer --}}
                     <div class="flex items-center justify-end gap-3 mt-6 pt-4 border-t border-gray-100">
                         <button type="button" @click="editModalOpen = false"
                                 class="px-5 py-2.5 rounded-xl border border-gray-200 hover:bg-gray-50 text-xs font-semibold text-gray-600 transition-colors cursor-pointer">
@@ -325,9 +423,7 @@
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
     >
-        {{-- Backdrop --}}
         <div class="fixed inset-0 bg-neutral-900/60 backdrop-blur-xs transition-opacity"></div>
-
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div 
                 class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md border border-gray-100"
@@ -343,7 +439,6 @@
                     @csrf
                     @method('DELETE')
 
-                    {{-- Warning Icon --}}
                     <div class="w-12 h-12 rounded-full bg-red-50 text-red-600 flex items-center justify-center mx-auto mb-4 border border-red-100">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -355,7 +450,6 @@
                         Apakah Anda yakin ingin menghapus akun nasabah <strong class="text-gray-800" x-text="currentNasabah.name"></strong>? Data tabungan dan riwayat transaksi nasabah ini juga akan terhapus permanen dari sistem.
                     </p>
 
-                    {{-- Actions --}}
                     <div class="flex items-center justify-center gap-3">
                         <button type="button" @click="deleteModalOpen = false"
                                 class="px-5 py-2.5 rounded-xl border border-gray-200 hover:bg-gray-50 text-xs font-semibold text-gray-600 transition-colors cursor-pointer">

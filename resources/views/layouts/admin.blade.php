@@ -174,9 +174,9 @@
                 {{-- Data Nasabah --}}
                 <a href="{{ route('admin.nasabah') }}"
                    class="nav-link group flex items-center gap-3 px-3 py-3 rounded-xl text-[13px] font-semibold transition-all duration-300
-                          {{ request()->routeIs('admin.nasabah') ? 'active bg-gradient-to-r from-emerald-500/[0.15] to-teal-500/[0.08] text-emerald-300 shadow-lg shadow-emerald-900/20' : 'text-white/45 hover:bg-white/[0.04] hover:text-white/80' }}">
+                          {{ request()->routeIs('admin.nasabah') || request()->routeIs('admin.nasabah.history') ? 'active bg-gradient-to-r from-emerald-500/[0.15] to-teal-500/[0.08] text-emerald-300 shadow-lg shadow-emerald-900/20' : 'text-white/45 hover:bg-white/[0.04] hover:text-white/80' }}">
                     <span class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300
-                                {{ request()->routeIs('admin.nasabah')
+                                {{ request()->routeIs('admin.nasabah') || request()->routeIs('admin.nasabah.history')
                                     ? 'bg-gradient-to-br from-emerald-500/25 to-teal-500/20 text-emerald-300 shadow-inner shadow-emerald-500/10'
                                     : 'bg-white/[0.04] text-white/30 group-hover:bg-white/[0.07] group-hover:text-white/60 group-hover:scale-105' }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-[19px] h-[19px]" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
@@ -184,25 +184,97 @@
                         </svg>
                     </span>
                     <span>Data Nasabah</span>
-                    @if(request()->routeIs('admin.nasabah'))
+                    @if(request()->routeIs('admin.nasabah') || request()->routeIs('admin.nasabah.history'))
                         <span class="ml-auto w-2 h-2 rounded-full bg-emerald-400 breathe"></span>
                     @endif
                 </a>
 
-                {{-- Data Keuangan --}}
-                <a href="{{ route('admin.keuangan') }}"
+                {{-- Input Setoran --}}
+                <a href="{{ route('admin.setoran') }}"
                    class="nav-link group flex items-center gap-3 px-3 py-3 rounded-xl text-[13px] font-semibold transition-all duration-300
-                          {{ request()->routeIs('admin.keuangan') ? 'active bg-gradient-to-r from-emerald-500/[0.15] to-teal-500/[0.08] text-emerald-300 shadow-lg shadow-emerald-900/20' : 'text-white/45 hover:bg-white/[0.04] hover:text-white/80' }}">
+                          {{ request()->routeIs('admin.setoran') ? 'active bg-gradient-to-r from-emerald-500/[0.15] to-teal-500/[0.08] text-emerald-300 shadow-lg shadow-emerald-900/20' : 'text-white/45 hover:bg-white/[0.04] hover:text-white/80' }}">
                     <span class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300
-                                {{ request()->routeIs('admin.keuangan')
+                                {{ request()->routeIs('admin.setoran')
                                     ? 'bg-gradient-to-br from-emerald-500/25 to-teal-500/20 text-emerald-300 shadow-inner shadow-emerald-500/10'
                                     : 'bg-white/[0.04] text-white/30 group-hover:bg-white/[0.07] group-hover:text-white/60 group-hover:scale-105' }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-[19px] h-[19px]" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                         </svg>
                     </span>
-                    <span>Data Keuangan</span>
-                    @if(request()->routeIs('admin.keuangan'))
+                    <span>Setor Sampah</span>
+                    @if(request()->routeIs('admin.setoran'))
+                        <span class="ml-auto w-2 h-2 rounded-full bg-emerald-400 breathe"></span>
+                    @endif
+                </a>
+
+                {{-- Stok & Gudang --}}
+                <a href="{{ route('admin.gudang') }}"
+                   class="nav-link group flex items-center gap-3 px-3 py-3 rounded-xl text-[13px] font-semibold transition-all duration-300
+                          {{ request()->routeIs('admin.gudang') ? 'active bg-gradient-to-r from-emerald-500/[0.15] to-teal-500/[0.08] text-emerald-300 shadow-lg shadow-emerald-900/20' : 'text-white/45 hover:bg-white/[0.04] hover:text-white/80' }}">
+                    <span class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300
+                                {{ request()->routeIs('admin.gudang')
+                                    ? 'bg-gradient-to-br from-emerald-500/25 to-teal-500/20 text-emerald-300 shadow-inner shadow-emerald-500/10'
+                                    : 'bg-white/[0.04] text-white/30 group-hover:bg-white/[0.07] group-hover:text-white/60 group-hover:scale-105' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-[19px] h-[19px]" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5" />
+                        </svg>
+                    </span>
+                    <span>Stok & Gudang</span>
+                    @if(request()->routeIs('admin.gudang'))
+                        <span class="ml-auto w-2 h-2 rounded-full bg-emerald-400 breathe"></span>
+                    @endif
+                </a>
+
+                {{-- Tarik Tunai --}}
+                <a href="{{ route('admin.penarikan') }}"
+                   class="nav-link group flex items-center gap-3 px-3 py-3 rounded-xl text-[13px] font-semibold transition-all duration-300
+                          {{ request()->routeIs('admin.penarikan') ? 'active bg-gradient-to-r from-emerald-500/[0.15] to-teal-500/[0.08] text-emerald-300 shadow-lg shadow-emerald-900/20' : 'text-white/45 hover:bg-white/[0.04] hover:text-white/80' }}">
+                    <span class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300
+                                {{ request()->routeIs('admin.penarikan')
+                                    ? 'bg-gradient-to-br from-emerald-500/25 to-teal-500/20 text-emerald-300 shadow-inner shadow-emerald-500/10'
+                                    : 'bg-white/[0.04] text-white/30 group-hover:bg-white/[0.07] group-hover:text-white/60 group-hover:scale-105' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-[19px] h-[19px]" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+                        </svg>
+                    </span>
+                    <span>Tarik Tunai</span>
+                    @if(request()->routeIs('admin.penarikan'))
+                        <span class="ml-auto w-2 h-2 rounded-full bg-emerald-400 breathe"></span>
+                    @endif
+                </a>
+
+                {{-- Kas internal --}}
+                <a href="{{ route('admin.cashflow') }}"
+                   class="nav-link group flex items-center gap-3 px-3 py-3 rounded-xl text-[13px] font-semibold transition-all duration-300
+                          {{ request()->routeIs('admin.cashflow') ? 'active bg-gradient-to-r from-emerald-500/[0.15] to-teal-500/[0.08] text-emerald-300 shadow-lg shadow-emerald-900/20' : 'text-white/45 hover:bg-white/[0.04] hover:text-white/80' }}">
+                    <span class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300
+                                {{ request()->routeIs('admin.cashflow')
+                                    ? 'bg-gradient-to-br from-emerald-500/25 to-teal-500/20 text-emerald-300 shadow-inner shadow-emerald-500/10'
+                                    : 'bg-white/[0.04] text-white/30 group-hover:bg-white/[0.07] group-hover:text-white/60 group-hover:scale-105' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-[19px] h-[19px]" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75" />
+                        </svg>
+                    </span>
+                    <span>Buku Kas Kantor</span>
+                    @if(request()->routeIs('admin.cashflow'))
+                        <span class="ml-auto w-2 h-2 rounded-full bg-emerald-400 breathe"></span>
+                    @endif
+                </a>
+
+                {{-- Master Harga --}}
+                <a href="{{ route('admin.harga') }}"
+                   class="nav-link group flex items-center gap-3 px-3 py-3 rounded-xl text-[13px] font-semibold transition-all duration-300
+                          {{ request()->routeIs('admin.harga') ? 'active bg-gradient-to-r from-emerald-500/[0.15] to-teal-500/[0.08] text-emerald-300 shadow-lg shadow-emerald-950/20' : 'text-white/45 hover:bg-white/[0.04] hover:text-white/80' }}">
+                    <span class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300
+                                {{ request()->routeIs('admin.harga')
+                                    ? 'bg-gradient-to-br from-emerald-500/25 to-teal-500/20 text-emerald-300 shadow-inner shadow-emerald-500/10'
+                                    : 'bg-white/[0.04] text-white/30 group-hover:bg-white/[0.07] group-hover:text-white/60 group-hover:scale-105' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-[19px] h-[19px]" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.43l-1.003.828c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.43l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.645-.869L9.594 3.94ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                        </svg>
+                    </span>
+                    <span>Master Harga</span>
+                    @if(request()->routeIs('admin.harga'))
                         <span class="ml-auto w-2 h-2 rounded-full bg-emerald-400 breathe"></span>
                     @endif
                 </a>
