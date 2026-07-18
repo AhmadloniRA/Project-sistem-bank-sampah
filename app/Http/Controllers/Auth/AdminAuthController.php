@@ -33,7 +33,7 @@ class AdminAuthController extends Controller
         if (Auth::guard('admin')->attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('admin.dashboard'));
+            return redirect()->intended(route('admin.dashboard'))->with('success', 'Selamat datang kembali, Admin!');
         }
 
         return back()->withErrors([
@@ -50,6 +50,6 @@ class AdminAuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('admin.login');
+        return redirect()->route('admin.login')->with('success', 'Anda telah berhasil keluar dari sistem.');
     }
 }

@@ -52,7 +52,7 @@ class UserAuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('user.dashboard');
+        return redirect()->route('user.dashboard')->with('success', 'Registrasi berhasil! Selamat datang di ARUNA.');
     }
 
     /**
@@ -70,7 +70,7 @@ class UserAuthController extends Controller
 
             // Check if the authenticated user is a regular user
             if (Auth::user()->isUser()) {
-                return redirect()->intended(route('user.dashboard'));
+                return redirect()->intended(route('user.dashboard'))->with('success', 'Selamat datang kembali!');
             }
 
             // Not a user role — logout and redirect back with error
@@ -97,6 +97,6 @@ class UserAuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/')->with('success', 'Anda telah berhasil keluar dari sistem.');
     }
 }

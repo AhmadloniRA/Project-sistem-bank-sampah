@@ -20,6 +20,8 @@ class AdminCashflowController extends Controller
         return view('admin.cashflow.index', compact('cashflows', 'sisaSaldo'));
     }
 
+
+
     /**
      * Store manual cashflow entry (usually keluar for operational expenses).
      */

@@ -86,4 +86,7 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
 */
 Route::middleware(['auth', 'user'])->prefix('user')->name('user.')->group(function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/riwayat', [UserDashboardController::class, 'riwayat'])->name('riwayat');
+    Route::get('/profil', [UserDashboardController::class, 'profil'])->name('profil');
 });
+

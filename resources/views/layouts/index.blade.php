@@ -666,7 +666,7 @@
                         <div class="w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold text-white bg-gradient-to-br from-amber-400 to-amber-500">A</div>
                         <div>
                             <div class="font-bold text-[0.95rem] text-neutral-900">Ibu Ani</div>
-                            <div class="text-xs text-neutral-400">Ketua RT 05</div>
+                            <div class="text-xs text-neutral-400">Nasabah sejak 2025</div>
                         </div>
                     </div>
                 </div>

@@ -145,23 +145,7 @@
         @endif
     </div>
 
-    {{-- Error messages --}}
-    @if(session('success'))
-        <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center justify-between" x-data="{ show: true }" x-show="show">
-            <span>{{ session('success') }}</span>
-            <button @click="show = false" class="text-emerald-500 hover:text-emerald-700 cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
-            </button>
-        </div>
-    @endif
-    @if($errors->any())
-        <div class="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-semibold flex items-center justify-between" x-data="{ show: true }" x-show="show">
-            <span>{{ $errors->first() }}</span>
-            <button @click="show = false" class="text-rose-500 hover:text-rose-700 cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
-            </button>
-        </div>
-    @endif
+
 
     {{-- ============================================================ --}}
     {{-- MODAL CONFIRM JUAL --}}

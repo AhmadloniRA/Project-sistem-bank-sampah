@@ -95,22 +95,7 @@
                     <p class="text-neutral-500 text-sm font-medium">Bergabunglah bersama kami untuk lingkungan yang lebih bersih.</p>
                 </div>
 
-                <!-- Validation Errors -->
-                @if ($errors->any())
-                    <div class="mb-6 p-4 rounded-xl bg-red-50 border border-red-200">
-                        <div class="text-red-700 text-sm font-bold mb-1.5 flex items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
-                                <path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-4.5A.75.75 0 0 1 10 5Zm0 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
-                            </svg>
-                            Terjadi kesalahan
-                        </div>
-                        <ul class="list-disc list-inside text-red-600/90 text-sm font-medium space-y-0.5">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+
 
                 <!-- Register Form -->
                 <form method="POST" action="{{ route('user.register.submit') }}" class="space-y-4">
@@ -350,7 +335,6 @@
 
     </div>
 
-    <!-- Toggle Password Script -->
     <script>
         function togglePassword(inputId, eyeId, eyeSlashId) {
             const passwordInput = document.getElementById(inputId);
@@ -367,6 +351,60 @@
                 eyeSlashIcon.classList.add('hidden');
             }
         }
+    </script>
+    
+    {{-- SweetAlert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if(session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: {!! json_encode(session('success')) !!},
+                    confirmButtonColor: '#059669',
+                    timer: 3500,
+                    timerProgressBar: true
+                });
+            @endif
+
+            @if(session('status'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: {!! json_encode(session('status')) !!},
+                    confirmButtonColor: '#059669',
+                    timer: 3500,
+                    timerProgressBar: true
+                });
+            @endif
+
+            @if(session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: {!! json_encode(session('error')) !!},
+                    confirmButtonColor: '#dc2626',
+                });
+            @endif
+
+            @if($errors->any())
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Terjadi Kesalahan!',
+                    html: `
+                        <div class="text-left font-sans">
+                            <ul class="list-disc pl-5 space-y-1 text-sm text-red-650">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    `,
+                    confirmButtonColor: '#dc2626',
+                });
+            @endif
+        });
     </script>
 </body>
 </html>
