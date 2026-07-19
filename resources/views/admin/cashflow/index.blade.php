@@ -1,19 +1,16 @@
 @extends('layouts.admin')
 
-@section('title', 'Buku Kas internal')
-@section('page-title', 'Buku Kas Internal Pengelola')
-@section('page-subtitle', 'Akuntansi finansial dana operasional dan keuntungan bersih ARUNA')
+@section('title', 'Buku Kas Kantor')
+@section('page-title', 'Buku Kas Internal')
 
 @section('content')
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
     {{-- Form Input --}}
-    <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm lg:col-span-2">
-        <h3 class="text-sm font-bold text-gray-900 mb-5 flex items-center gap-2 pb-3 border-b border-gray-50">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
-            Catat Pengeluaran / Aliran Kas Manual
+    <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 p-6 shadow-xs lg:col-span-2 space-y-4">
+        <h3 class="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider flex items-center gap-2 pb-3 border-b border-outline-variant/20 mb-2">
+            <span class="material-symbols-outlined text-[18px] text-primary">add</span>
+            Catat Aliran Kas Manual
         </h3>
 
         <form action="{{ route('admin.cashflow.store') }}" method="POST" class="space-y-4">
@@ -21,50 +18,49 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {{-- Jenis Aliran --}}
-                <div>
-                    <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Jenis Aliran Dana</label>
+                <div class="flex flex-col gap-1.5">
+                    <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Jenis Aliran Dana</label>
                     <select name="jenis_aliran" required
-                            class="w-full h-11 px-4 rounded-xl border border-gray-200 text-xs focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all bg-white cursor-pointer text-gray-700">
-                        <option value="keluar" selected>Dana Keluar (Operasional/Beban)</option>
-                        <option value="masuk">Dana Masuk (Penghasilan Custom/Lainnya)</option>
+                            class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface cursor-pointer">
+                        <option value="keluar" selected>Dana Keluar (Operasional / Beban)</option>
+                        <option value="masuk">Dana Masuk (Custom / Penghasilan Lain)</option>
                     </select>
                 </div>
 
                 {{-- Kategori --}}
-                <div>
-                    <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Kategori Kas</label>
+                <div class="flex flex-col gap-1.5">
+                    <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Kategori Kas</label>
                     <select name="kategori" required
-                            class="w-full h-11 px-4 rounded-xl border border-gray-200 text-xs focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all bg-white cursor-pointer text-gray-700">
-                        <option value="operasional_bensin" selected>Operasional Bensin</option>
-                        <option value="atk">ATK / Nota Penjualan</option>
+                            class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface cursor-pointer">
+                        <option value="operasional_bensin" selected>Operasional Bensin Armada</option>
+                        <option value="atk">ATK / Logistik Nota</option>
                         <option value="perawatan_alat">Perawatan Alat / Timbangan</option>
-                        <option value="keuntungan_bersih">Hasil Margin Sampah</option>
+                        <option value="keuntungan_bersih">Hasil Margin Penjualan Sampah</option>
                         <option value="lain_lain">Lain-lain / Pengeluaran Tak Terduga</option>
                     </select>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-1 gap-4">
-                {{-- Nominal --}}
-                <div>
-                    <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Nominal Uang (Rupiah)</label>
-                    <div class="relative">
-                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-xs font-bold text-gray-400 select-none">Rp</span>
-                        <input type="number" name="nominal" required placeholder="Contoh: 15000" min="100"
-                               class="w-full h-11 pl-10 pr-4 rounded-xl border border-gray-200 text-xs focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all font-mono font-bold text-gray-800 placeholder-gray-400">
-                    </div>
+            {{-- Nominal --}}
+            <div class="flex flex-col gap-1.5">
+                <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nominal Uang (Rupiah)</label>
+                <div class="relative">
+                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-xs font-bold text-on-surface-variant/50 select-none">Rp</span>
+                    <input type="number" name="nominal" required placeholder="Contoh: 15000" min="100"
+                           class="w-full h-11 pl-10 pr-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all font-mono font-bold bg-surface-container-lowest text-on-surface placeholder-on-surface-variant/40">
                 </div>
             </div>
 
             {{-- Keterangan --}}
-            <div>
-                <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Catatan Detail (Keterangan)</label>
+            <div class="flex flex-col gap-1.5">
+                <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Catatan Detail (Keterangan)</label>
                 <textarea name="keterangan" rows="3" required placeholder="Masukkan detail peruntukan dana, contoh: 'Beli bensin armada motor roda tiga untuk penjemputan RW 02'..."
-                          class="w-full p-4 rounded-xl border border-gray-200 text-xs focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all resize-none placeholder-gray-400"></textarea>
+                          class="w-full p-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all resize-none bg-surface-container-lowest text-on-surface placeholder-on-surface-variant/40"></textarea>
             </div>
 
-            <div class="pt-3 border-t border-gray-50 flex items-center justify-end">
-                <button type="submit" class="h-11 px-6 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-emerald-600/15 cursor-pointer border border-transparent">
+            <div class="pt-4 border-t border-outline-variant/20 flex justify-end">
+                <button type="submit" class="h-10 px-4 bg-[#065f46] hover:bg-[#065f46]/90 text-[#8bd6b7] rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 cursor-pointer border border-transparent">
+                    <span class="material-symbols-outlined text-[16px]">save</span>
                     Simpan Riwayat Kas
                 </button>
             </div>
@@ -72,22 +68,20 @@
     </div>
 
     {{-- Balance Widget --}}
-    <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm flex flex-col justify-between h-72 lg:h-auto">
-        <div>
-            <h3 class="text-sm font-bold text-gray-900 mb-5 flex items-center gap-2 pb-3 border-b border-gray-50">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 0 0-2.25-2.25H15" />
-                </svg>
+    <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 p-6 shadow-xs flex flex-col justify-between h-72 lg:h-auto">
+        <div class="space-y-4">
+            <h3 class="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider flex items-center gap-2 pb-3 border-b border-outline-variant/20">
+                <span class="material-symbols-outlined text-[18px] text-primary">account_balance_wallet</span>
                 Saldo Kas internal
             </h3>
 
-            <div class="bg-emerald-50/50 border border-emerald-100/50 p-6 rounded-2xl text-right">
-                <span class="text-[10px] font-bold text-emerald-600 uppercase tracking-wider block">Sisa Anggaran Operasional</span>
-                <span class="text-2xl font-black text-emerald-700 font-mono mt-1 block">Rp {{ number_format($sisaSaldo, 0, ',', '.') }}</span>
+            <div class="bg-primary/5 border border-primary/15 p-6 rounded-2xl text-right shadow-inner">
+                <span class="text-[9px] font-bold text-primary uppercase tracking-wider block">Sisa Anggaran Operasional</span>
+                <span class="text-2xl font-black text-primary font-mono mt-1 block">Rp {{ number_format($sisaSaldo, 0, ',', '.') }}</span>
             </div>
         </div>
 
-        <div class="mt-6 text-[10.5px] leading-relaxed text-gray-400 bg-gray-50 p-4 rounded-xl border border-gray-150">
+        <div class="mt-6 text-[10px] font-medium leading-relaxed text-on-surface-variant/70 bg-surface-container-low/40 p-4 rounded-2xl border border-outline-variant/15">
             * Kas Internal Pengelola terisi <strong>secara otomatis</strong> ketika admin melakukan "Konfirmasi Penjualan" di Page Gudang (berupa keuntungan margin penjualan). Pengeluaran dicatat secara manual di form kiri.
         </div>
     </div>
@@ -95,44 +89,44 @@
 </div>
 
 {{-- Cashflow Log table --}}
-<div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mt-6">
-    <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-        <h3 class="text-[14px] font-bold text-gray-900">Jurnal Arus Kas Internal Pengelola</h3>
-        <span class="text-[11px] text-gray-400 font-medium bg-gray-50 px-2.5 py-1 rounded-lg">{{ $cashflows->count() }} transaksi</span>
+<div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-xs overflow-hidden mt-6">
+    <div class="px-6 py-4 border-b border-outline-variant/20 flex items-center justify-between">
+        <h3 class="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider">Jurnal Arus Kas Internal</h3>
+        <span class="text-[10px] font-bold text-primary bg-primary/5 px-2.5 py-1 rounded-lg border border-primary/10">{{ $cashflows->count() }} Data</span>
     </div>
 
     <div class="overflow-x-auto">
         <table class="w-full text-left">
             <thead>
-                <tr class="border-b border-gray-50">
-                    <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">No</th>
-                    <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Tanggal Input</th>
-                    <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Arah Aliran</th>
-                    <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Kategori</th>
-                    <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Nominal</th>
-                    <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Kas Berjalan</th>
-                    <th class="px-6 py-3.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Keterangan Catatan</th>
+                <tr class="border-b border-outline-variant/20 bg-surface-container-low/20">
+                    <th class="px-6 py-3.5 text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">No</th>
+                    <th class="px-6 py-3.5 text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Tanggal Input</th>
+                    <th class="px-6 py-3.5 text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Arah Aliran</th>
+                    <th class="px-6 py-3.5 text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Kategori</th>
+                    <th class="px-6 py-3.5 text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nominal</th>
+                    <th class="px-6 py-3.5 text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Kas Berjalan</th>
+                    <th class="px-6 py-3.5 text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Keterangan Catatan</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-50">
+            <tbody class="divide-y divide-outline-variant/15 text-xs">
                 @forelse($cashflows as $cf)
-                    <tr class="hover:bg-gray-50/50 transition-colors">
-                        <td class="px-6 py-4 text-xs font-semibold text-gray-500">{{ $loop->iteration }}</td>
-                        <td class="px-6 py-4 text-xs text-gray-500 font-mono">{{ $cf->created_at->translatedFormat('d M Y - H:i') }} WIB</td>
-                        <td class="px-6 py-4 text-xs">
+                    <tr class="hover:bg-surface-container-low/20 transition-colors">
+                        <td class="px-6 py-4 text-on-surface-variant/70 font-semibold">{{ $loop->iteration }}</td>
+                        <td class="px-6 py-4 text-on-surface-variant/80 font-mono">{{ $cf->created_at->translatedFormat('d M Y - H:i') }} WIB</td>
+                        <td class="px-6 py-4">
                             @if($cf->jenis_aliran === 'masuk')
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-50 border border-emerald-100 text-emerald-700">
+                                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-bold bg-primary/10 border border-primary/15 text-primary">
                                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                                     Masuk (Keuntungan)
                                 </span>
                             @else
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-50 border border-amber-100 text-amber-700">
+                                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-500/10 border border-amber-500/15 text-amber-700">
                                     <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
                                     Keluar (Operasional)
                                 </span>
                             @endif
                         </td>
-                        <td class="px-6 py-4 text-xs text-gray-700 font-semibold">
+                        <td class="px-6 py-4 text-on-surface font-bold">
                             @if($cf->kategori === 'operasional_bensin')
                                 Bensin Armada
                             @elseif($cf->kategori === 'atk')
@@ -145,24 +139,18 @@
                                 Lain-lain
                             @endif
                         </td>
-                        <td class="px-6 py-4 text-xs font-bold font-mono {{ $cf->jenis_aliran === 'masuk' ? 'text-emerald-600' : 'text-amber-600' }}">
+                        <td class="px-6 py-4 font-bold font-mono {{ $cf->jenis_aliran === 'masuk' ? 'text-primary' : 'text-amber-600' }}">
                             {{ $cf->jenis_aliran === 'masuk' ? '+' : '-' }} Rp {{ number_format($cf->nominal, 0, ',', '.') }}
                         </td>
-                        <td class="px-6 py-4 text-xs font-bold text-gray-900 font-mono">Rp {{ number_format($cf->sisa_saldo_kas, 0, ',', '.') }}</td>
-                        <td class="px-6 py-4 text-xs text-gray-600 leading-relaxed max-w-[250px] truncate" title="{{ $cf->keterangan }}">{{ $cf->keterangan }}</td>
+                        <td class="px-6 py-4 font-bold text-on-surface font-mono">Rp {{ number_format($cf->sisa_saldo_kas, 0, ',', '.') }}</td>
+                        <td class="px-6 py-4 text-on-surface-variant/80 max-w-[250px] truncate" title="{{ $cf->keterangan }}">{{ $cf->keterangan }}</td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="px-6 py-16 text-center">
-                            <div class="flex flex-col items-center">
-                                <div class="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center mb-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-gray-300" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3" />
-                                    </svg>
-                                </div>
-                                <p class="text-[13px] font-semibold text-gray-500 mb-1">Belum ada riwayat transaksi kas internal</p>
-                                <p class="text-[12px] text-gray-400">Arus kas masuk atau pengeluaran operasional akan tercatat di sini.</p>
-                            </div>
+                        <td colspan="7" class="px-6 py-12 text-center text-on-surface-variant/50">
+                            <span class="material-symbols-outlined text-[40px] text-on-surface-variant/20 block mb-2">account_balance_wallet</span>
+                            <p class="text-xs font-bold text-on-surface-variant/60">Belum ada riwayat transaksi kas internal</p>
+                            <p class="text-[10px] mt-0.5">Arus kas masuk atau pengeluaran operasional akan tercatat di sini.</p>
                         </td>
                     </tr>
                 @endforelse

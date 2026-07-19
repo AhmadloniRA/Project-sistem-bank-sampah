@@ -1,75 +1,227 @@
-﻿@extends('layouts.nasabah')
+@extends('layouts.nasabah')
 @section('title', 'Profil Saya')
 @section('meta-description', 'Profil dan informasi akun nasabah ARUNA.')
 @section('page-title', 'Profil Saya')
 
 @section('content')
+
 {{-- Hero Banner --}}
-<div class="bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-600 rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden shadow-sm mb-6">
+<div class="bg-gradient-to-r from-primary via-[#14422e] to-primary rounded-3xl p-6 sm:p-8 text-on-primary relative overflow-hidden card-shadow mb-6">
     <div class="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3"></div>
     <div class="relative z-10 flex flex-col sm:flex-row sm:items-center gap-5">
-        <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-extrabold text-white shadow-xl" style="background: rgba(255,255,255,0.15);">
-            {{ strtoupper(substr(\->name, 0, 1)) }}
+        <div class="shrink-0">
+            @if($user->profile_photo)
+                <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-xl border border-white/20">
+                    <img src="{{ asset($user->profile_photo) }}" alt="Avatar" class="w-full h-full object-cover">
+                </div>
+            @else
+                <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-extrabold text-primary bg-white/95 shadow-xl border border-white/20">
+                    {{ strtoupper(substr($user->name, 0, 1)) }}
+                </div>
+            @endif
         </div>
         <div>
-            <span class="text-emerald-200 text-xs font-semibold uppercase tracking-wider block mb-1">Nasabah ARUNA</span>
-            <h2 class="text-2xl font-black">{{ \->name }}</h2>
-            <span class="text-emerald-200 text-xs font-mono font-bold">{{ \->no_id }}</span>
+            <span class="text-white/60 text-xs font-semibold uppercase tracking-wider block mb-1">Anggota Resmi ARUNA</span>
+            <h2 class="text-2xl font-black tracking-tight">{{ $user->name }}</h2>
+            <div class="flex items-center gap-2 mt-1">
+                <span class="text-emerald-300 text-xs font-mono font-bold">{{ $user->no_id }}</span>
+                <span class="text-white/40 text-xs">•</span>
+                <span class="text-white/70 text-xs font-semibold">
+                    @if($totalTransaksi >= 10)
+                        Level 3 Eco-Hero
+                    @elseif($totalTransaksi >= 5)
+                        Level 2 Eco-Hero
+                    @else
+                        Eco-Citizen
+                    @endif
+                </span>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-    {{-- Info Utama --}}
-    <div class="lg:col-span-2 bg-white rounded-2xl border border-neutral-100 shadow-xs overflow-hidden">
-        <div class="px-6 py-4 border-b border-neutral-100">
-            <h3 class="text-xs font-bold text-neutral-400 uppercase tracking-wider">Informasi Akun</h3>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6" x-data="{ activeTab: 'info' }">
+    {{-- Info Utama & Edit Tab Container --}}
+    <div class="lg:col-span-2 bg-surface-container-lowest rounded-[2rem] border border-outline-variant/30 shadow-sm overflow-hidden flex flex-col">
+        {{-- Navigation Tabs --}}
+        <div class="flex border-b border-outline-variant/20 bg-surface-container-low/10">
+            <button @click="activeTab = 'info'" 
+                    :class="activeTab === 'info' ? 'border-primary text-primary font-bold bg-surface-container-lowest' : 'border-transparent text-on-surface-variant/70 font-semibold hover:text-on-surface'"
+                    class="flex-1 py-4 text-center border-b-2 text-xs transition-all cursor-pointer">
+                Informasi Akun
+            </button>
+            <button @click="activeTab = 'edit'" 
+                    :class="activeTab === 'edit' ? 'border-primary text-primary font-bold bg-surface-container-lowest' : 'border-transparent text-on-surface-variant/70 font-semibold hover:text-on-surface'"
+                    class="flex-1 py-4 text-center border-b-2 text-xs transition-all cursor-pointer">
+                Edit &amp; Verifikasi Profil
+            </button>
         </div>
-        <div class="divide-y divide-neutral-50">
-            <div class="px-6 py-4 flex items-start gap-4">
-                <span class="w-28 text-[11px] font-bold text-neutral-400 uppercase tracking-wider shrink-0 pt-0.5">Nama Lengkap</span>
-                <span class="text-sm font-semibold text-neutral-800">{{ \->name }}</span>
+
+        {{-- Tab Content: View Info --}}
+        <div x-show="activeTab === 'info'" class="divide-y divide-outline-variant/10 text-xs flex-1">
+            <div class="px-6 py-4.5 flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4">
+                <span class="w-32 text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-wider shrink-0 pt-0.5">Nama Lengkap</span>
+                <span class="font-bold text-on-surface text-sm">{{ $user->name }}</span>
             </div>
-            <div class="px-6 py-4 flex items-start gap-4">
-                <span class="w-28 text-[11px] font-bold text-neutral-400 uppercase tracking-wider shrink-0 pt-0.5">ID Nasabah</span>
-                <span class="text-sm font-bold font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-lg">{{ \->no_id }}</span>
+            <div class="px-6 py-4.5 flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4">
+                <span class="w-32 text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-wider shrink-0 pt-0.5">ID Nasabah</span>
+                <span class="font-bold font-mono text-primary bg-primary/5 px-2.5 py-1 rounded-lg border border-primary/10 tracking-wide text-xs w-fit">
+                    {{ $user->no_id }}
+                </span>
             </div>
-            <div class="px-6 py-4 flex items-start gap-4">
-                <span class="w-28 text-[11px] font-bold text-neutral-400 uppercase tracking-wider shrink-0 pt-0.5">No. KK</span>
-                <span class="text-sm font-mono text-neutral-600">{{ \->kk_number ?? '-' }}</span>
+            <div class="px-6 py-4.5 flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4">
+                <span class="w-32 text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-wider shrink-0 pt-0.5">No. Kartu Keluarga</span>
+                <span class="font-semibold text-on-surface font-mono">{{ $user->kk_number ?? '-' }}</span>
             </div>
-            <div class="px-6 py-4 flex items-start gap-4">
-                <span class="w-28 text-[11px] font-bold text-neutral-400 uppercase tracking-wider shrink-0 pt-0.5">No. Telepon</span>
-                <span class="text-sm text-neutral-600">{{ \->phone_number ?? '-' }}</span>
+            <div class="px-6 py-4.5 flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4">
+                <span class="w-32 text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-wider shrink-0 pt-0.5">No. Telepon / WA</span>
+                @if($user->phone_number)
+                    <span class="font-semibold text-on-surface font-mono">{{ $user->phone_number }}</span>
+                @else
+                    <span class="text-rose-500 font-semibold italic flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">error</span>
+                        Belum terverifikasi (Silakan input di tab Edit)
+                    </span>
+                @endif
             </div>
-            <div class="px-6 py-4 flex items-start gap-4">
-                <span class="w-28 text-[11px] font-bold text-neutral-400 uppercase tracking-wider shrink-0 pt-0.5">Status</span>
-                <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200/60">
+            <div class="px-6 py-4.5 flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4">
+                <span class="w-32 text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-wider shrink-0 pt-0.5">Alamat Domisili</span>
+                @if($user->address)
+                    <span class="font-semibold text-on-surface leading-relaxed max-w-lg">{{ $user->address }}</span>
+                @else
+                    <span class="text-rose-500 font-semibold italic flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">error</span>
+                        Belum terverifikasi (Silakan input di tab Edit)
+                    </span>
+                @endif
+            </div>
+            <div class="px-6 py-4.5 flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4">
+                <span class="w-32 text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-wider shrink-0 pt-0.5">Status Keanggotaan</span>
+                <span class="inline-flex items-center gap-1.5 text-[10px] font-bold text-primary bg-primary/5 px-3 py-1 rounded-full border border-primary/10 w-fit">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
                     Aktif Terdaftar
                 </span>
             </div>
         </div>
+
+        {{-- Tab Content: Edit Form --}}
+        <div x-show="activeTab === 'edit'" style="display: none;" class="p-6 flex-1">
+            <form action="{{ route('user.profil.update') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+                @csrf
+                
+                {{-- Edit Avatar Block --}}
+                <div x-data="{ photoName: null, photoPreview: null }" class="flex flex-col items-center gap-3 border-b border-outline-variant/20 pb-6">
+                    <span class="text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-wider">Foto Profil</span>
+                    
+                    {{-- Hidden File Input --}}
+                    <input type="file" name="profile_photo" class="hidden" x-ref="photo" accept="image/*"
+                           x-on:change="
+                               photoName = $refs.photo.files[0].name;
+                               const reader = new FileReader();
+                               reader.onload = (e) => {
+                                   photoPreview = e.target.result;
+                               };
+                               reader.readAsDataURL($refs.photo.files[0]);
+                           " />
+
+                    {{-- Current Avatar --}}
+                    <div class="relative w-20 h-20 rounded-full overflow-hidden border border-outline-variant/30 shadow-xs shrink-0" x-show="!photoPreview">
+                        @if($user->profile_photo)
+                            <img src="{{ asset($user->profile_photo) }}" class="w-full h-full object-cover">
+                        @else
+                            <div class="w-full h-full bg-primary/10 text-primary flex items-center justify-center text-2xl font-bold">
+                                {{ strtoupper(substr($user->name, 0, 1)) }}
+                            </div>
+                        @endif
+                    </div>
+
+                    {{-- New Photo Preview --}}
+                    <div class="relative w-20 h-20 rounded-full overflow-hidden border border-outline-variant/30 shadow-xs shrink-0" x-show="photoPreview" style="display: none;">
+                        <img :src="photoPreview" class="w-full h-full object-cover">
+                    </div>
+
+                    <button type="button" class="px-4 py-1.5 border border-outline/30 rounded-xl text-[11px] font-bold text-on-surface hover:bg-surface-container transition-colors cursor-pointer" x-on:click.prevent="$refs.photo.click()">
+                        Ubah Foto Profil
+                    </button>
+                    <p class="text-[9px] text-on-surface-variant/50">Format JPEG/PNG, Maks. 2MB</p>
+                </div>
+
+                {{-- Edit Fields --}}
+                <div class="space-y-4">
+                    {{-- Name input --}}
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nama Lengkap</label>
+                        <input type="text" name="name" value="{{ old('name', $user->name) }}" required
+                               class="w-full px-4 py-2.5 bg-surface rounded-xl border border-outline-variant/40 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all">
+                    </div>
+
+                    {{-- Phone input --}}
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider flex items-center gap-1">
+                            Nomor Handphone / WhatsApp
+                            <span class="text-[9px] text-primary/70 font-semibold lowercase font-sans">(Verifikasi Kontak)</span>
+                        </label>
+                        <input type="text" name="phone_number" value="{{ old('phone_number', $user->phone_number) }}" placeholder="Contoh: 08123456789"
+                               class="w-full px-4 py-2.5 bg-surface rounded-xl border border-outline-variant/40 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all">
+                    </div>
+
+                    {{-- Address textarea --}}
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider flex items-center gap-1">
+                            Alamat Lengkap
+                            <span class="text-[9px] text-primary/70 font-semibold lowercase font-sans">(Verifikasi Domisili)</span>
+                        </label>
+                        <textarea name="address" rows="3" placeholder="Masukkan alamat lengkap RT/RW, Dusun, Desa, Kec. Karawang..."
+                                  class="w-full px-4 py-2.5 bg-surface rounded-xl border border-outline-variant/40 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all resize-none">{{ old('address', $user->address) }}</textarea>
+                    </div>
+                </div>
+
+                {{-- Action Buttons --}}
+                <div class="flex justify-end gap-3 pt-3 border-t border-outline-variant/10">
+                    <button type="button" @click="activeTab = 'info'"
+                            class="px-5 py-2.5 border border-outline-variant/50 rounded-xl text-xs font-bold text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer">
+                        Batal
+                    </button>
+                    <button type="submit"
+                            class="px-5 py-2.5 bg-primary text-on-primary rounded-xl text-xs font-bold hover:shadow-lg hover:shadow-primary/20 transition-all flex items-center gap-2 cursor-pointer">
+                        <span class="material-symbols-outlined text-[16px]">save</span>
+                        Simpan &amp; Verifikasi
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 
-    {{-- Stats --}}
+    {{-- Stats Cards Grid (Side Column) --}}
     <div class="space-y-4">
-        <div class="bg-white border border-neutral-100 p-5 rounded-2xl shadow-xs">
-            <div class="text-[10px] text-neutral-400 font-bold mb-1 uppercase tracking-wider">Saldo Tabungan</div>
-            <div class="text-xl font-black text-emerald-700 font-mono">Rp {{ number_format(\->total_tabungan, 0, ',', '.') }}</div>
+        {{-- Card Saldo --}}
+        <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
+            <p class="text-[9px] text-on-surface-variant/50 font-bold uppercase tracking-wider">Saldo Tabungan</p>
+            <h3 class="text-xl font-black text-primary mt-1 font-mono">Rp {{ number_format($user->total_tabungan, 0, ',', '.') }}</h3>
         </div>
-        <div class="bg-white border border-neutral-100 p-5 rounded-2xl shadow-xs">
-            <div class="text-[10px] text-neutral-400 font-bold mb-1 uppercase tracking-wider">Total Sampah Disetor</div>
-            <div class="text-xl font-black text-emerald-700 font-mono">{{ number_format(\, 1, ',', '.') }} <span class="text-xs font-bold text-gray-400">kg</span></div>
+
+        {{-- Card Setoran --}}
+        <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
+            <p class="text-[9px] text-on-surface-variant/50 font-bold uppercase tracking-wider">Total Sampah Disetor</p>
+            <h3 class="text-xl font-black text-primary mt-1 font-mono">
+                {{ number_format($totalTimbangan, 1, ',', '.') }} <span class="text-xs font-bold text-on-surface-variant/60">kg</span>
+            </h3>
         </div>
-        <div class="bg-white border border-neutral-100 p-5 rounded-2xl shadow-xs">
-            <div class="text-[10px] text-neutral-400 font-bold mb-1 uppercase tracking-wider">Total Transaksi</div>
-            <div class="text-xl font-black text-emerald-700 font-mono">{{ \ }} <span class="text-xs font-bold text-gray-400">transaksi</span></div>
+
+        {{-- Card Transaksi --}}
+        <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
+            <p class="text-[9px] text-on-surface-variant/50 font-bold uppercase tracking-wider">Total Transaksi</p>
+            <h3 class="text-xl font-black text-primary mt-1 font-mono">
+                {{ $totalTransaksi }} <span class="text-xs font-bold text-on-surface-variant/60">kali</span>
+            </h3>
         </div>
-        <div class="bg-white border border-neutral-100 p-5 rounded-2xl shadow-xs">
-            <div class="text-[10px] text-neutral-400 font-bold mb-1 uppercase tracking-wider">Bergabung Sejak</div>
-            <div class="text-sm font-bold text-neutral-700 font-mono">{{ \->created_at->translatedFormat('d M Y') }}</div>
+
+        {{-- Card Tanggal Gabung --}}
+        <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
+            <p class="text-[9px] text-on-surface-variant/50 font-bold uppercase tracking-wider">Bergabung Sejak</p>
+            <h3 class="text-sm font-bold text-on-surface mt-1 font-mono">{{ $user->created_at->translatedFormat('d M Y') }}</h3>
         </div>
     </div>
 </div>
+
 @endsection

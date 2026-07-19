@@ -88,5 +88,6 @@ Route::middleware(['auth', 'user'])->prefix('user')->name('user.')->group(functi
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('/riwayat', [UserDashboardController::class, 'riwayat'])->name('riwayat');
     Route::get('/profil', [UserDashboardController::class, 'profil'])->name('profil');
+    Route::post('/profil/update', [UserDashboardController::class, 'updateProfil'])->name('profil.update');
 });
 

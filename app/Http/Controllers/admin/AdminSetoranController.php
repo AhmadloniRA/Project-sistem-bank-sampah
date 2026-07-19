@@ -22,8 +22,11 @@ class AdminSetoranController extends Controller
             ->orderBy('created_at', 'desc')
             ->take(15)
             ->get();
+        $nasabahList = User::where('role', 'user')
+            ->select('id', 'no_id', 'name', 'address', 'phone_number', 'profile_photo')
+            ->get();
 
-        return view('admin.setoran.index', compact('hargaMaster', 'recentSetoran'));
+        return view('admin.setoran.index', compact('hargaMaster', 'recentSetoran', 'nasabahList'));
     }
 
     /**
