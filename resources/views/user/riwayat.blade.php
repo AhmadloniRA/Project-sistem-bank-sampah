@@ -6,61 +6,61 @@
 @section('content')
 
 {{-- Header Hero --}}
-<div class="bg-gradient-to-r from-primary via-[#14422e] to-primary p-6 text-on-primary rounded-3xl relative overflow-hidden card-shadow mb-6">
-    <div class="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3"></div>
+<div data-reveal="flip" data-reveal-delay="50" class="bg-gradient-to-r from-primary via-[#14422e] to-primary p-6 text-on-primary rounded-3xl relative overflow-hidden card-shadow mb-6 tilt-card">
+    <div class="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3 float-bubble" data-parallax="0.2"></div>
     <div class="relative z-10">
         <span class="text-white/70 text-xs font-semibold uppercase tracking-wider block mb-1">Rekam Jejak Keuangan</span>
-        <h2 class="text-2xl font-black">Riwayat Transaksi</h2>
+        <h2 class="text-2xl font-black" data-typewriter="Riwayat Transaksi" data-typewriter-speed="55">Riwayat Transaksi</h2>
         <p class="text-white/60 text-xs mt-1">Semua mutasi masuk (setoran) dan keluar (penarikan) pada rekening tabungan Anda.</p>
     </div>
 </div>
 
 {{-- Summary Cards --}}
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6" data-stagger="120">
     {{-- Saldo Berjalan --}}
-    <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
+    <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300 ripple-container tilt-card" data-glow>
         <div class="relative z-10 flex flex-col h-full">
             <div class="flex items-center justify-between mb-4">
-                <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center magnetic-hover">
                     <span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
                 </div>
             </div>
             <p class="text-[10px] text-on-surface-variant/50 font-bold uppercase tracking-wider">Saldo Berjalan</p>
-            <h3 class="text-lg font-black text-on-surface mt-1 font-mono">Rp {{ number_format($user->total_tabungan, 0, ',', '.') }}</h3>
+            <h3 class="text-lg font-black text-on-surface mt-1 font-mono data-glow">Rp <span data-count="{{ $user->total_tabungan }}" data-count-duration="1800">{{ number_format($user->total_tabungan, 0, ',', '.') }}</span></h3>
         </div>
     </div>
 
     {{-- Total Uang Masuk --}}
-    <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
+    <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300 ripple-container tilt-card" data-glow>
         <div class="relative z-10 flex flex-col h-full">
             <div class="flex items-center justify-between mb-4">
-                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center border border-emerald-100">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center border border-emerald-100 magnetic-hover">
                     <span class="material-symbols-outlined text-[20px]">trending_up</span>
                 </div>
                 <span class="text-[9px] font-bold text-emerald-700 bg-emerald-100/50 px-2 py-0.5 rounded-md">Total Masuk</span>
             </div>
             <p class="text-[10px] text-on-surface-variant/50 font-bold uppercase tracking-wider">Total Hasil Setoran</p>
-            <h3 class="text-lg font-black text-emerald-700 mt-1 font-mono">+ Rp {{ number_format($totalMasuk, 0, ',', '.') }}</h3>
+            <h3 class="text-lg font-black text-emerald-700 mt-1 font-mono">+ Rp <span data-count="{{ $totalMasuk }}" data-count-duration="2000">{{ number_format($totalMasuk, 0, ',', '.') }}</span></h3>
         </div>
     </div>
 
     {{-- Total Uang Keluar --}}
-    <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
+    <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300 ripple-container tilt-card" data-glow>
         <div class="relative z-10 flex flex-col h-full">
             <div class="flex items-center justify-between mb-4">
-                <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-700 flex items-center justify-center border border-rose-100">
+                <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-700 flex items-center justify-center border border-rose-100 magnetic-hover">
                     <span class="material-symbols-outlined text-[20px]">payments</span>
                 </div>
                 <span class="text-[9px] font-bold text-rose-700 bg-rose-100/50 px-2 py-0.5 rounded-md">Total Keluar</span>
             </div>
             <p class="text-[10px] text-on-surface-variant/50 font-bold uppercase tracking-wider">Total Penarikan</p>
-            <h3 class="text-lg font-black text-rose-700 mt-1 font-mono">- Rp {{ number_format($totalKeluar, 0, ',', '.') }}</h3>
+            <h3 class="text-lg font-black text-rose-700 mt-1 font-mono">- Rp <span data-count="{{ $totalKeluar }}" data-count-duration="2000">{{ number_format($totalKeluar, 0, ',', '.') }}</span></h3>
         </div>
     </div>
 </div>
 
 {{-- Transaction Table Section --}}
-<div class="bg-surface-container-lowest rounded-[2rem] border border-outline-variant/30 shadow-sm flex flex-col overflow-hidden">
+<div data-reveal data-reveal-delay="200" class="bg-surface-container-lowest rounded-[2rem] border border-outline-variant/30 shadow-sm flex flex-col overflow-hidden">
     {{-- Table Controls --}}
     <div class="p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-surface-container-low/20 border-b border-outline-variant/30">
         <div class="relative w-full sm:w-80">
@@ -90,7 +90,7 @@
             </thead>
             <tbody id="transactionTable" class="divide-y divide-outline-variant/20 text-xs">
                 @forelse($transactions as $tx)
-                    <tr class="hover:bg-surface-container-low/30 transition-colors group">
+                    <tr class="hover:bg-surface-container-low/30 transition-colors group ripple-container">
                         <td class="px-6 py-4 whitespace-nowrap">
                             <p class="font-bold text-on-surface">{{ $tx->created_at->translatedFormat('d M Y') }}</p>
                             <p class="text-[10px] text-on-surface-variant/50 mt-0.5">{{ $tx->created_at->format('H:i') }} WIB</p>
@@ -141,8 +141,8 @@
 </div>
 
 {{-- Tip Banner --}}
-<div class="mt-6 bg-primary/5 border border-primary/10 p-5 rounded-2xl flex gap-4 items-start shadow-xs">
-    <div class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center shrink-0">
+<div data-reveal="left" data-reveal-delay="300" class="mt-6 bg-primary/5 border border-primary/10 p-5 rounded-2xl flex gap-4 items-start shadow-xs">
+    <div class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center shrink-0 magnetic-hover">
         <span class="material-symbols-outlined text-[20px]">lightbulb</span>
     </div>
     <div>
@@ -177,6 +177,7 @@
 
                 if (matchesSearch && matchesFilter) {
                     row.style.display = '';
+                    row.style.animation = 'fadeInUp 0.3s ease forwards';
                 } else {
                     row.style.display = 'none';
                 }

@@ -46,6 +46,7 @@ use App\Http\Controllers\Admin\AdminGudangController;
 use App\Http\Controllers\Admin\AdminPenarikanController;
 use App\Http\Controllers\Admin\AdminCashflowController;
 use App\Http\Controllers\Admin\AdminHargaController;
+use App\Http\Controllers\Admin\AdminSettingsController;
 use App\Http\Controllers\User\UserDashboardController;
 
 /*
@@ -77,6 +78,10 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
 
     Route::get('/harga', [AdminHargaController::class, 'index'])->name('harga');
     Route::put('/harga/{harga}', [AdminHargaController::class, 'update'])->name('harga.update');
+
+    Route::get('/settings', [AdminSettingsController::class, 'index'])->name('settings');
+    Route::put('/settings/profile', [AdminSettingsController::class, 'updateProfile'])->name('settings.profile.update');
+    Route::put('/settings/password', [AdminSettingsController::class, 'updatePassword'])->name('settings.password.update');
 });
 
 /*

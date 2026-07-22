@@ -54,12 +54,12 @@
             {{-- Keterangan --}}
             <div class="flex flex-col gap-1.5">
                 <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Catatan Detail (Keterangan)</label>
-                <textarea name="keterangan" rows="3" required placeholder="Masukkan detail peruntukan dana, contoh: 'Beli bensin armada motor roda tiga untuk penjemputan RW 02'..."
+                <textarea name="keterangan" rows="3" required placeholder="Masukkan Detail Keterangannya!"
                           class="w-full p-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all resize-none bg-surface-container-lowest text-on-surface placeholder-on-surface-variant/40"></textarea>
             </div>
 
             <div class="pt-4 border-t border-outline-variant/20 flex justify-end">
-                <button type="submit" class="h-10 px-4 bg-[#065f46] hover:bg-[#065f46]/90 text-[#8bd6b7] rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 cursor-pointer border border-transparent">
+                <button type="submit" class="h-10 px-4 bg-[#065f46] hover:bg-[#065f46]/90 text-[#FFFFFF] rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 cursor-pointer border border-transparent">
                     <span class="material-symbols-outlined text-[16px]">save</span>
                     Simpan Riwayat Kas
                 </button>

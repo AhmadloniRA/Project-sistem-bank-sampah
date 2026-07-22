@@ -123,7 +123,7 @@
                 </div>
 
                 <div class="pt-4 border-t border-outline-variant/20 flex justify-end">
-                    <button type="submit" class="h-10 px-4 bg-[#065f46] hover:bg-[#065f46]/90 text-[#8bd6b7] rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 cursor-pointer border border-transparent">
+                    <button type="submit" class="h-10 px-4 bg-[#065f46] hover:bg-[#065f46]/90 text-[#FFFFFF] rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 cursor-pointer border border-transparent">
                         <span class="material-symbols-outlined text-[16px]">save</span>
                         Simpan Setoran
                     </button>

@@ -146,7 +146,7 @@
                             Batal
                         </button>
                         <button type="submit"
-                                class="h-10 px-4 bg-[#065f46] hover:bg-[#065f46]/90 text-[#8bd6b7] rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 cursor-pointer border border-transparent">
+                                class="h-10 px-4 bg-[#065f46] hover:bg-[#065f46]/90 text-[#FFFFFF] rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 cursor-pointer border border-transparent">
                             Simpan Perubahan
                         </button>
                     </div>

@@ -6,6 +6,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Admin Panel') — ARUNA</title>
     
+    {{-- Script Anti-Flicker untuk Dark Mode --}}
+    <script>
+        if (localStorage.getItem('admin_theme') === 'dark' || (!('admin_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    
     {{-- Fonts & Icons --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,10 +54,34 @@
             --color-on-error-container: #93000a;
         }
 
+        html.dark {
+            --color-background: #0b1320;
+            --color-surface: #0b1320;
+            --color-surface-container-lowest: #131e30;
+            --color-surface-container-low: #18263c;
+            --color-surface-container: #1e2f4a;
+            --color-surface-container-high: #273b5c;
+            --color-surface-container-highest: #30476e;
+            --color-on-surface: #f1f5f9;
+            --color-on-surface-variant: #94a3b8;
+            --color-outline: #64748b;
+            --color-outline-variant: #1e293b;
+            --color-primary: #10b981;
+            --color-primary-container: #065f46;
+            --color-on-primary-container: #a7f3d0;
+            --color-secondary: #38bdf8;
+            --color-secondary-container: #0369a1;
+            --color-on-secondary-container: #bae6fd;
+            --color-tertiary: #a3e635;
+            --color-tertiary-container: #3f6212;
+            --color-on-tertiary-container: #d9f99d;
+        }
+
         /* ===== SCROLLBAR ===== */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #004532; border-radius: 999px; }
+        html.dark ::-webkit-scrollbar-thumb { background: #059669; }
         ::-webkit-scrollbar-thumb:hover { background: #065f46; }
 
         /* ===== ANIMATIONS ===== */
@@ -67,9 +100,22 @@
     </style>
     @stack('styles')
 </head>
-<body class="font-jakarta bg-surface text-on-surface antialiased overflow-x-hidden">
+<body class="font-jakarta bg-surface text-on-surface antialiased overflow-x-hidden transition-colors duration-300">
 
-    <div class="flex min-h-screen" x-data="{ sidebarOpen: false }">
+    <div class="flex min-h-screen" 
+         x-data="{ 
+             sidebarOpen: false,
+             darkMode: localStorage.getItem('admin_theme') === 'dark' || (!('admin_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+         }"
+         x-init="$watch('darkMode', val => {
+             if (val) {
+                 document.documentElement.classList.add('dark');
+                 localStorage.setItem('admin_theme', 'dark');
+             } else {
+                 document.documentElement.classList.remove('dark');
+                 localStorage.setItem('admin_theme', 'light');
+             }
+         })">
 
         {{-- ============================================================ --}}
         {{-- MOBILE SIDEBAR DRAWER OVERLAY --}}
@@ -179,11 +225,15 @@
             {{-- Sidebar Footer --}}
             <div class="mt-auto border-t border-outline-variant/40 pt-4 space-y-3">
                 <div class="flex items-center gap-3 px-2">
-                    <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs shrink-0 border border-primary/20">
-                        {{ strtoupper(substr(Auth::guard('admin')->user()->email ?? 'A', 0, 2)) }}
-                    </div>
+                    @if(Auth::guard('admin')->user() && Auth::guard('admin')->user()->profile_photo)
+                        <img src="{{ asset(Auth::guard('admin')->user()->profile_photo) }}" alt="Avatar Admin" class="w-10 h-10 rounded-full object-cover shrink-0 border border-primary/20">
+                    @else
+                        <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs shrink-0 border border-primary/20">
+                            {{ strtoupper(substr(Auth::guard('admin')->user()->name ?? Auth::guard('admin')->user()->email ?? 'A', 0, 2)) }}
+                        </div>
+                    @endif
                     <div class="min-w-0">
-                        <p class="text-xs font-bold text-on-surface truncate">Admin Utama</p>
+                        <p class="text-xs font-bold text-on-surface truncate">{{ Auth::guard('admin')->user()->name ?? 'Admin Utama' }}</p>
                         <p class="text-[10px] text-on-surface-variant/70 truncate">{{ Auth::guard('admin')->user()->email ?? 'admin@aruna.com' }}</p>
                     </div>
                 </div>
@@ -215,14 +265,18 @@
 
                 {{-- Header Actions --}}
                 <div class="flex items-center gap-2">
-                    <button class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors relative active:scale-90 duration-200">
-                        <span class="material-symbols-outlined text-[22px]">notifications</span>
-                        <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full animate-ping"></span>
-                        <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+                    {{-- Dark Mode Switcher --}}
+                    <button @click="darkMode = !darkMode" 
+                            class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 duration-200 flex items-center justify-center cursor-pointer" 
+                            :title="darkMode ? 'Beralih ke Mode Terang' : 'Beralih ke Mode Gelap'">
+                        <span class="material-symbols-outlined text-[22px]" x-text="darkMode ? 'light_mode' : 'dark_mode'"></span>
                     </button>
-                    <button class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 duration-200">
+
+
+
+                    <a href="{{ route('admin.settings') }}" class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 duration-200 flex items-center justify-center {{ request()->routeIs('admin.settings*') ? 'bg-primary-container/30 text-primary' : '' }}" title="Pengaturan">
                         <span class="material-symbols-outlined text-[22px]">settings</span>
-                    </button>
+                    </a>
                 </div>
             </header>
 

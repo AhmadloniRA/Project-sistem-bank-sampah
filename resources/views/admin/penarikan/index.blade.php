@@ -23,7 +23,7 @@
                 <input type="text" name="no_id" value="{{ request('no_id') }}" placeholder="Cari Rekening Nasabah (Format: BS-2026-xxx)..." required
                        class="w-full h-11 pl-4 pr-12 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all font-mono bg-surface-container-lowest text-on-surface">
             </div>
-            <button type="submit" class="h-10 px-4 bg-[#065f46] hover:bg-[#065f46]/90 text-[#8bd6b7] rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 cursor-pointer border border-transparent">
+            <button type="submit" class="h-10 px-4 bg-[#065f46] hover:bg-[#065f46]/90 text-[#FFFFFF] rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 cursor-pointer border border-transparent">
                 <span class="material-symbols-outlined text-[18px]">search</span>
                 Cari Akun Warga
             </button>

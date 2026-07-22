@@ -122,7 +122,7 @@
         </div>
 
         @if($totalBerat > 0)
-            <button @click="confirmJualOpen = true" class="h-11 px-6 bg-[#065f46] hover:bg-[#065f46]/90 text-[#8bd6b7] rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer border border-transparent">
+            <button @click="confirmJualOpen = true" class="h-11 px-6 bg-[#065f46] hover:bg-[#065f46]/90 text-[#FFFFFF] rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer border border-transparent">
                 <span class="material-symbols-outlined text-[18px]">verified</span>
                 Konfirmasi Penjualan Sampah
             </button>
@@ -174,7 +174,7 @@
                             Batal
                         </button>
                         <button type="submit"
-                                class="px-5 py-2.5 rounded-xl bg-primary text-on-primary hover:bg-primary/95 text-xs font-bold transition-all shadow-xs cursor-pointer">
+                                class="px-5 py-2.5 text-[#FFFFFF] rounded-xl bg-primary text-on-primary hover:bg-primary/95 text-xs font-bold transition-all shadow-xs cursor-pointer">
                             Ya, Jual Sekarang
                         </button>
                     </div>

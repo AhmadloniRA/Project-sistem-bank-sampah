@@ -28,7 +28,7 @@
             </div>
 
             <button @click="createModalOpen = true" 
-        class="h-10 px-4 bg-[#065f46] hover:bg-[#065f46]/90 text-[#8bd6b7] rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 cursor-pointer border border-transparent">
+        class="px-5 py-2.5 bg-[#065f46] text-[#FFFFFF] rounded-xl text-xs font-bold hover:shadow-lg hover:shadow-primary/20 transition-all flex items-center gap-2 cursor-pointer">
     <span class="material-symbols-outlined text-[18px]">add</span>
     Tambah Nasabah
 </button>
@@ -252,7 +252,7 @@
                             Batal
                         </button>
                         <button type="submit"
-                                class="h-10 px-4 bg-[#065f46] hover:bg-[#065f46]/90 text-[#8bd6b7] rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 cursor-pointer border border-transparent">
+                                class="h-10 px-4 bg-[#065f46] hover:bg-[#065f46]/90 text-[#FFFFFF] rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 cursor-pointer border border-transparent">
                             Daftarkan Nasabah
                         </button>
                     </div>
@@ -346,7 +346,7 @@
                             Batal
                         </button>
                         <button type="submit"
-                                class="px-5 py-2.5 rounded-xl bg-primary text-on-primary hover:bg-primary/95 text-xs font-bold transition-all shadow-xs cursor-pointer">
+                                class="px-5 py-2.5 text-[#FFFFFF] rounded-xl bg-primary text-on-primary hover:bg-primary/95 text-xs font-bold transition-all shadow-xs cursor-pointer">
                             Simpan Perubahan
                         </button>
                     </div>
