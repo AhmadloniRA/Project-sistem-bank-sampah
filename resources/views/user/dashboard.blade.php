@@ -375,140 +375,222 @@
                         </span>
                     </div>
 
-                    {{-- 6 Steps Section --}}
+                    {{-- 9 Steps Section --}}
                     <div class="space-y-5">
                         <div class="flex items-center justify-between">
-                            <h4 class="text-sm sm:text-base font-black text-on-surface flex items-center gap-2.5">
-                                <span class="w-7 h-7 rounded-xl bg-primary text-on-primary text-xs font-black flex items-center justify-center shadow-xs">6</span>
-                                📌 6 Langkah Mudah Menyetor Sampah
+                            <h4 class="text-sm sm:text-base font-black !text-slate-900 flex items-center gap-2.5">
+                                <span class="w-7 h-7 rounded-xl bg-primary text-on-primary text-xs font-black flex items-center justify-center shadow-xs">9</span>
+                                📌 9 Tahapan SOP Bank Sampah
                             </h4>
-                            <span class="text-[11px] font-bold text-on-surface-variant/60">SOP Bank Sampah ARUNA</span>
+                            <span class="text-[11px] font-bold !text-slate-600">SOP Bank Sampah ARUNA</span>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                             
                             {{-- Step 1 --}}
-                            <div class="p-5 rounded-3xl bg-surface-container-lowest border-2 border-emerald-500/30 hover:border-emerald-500 transition-all card-shadow flex flex-col justify-between group hover:-translate-y-1">
+                            <div class="p-5 rounded-3xl bg-white border-2 border-emerald-500/40 hover:border-emerald-500 transition-all card-shadow flex flex-col justify-between group hover:-translate-y-1">
                                 <div>
                                     <div class="flex items-center justify-between mb-3">
-                                        <span class="w-9 h-9 rounded-2xl bg-emerald-600 text-white font-black text-xs flex items-center justify-center shadow-md">01</span>
-                                        <div class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
-                                            <span class="material-symbols-outlined text-[22px]">recycling</span>
+                                        <span class="w-9 h-9 rounded-2xl bg-emerald-600 text-white font-black text-sm flex items-center justify-center shadow-md">01</span>
+                                        <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-[24px]">person_add</span>
                                         </div>
                                     </div>
-                                    <h5 class="text-xs font-extrabold text-on-surface mb-1">Pilah Sampah dari Rumah</h5>
-                                    <p class="text-[11px] text-on-surface-variant/80 leading-relaxed mb-3">Pisahkan sampah domestik dari rumah Anda menjadi 3 kategori utama:</p>
+                                    <h5 class="text-base sm:text-lg font-black !text-slate-900 mb-2">Pendaftaran Nasabah</h5>
+                                    <p class="text-xs sm:text-sm !text-slate-700 font-medium leading-relaxed mb-4">Masyarakat mengisi formulir pendaftaran, menyerahkan identitas, kemudian data diverifikasi dan dicatat. Pengurus memberikan nomor anggota dan buku tabungan.</p>
                                 </div>
-                                <div class="space-y-2 pt-3 border-t border-outline-variant/20 text-[10px]">
-                                    <div class="flex items-center justify-between bg-emerald-600 text-white px-3 py-1.5 rounded-xl font-bold shadow-xs">
-                                        <span>🌱 Organik</span>
-                                        <span class="opacity-90 text-[9px] font-normal">Sisa makanan, daun</span>
+                                <div class="p-3.5 bg-slate-900 text-white rounded-2xl text-xs space-y-1.5 mt-auto">
+                                    <div class="flex items-center justify-between font-bold">
+                                        <span class="text-slate-300">Pelaksana:</span>
+                                        <span class="bg-emerald-600 text-white px-2.5 py-0.5 rounded-md text-[10px] font-bold">Admin/Pengurus</span>
                                     </div>
-                                    <div class="flex items-center justify-between bg-blue-600 text-white px-3 py-1.5 rounded-xl font-bold shadow-xs">
-                                        <span>📦 Anorganik</span>
-                                        <span class="opacity-90 text-[9px] font-normal font-mono">Plastik, kardus, botol</span>
-                                    </div>
-                                    <div class="flex items-center justify-between bg-rose-600 text-white px-3 py-1.5 rounded-xl font-bold shadow-xs">
-                                        <span>🚫 Residu</span>
-                                        <span class="opacity-90 text-[9px] font-normal">Pampers, tisu bekas</span>
-                                    </div>
+                                    <p class="text-white font-semibold text-[11px] leading-snug">
+                                        Output: Nasabah terdaftar &amp; memiliki buku tabungan.
+                                    </p>
                                 </div>
                             </div>
 
                             {{-- Step 2 --}}
-                            <div class="p-5 rounded-3xl bg-surface-container-lowest border-2 border-purple-500/30 hover:border-purple-500 transition-all card-shadow flex flex-col justify-between group hover:-translate-y-1">
+                            <div class="p-5 rounded-3xl bg-white border-2 border-purple-500/40 hover:border-purple-500 transition-all card-shadow flex flex-col justify-between group hover:-translate-y-1">
                                 <div>
                                     <div class="flex items-center justify-between mb-3">
-                                        <span class="w-9 h-9 rounded-2xl bg-purple-600 text-white font-black text-xs flex items-center justify-center shadow-md">02</span>
-                                        <div class="w-9 h-9 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center">
-                                            <span class="material-symbols-outlined text-[22px]">inventory_2</span>
+                                        <span class="w-9 h-9 rounded-2xl bg-purple-600 text-white font-black text-sm flex items-center justify-center shadow-md">02</span>
+                                        <div class="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-[24px]">recycling</span>
                                         </div>
                                     </div>
-                                    <h5 class="text-xs font-extrabold text-on-surface mb-1">Simpan Sampah</h5>
-                                    <p class="text-[11px] text-on-surface-variant/80 leading-relaxed">Simpan sampah pada wadah yang sesuai di lokasi Anda.</p>
+                                    <h5 class="text-base sm:text-lg font-black !text-slate-900 mb-2">Pemilahan Sampah</h5>
+                                    <p class="text-xs sm:text-sm !text-slate-700 font-medium leading-relaxed mb-4">Nasabah memilah sampah berdasarkan jenis (plastik, kertas, logam, kaca, dll.) serta memastikan sampah dalam keadaan bersih dan kering.</p>
                                 </div>
-                                <div class="p-3 bg-purple-500/10 text-purple-900 dark:text-purple-200 border border-purple-500/30 rounded-2xl text-[10px] font-semibold flex items-start gap-2 mt-4">
-                                    <span class="material-symbols-outlined text-sm text-purple-600 shrink-0 mt-0.5">check_circle</span>
-                                    <span class="leading-relaxed">Pastikan sampah anorganik dalam kondisi <strong class="underline decoration-purple-500">bersih &amp; kering</strong> sebelum disetorkan.</span>
+                                <div class="p-3.5 bg-slate-900 text-white rounded-2xl text-xs space-y-1.5 mt-auto">
+                                    <div class="flex items-center justify-between font-bold">
+                                        <span class="text-slate-300">Pelaksana:</span>
+                                        <span class="bg-purple-600 text-white px-2.5 py-0.5 rounded-md text-[10px] font-bold">Nasabah</span>
+                                    </div>
+                                    <p class="text-white font-semibold text-[11px] leading-snug">
+                                        Output: Sampah telah dipilah sesuai kategori.
+                                    </p>
                                 </div>
                             </div>
 
                             {{-- Step 3 --}}
-                            <div class="p-5 rounded-3xl bg-surface-container-lowest border-2 border-teal-500/30 hover:border-teal-500 transition-all card-shadow flex flex-col justify-between group hover:-translate-y-1">
+                            <div class="p-5 rounded-3xl bg-white border-2 border-teal-500/40 hover:border-teal-500 transition-all card-shadow flex flex-col justify-between group hover:-translate-y-1">
                                 <div>
                                     <div class="flex items-center justify-between mb-3">
-                                        <span class="w-9 h-9 rounded-2xl bg-teal-600 text-white font-black text-xs flex items-center justify-center shadow-md">03</span>
-                                        <div class="w-9 h-9 rounded-xl bg-teal-500/10 text-teal-600 dark:text-teal-400 flex items-center justify-center">
-                                            <span class="material-symbols-outlined text-[22px]">storefront</span>
+                                        <span class="w-9 h-9 rounded-2xl bg-teal-600 text-white font-black text-sm flex items-center justify-center shadow-md">03</span>
+                                        <div class="w-9 h-9 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-[24px]">storefront</span>
                                         </div>
                                     </div>
-                                    <h5 class="text-xs font-extrabold text-on-surface mb-1">Setorkan ke Bank Sampah</h5>
-                                    <p class="text-[11px] text-on-surface-variant/80 leading-relaxed">Bawa sampah terpilah ke loket ARUNA sesuai jadwal operasional.</p>
+                                    <h5 class="text-base sm:text-lg font-black !text-slate-900 mb-2">Penyetoran Sampah</h5>
+                                    <p class="text-xs sm:text-sm !text-slate-700 font-medium leading-relaxed mb-4">Nasabah membawa sampah sesuai jadwal operasional. Petugas memeriksa kebersihan dan kesesuaian jenis sampah sebelum diterima.</p>
                                 </div>
-                                <div class="p-3 bg-teal-500/10 text-teal-900 dark:text-teal-200 border border-teal-500/30 rounded-2xl text-[10px] font-mono space-y-1.5 mt-4">
-                                    <div class="flex justify-between items-center">
-                                        <span class="opacity-80">Jadwal Setor:</span>
-                                        <span class="font-bold bg-teal-600 text-white px-2 py-0.5 rounded-md text-[9px]">1 Minggu Sekali</span>
+                                <div class="p-3.5 bg-slate-900 text-white rounded-2xl text-xs space-y-1.5 mt-auto">
+                                    <div class="flex items-center justify-between font-bold">
+                                        <span class="text-slate-300">Pelaksana:</span>
+                                        <span class="bg-teal-600 text-white px-2.5 py-0.5 rounded-md text-[10px] font-bold">Nasabah &amp; Petugas</span>
                                     </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="opacity-80">Hari &amp; Jam:</span>
-                                        <span class="font-extrabold">Sabtu, 08.00-11.00</span>
-                                    </div>
+                                    <p class="text-white font-semibold text-[11px] leading-snug">
+                                        Output: Sampah diterima oleh Bank Sampah.
+                                    </p>
                                 </div>
                             </div>
 
                             {{-- Step 4 --}}
-                            <div class="p-5 rounded-3xl bg-surface-container-lowest border-2 border-blue-500/30 hover:border-blue-500 transition-all card-shadow flex flex-col justify-between group hover:-translate-y-1">
+                            <div class="p-5 rounded-3xl bg-white border-2 border-blue-500/40 hover:border-blue-500 transition-all card-shadow flex flex-col justify-between group hover:-translate-y-1">
                                 <div>
                                     <div class="flex items-center justify-between mb-3">
-                                        <span class="w-9 h-9 rounded-2xl bg-blue-600 text-white font-black text-xs flex items-center justify-center shadow-md">04</span>
-                                        <div class="w-9 h-9 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                                            <span class="material-symbols-outlined text-[22px]">scale</span>
+                                        <span class="w-9 h-9 rounded-2xl bg-blue-600 text-white font-black text-sm flex items-center justify-center shadow-md">04</span>
+                                        <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-[24px]">scale</span>
                                         </div>
                                     </div>
-                                    <h5 class="text-xs font-extrabold text-on-surface mb-1">Penimbangan & Pencatatan</h5>
-                                    <p class="text-[11px] text-on-surface-variant/80 leading-relaxed">Petugas menimbang sampah dan mencatat hasilnya ke sistem digital.</p>
+                                    <h5 class="text-base sm:text-lg font-black !text-slate-900 mb-2">Penimbangan Sampah</h5>
+                                    <p class="text-xs sm:text-sm !text-slate-700 font-medium leading-relaxed mb-4">Sampah ditimbang berdasarkan masing-masing jenis menggunakan timbangan yang telah dikalibrasi, kemudian hasil berat dicatat.</p>
                                 </div>
-                                <div class="p-3 bg-blue-500/10 text-blue-900 dark:text-blue-200 border border-blue-500/30 rounded-2xl text-[10px] font-semibold flex items-center gap-2 mt-4">
-                                    <span class="material-symbols-outlined text-sm text-blue-600 shrink-0">account_balance_wallet</span>
-                                    <span>Saldo tabungan otomatis bertambah <strong class="underline decoration-blue-500">real-time</strong>.</span>
+                                <div class="p-3.5 bg-slate-900 text-white rounded-2xl text-xs space-y-1.5 mt-auto">
+                                    <div class="flex items-center justify-between font-bold">
+                                        <span class="text-slate-300">Pelaksana:</span>
+                                        <span class="bg-blue-600 text-white px-2.5 py-0.5 rounded-md text-[10px] font-bold">Petugas Timbang</span>
+                                    </div>
+                                    <p class="text-white font-semibold text-[11px] leading-snug">
+                                        Output: Data berat sampah tercatat.
+                                    </p>
                                 </div>
                             </div>
 
                             {{-- Step 5 --}}
-                            <div class="p-5 rounded-3xl bg-surface-container-lowest border-2 border-indigo-500/30 hover:border-indigo-500 transition-all card-shadow flex flex-col justify-between group hover:-translate-y-1">
+                            <div class="p-5 rounded-3xl bg-white border-2 border-amber-500/40 hover:border-amber-500 transition-all card-shadow flex flex-col justify-between group hover:-translate-y-1">
                                 <div>
                                     <div class="flex items-center justify-between mb-3">
-                                        <span class="w-9 h-9 rounded-2xl bg-indigo-600 text-white font-black text-xs flex items-center justify-center shadow-md">05</span>
-                                        <div class="w-9 h-9 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
-                                            <span class="material-symbols-outlined text-[22px]">autorenew</span>
+                                        <span class="w-9 h-9 rounded-2xl bg-amber-600 text-white font-black text-sm flex items-center justify-center shadow-md">05</span>
+                                        <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-[24px]">request_quote</span>
                                         </div>
                                     </div>
-                                    <h5 class="text-xs font-extrabold text-on-surface mb-1">Pengolahan Sampah</h5>
-                                    <p class="text-[11px] text-on-surface-variant/80 leading-relaxed">Sampah yang telah terkumpul diproses sesuai kategorinya:</p>
+                                    <h5 class="text-base sm:text-lg font-black !text-slate-900 mb-2">Penentuan Nilai Ekonomi</h5>
+                                    <p class="text-xs sm:text-sm !text-slate-700 font-medium leading-relaxed mb-4">Berat sampah dikalikan dengan harga beli per kilogram sesuai daftar harga yang berlaku untuk memperoleh nilai setoran.</p>
                                 </div>
-                                <div class="p-3 bg-indigo-500/10 text-indigo-900 dark:text-indigo-200 border border-indigo-500/30 rounded-2xl text-[9.5px] font-bold space-y-1 mt-4">
-                                    <p>🌿 <strong class="text-emerald-700 dark:text-emerald-300">Organik:</strong> Diolah jadi Kompos</p>
-                                    <p>♻️ <strong class="text-blue-700 dark:text-blue-300">Anorganik:</strong> Didaur ulang / Dijual</p>
-                                    <p>🚛 <strong class="text-rose-700 dark:text-rose-300">Residu:</strong> Diteruskan ke TPS</p>
+                                <div class="p-3.5 bg-slate-900 text-white rounded-2xl text-xs space-y-1.5 mt-auto">
+                                    <div class="flex items-center justify-between font-bold">
+                                        <span class="text-slate-300">Pelaksana:</span>
+                                        <span class="bg-amber-600 text-white px-2.5 py-0.5 rounded-md text-[10px] font-bold">Admin</span>
+                                    </div>
+                                    <p class="text-white font-semibold text-[11px] leading-snug">
+                                        Output: Nilai ekonomi sampah diketahui.
+                                    </p>
                                 </div>
                             </div>
 
                             {{-- Step 6 --}}
-                            <div class="p-5 rounded-3xl bg-surface-container-lowest border-2 border-amber-500/30 hover:border-amber-500 transition-all card-shadow flex flex-col justify-between group hover:-translate-y-1">
+                            <div class="p-5 rounded-3xl bg-white border-2 border-indigo-500/40 hover:border-indigo-500 transition-all card-shadow flex flex-col justify-between group hover:-translate-y-1">
                                 <div>
                                     <div class="flex items-center justify-between mb-3">
-                                        <span class="w-9 h-9 rounded-2xl bg-amber-600 text-white font-black text-xs flex items-center justify-center shadow-md">06</span>
-                                        <div class="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center">
-                                            <span class="material-symbols-outlined text-[22px]">payments</span>
+                                        <span class="w-9 h-9 rounded-2xl bg-indigo-600 text-white font-black text-sm flex items-center justify-center shadow-md">06</span>
+                                        <div class="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-[24px]">menu_book</span>
                                         </div>
                                     </div>
-                                    <h5 class="text-xs font-extrabold text-on-surface mb-1">Pengambilan Tabungan</h5>
-                                    <p class="text-[11px] text-on-surface-variant/80 leading-relaxed">Pengambilan hasil tabungan dapat dilakukan sesuai saldo buku digital.</p>
+                                    <h5 class="text-base sm:text-lg font-black !text-slate-900 mb-2">Pencatatan Tabungan</h5>
+                                    <p class="text-xs sm:text-sm !text-slate-700 font-medium leading-relaxed mb-4">Nilai setoran dicatat ke dalam buku tabungan atau sistem administrasi Bank Sampah, kemudian saldo nasabah diperbarui.</p>
                                 </div>
-                                <div class="p-3 bg-amber-500/10 text-amber-950 dark:text-amber-200 border border-amber-500/30 rounded-2xl text-[10px] font-bold flex items-center justify-between mt-4">
-                                    <span class="opacity-80 font-mono">Pencairan:</span>
-                                    <span class="bg-amber-600 text-white px-2.5 py-0.5 rounded-lg text-[9.5px]">1 Bulan Sekali</span>
+                                <div class="p-3.5 bg-slate-900 text-white rounded-2xl text-xs space-y-1.5 mt-auto">
+                                    <div class="flex items-center justify-between font-bold">
+                                        <span class="text-slate-300">Pelaksana:</span>
+                                        <span class="bg-indigo-600 text-white px-2.5 py-0.5 rounded-md text-[10px] font-bold">Admin</span>
+                                    </div>
+                                    <p class="text-white font-semibold text-[11px] leading-snug">
+                                        Output: Saldo tabungan nasabah bertambah.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {{-- Step 7 --}}
+                            <div class="p-5 rounded-3xl bg-white border-2 border-cyan-500/40 hover:border-cyan-500 transition-all card-shadow flex flex-col justify-between group hover:-translate-y-1">
+                                <div>
+                                    <div class="flex items-center justify-between mb-3">
+                                        <span class="w-9 h-9 rounded-2xl bg-cyan-600 text-white font-black text-sm flex items-center justify-center shadow-md">07</span>
+                                        <div class="w-9 h-9 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-[24px]">inventory_2</span>
+                                        </div>
+                                    </div>
+                                    <h5 class="text-base sm:text-lg font-black !text-slate-900 mb-2">Penyimpanan Sampah</h5>
+                                    <p class="text-xs sm:text-sm !text-slate-700 font-medium leading-relaxed mb-4">Sampah dipisahkan kembali sesuai kategori dan disimpan di tempat penyimpanan sementara hingga jumlahnya mencukupi untuk dijual.</p>
+                                </div>
+                                <div class="p-3.5 bg-slate-900 text-white rounded-2xl text-xs space-y-1.5 mt-auto">
+                                    <div class="flex items-center justify-between font-bold">
+                                        <span class="text-slate-300">Pelaksana:</span>
+                                        <span class="bg-cyan-600 text-white px-2.5 py-0.5 rounded-md text-[10px] font-bold">Petugas Gudang</span>
+                                    </div>
+                                    <p class="text-white font-semibold text-[11px] leading-snug">
+                                        Output: Sampah tersimpan rapi dan aman.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {{-- Step 8 --}}
+                            <div class="p-5 rounded-3xl bg-white border-2 border-rose-500/40 hover:border-rose-500 transition-all card-shadow flex flex-col justify-between group hover:-translate-y-1">
+                                <div>
+                                    <div class="flex items-center justify-between mb-3">
+                                        <span class="w-9 h-9 rounded-2xl bg-rose-600 text-white font-black text-sm flex items-center justify-center shadow-md">08</span>
+                                        <div class="w-9 h-9 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-[24px]">handshake</span>
+                                        </div>
+                                    </div>
+                                    <h5 class="text-base sm:text-lg font-black !text-slate-900 mb-2">Penjualan ke Pengepul</h5>
+                                    <p class="text-xs sm:text-sm !text-slate-700 font-medium leading-relaxed mb-4">Sampah dijual kepada pengepul atau mitra daur ulang. Hasil penjualan dicatat sebagai pemasukan kas Bank Sampah.</p>
+                                </div>
+                                <div class="p-3.5 bg-slate-900 text-white rounded-2xl text-xs space-y-1.5 mt-auto">
+                                    <div class="flex items-center justify-between font-bold">
+                                        <span class="text-slate-300">Pelaksana:</span>
+                                        <span class="bg-rose-600 text-white px-2.5 py-0.5 rounded-md text-[10px] font-bold">Ketua/Pengelola</span>
+                                    </div>
+                                    <p class="text-white font-semibold text-[11px] leading-snug">
+                                        Output: Kas Bank Sampah bertambah.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {{-- Step 9 --}}
+                            <div class="p-5 rounded-3xl bg-white border-2 border-violet-500/40 hover:border-violet-500 transition-all card-shadow flex flex-col justify-between group hover:-translate-y-1">
+                                <div>
+                                    <div class="flex items-center justify-between mb-3">
+                                        <span class="w-9 h-9 rounded-2xl bg-violet-600 text-white font-black text-sm flex items-center justify-center shadow-md">09</span>
+                                        <div class="w-9 h-9 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-[24px]">fact_check</span>
+                                        </div>
+                                    </div>
+                                    <h5 class="text-base sm:text-lg font-black !text-slate-900 mb-2">Monitoring dan Evaluasi</h5>
+                                    <p class="text-xs sm:text-sm !text-slate-700 font-medium leading-relaxed mb-4">Melakukan evaluasi terhadap pencatatan administrasi, jumlah sampah, saldo tabungan, kondisi keuangan, serta menyusun rencana perbaikan pelayanan.</p>
+                                </div>
+                                <div class="p-3.5 bg-slate-900 text-white rounded-2xl text-xs space-y-1.5 mt-auto">
+                                    <div class="flex items-center justify-between font-bold">
+                                        <span class="text-slate-300">Pelaksana:</span>
+                                        <span class="bg-violet-600 text-white px-2.5 py-0.5 rounded-md text-[10px] font-bold">Ketua &amp; Pengurus</span>
+                                    </div>
+                                    <p class="text-white font-semibold text-[11px] leading-snug">
+                                        Output: Laporan evaluasi &amp; rekomendasi perbaikan.
+                                    </p>
                                 </div>
                             </div>
 
@@ -517,30 +599,30 @@
 
                     {{-- Hal-Hal yang Dilarang (Larangan - Merah Koral Kontras) --}}
                     <div class="p-6 rounded-3xl bg-rose-500/10 border-2 border-rose-500/40 text-on-surface space-y-4">
-                        <div class="flex items-center gap-2.5 text-rose-700 dark:text-rose-400 font-extrabold text-xs uppercase tracking-wider">
-                            <span class="w-7 h-7 rounded-xl bg-rose-600 text-white flex items-center justify-center text-sm shrink-0 shadow-xs">⚠️</span>
+                        <div class="flex items-center gap-2.5 text-rose-700 dark:text-rose-400 font-extrabold text-sm sm:text-base uppercase tracking-wider">
+                            <span class="w-8 h-8 rounded-xl bg-rose-600 text-white flex items-center justify-center text-base shrink-0 shadow-xs">⚠️</span>
                             Hal-Hal yang Dilarang (Tata Tertib Wajib Nasabah)
                         </div>
                         
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
                             <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-surface-container-lowest border border-rose-500/20 shadow-xs">
-                                <span class="text-rose-600 font-black text-lg leading-none shrink-0 mt-0.5">🚫</span>
-                                <span class="text-on-surface-variant font-semibold leading-relaxed text-[11px]">Dilarang mencampur jenis sampah (<strong class="text-rose-700 dark:text-rose-300">Wajib dipilah dari rumah</strong> sebelum disetor).</span>
+                                <span class="text-rose-600 font-black text-xl leading-none shrink-0 mt-0.5">🚫</span>
+                                <span class="text-on-surface-variant font-semibold leading-relaxed text-xs sm:text-sm">Dilarang mencampur jenis sampah (<strong class="text-rose-700 dark:text-rose-300 font-bold">Wajib dipilah dari rumah</strong> sebelum disetor).</span>
                             </div>
                             
                             <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-surface-container-lowest border border-rose-500/20 shadow-xs">
-                                <span class="text-rose-600 font-black text-lg leading-none shrink-0 mt-0.5">🚫</span>
-                                <span class="text-on-surface-variant font-semibold leading-relaxed text-[11px]">Dilarang menyetor sampah yang masih <strong class="text-rose-700 dark:text-rose-300">basah atau kotor</strong>.</span>
+                                <span class="text-rose-600 font-black text-xl leading-none shrink-0 mt-0.5">🚫</span>
+                                <span class="text-on-surface-variant font-semibold leading-relaxed text-xs sm:text-sm">Dilarang menyetor sampah yang masih <strong class="text-rose-700 dark:text-rose-300 font-bold">basah atau kotor</strong>.</span>
                             </div>
                             
                             <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-surface-container-lowest border border-rose-500/20 shadow-xs">
-                                <span class="text-rose-600 font-black text-lg leading-none shrink-0 mt-0.5">🚫</span>
-                                <span class="text-on-surface-variant font-semibold leading-relaxed text-[11px]">Dilarang menyetor <strong class="text-rose-700 dark:text-rose-300">di luar jadwal operasional</strong> (Sabtu, 08.00-11.00 WIB).</span>
+                                <span class="text-rose-600 font-black text-xl leading-none shrink-0 mt-0.5">🚫</span>
+                                <span class="text-on-surface-variant font-semibold leading-relaxed text-xs sm:text-sm">Dilarang menyetor <strong class="text-rose-700 dark:text-rose-300 font-bold">di luar jadwal operasional</strong> (Sabtu, 08.00-11.00 WIB).</span>
                             </div>
                             
                             <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-surface-container-lowest border border-rose-500/20 shadow-xs">
-                                <span class="text-rose-600 font-black text-lg leading-none shrink-0 mt-0.5">🚫</span>
-                                <span class="text-on-surface-variant font-semibold leading-relaxed text-[11px]">Dilarang <strong class="text-rose-700 dark:text-rose-300">membuang sampah sembarangan</strong> di area lokasi Bank Sampah.</span>
+                                <span class="text-rose-600 font-black text-xl leading-none shrink-0 mt-0.5">🚫</span>
+                                <span class="text-on-surface-variant font-semibold leading-relaxed text-xs sm:text-sm">Dilarang <strong class="text-rose-700 dark:text-rose-300 font-bold">membuang sampah sembarangan</strong> di area lokasi Bank Sampah.</span>
                             </div>
                         </div>
                     </div>

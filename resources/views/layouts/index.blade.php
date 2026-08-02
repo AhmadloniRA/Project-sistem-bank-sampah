@@ -85,7 +85,33 @@
         .animate-delay-4 { transition-delay: 0.4s; }
         .animate-delay-5 { transition-delay: 0.5s; }
 
-        /* ===== NAV LINK UNDERLINE (pseudo-element) ===== */
+        /* ===== NAV LINK STYLING & UNDERLINE ===== */
+        #navbar:not(.scrolled) .navbar-brand {
+            color: #ffffff !important;
+        }
+        #navbar:not(.scrolled) .nav-link-item {
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+        #navbar:not(.scrolled) .nav-link-item:hover {
+            color: #ffffff !important;
+        }
+        #navbar:not(.scrolled) .mobile-bar {
+            background-color: #ffffff !important;
+        }
+
+        #navbar.scrolled .navbar-brand {
+            color: #16a34a !important;
+        }
+        #navbar.scrolled .nav-link-item {
+            color: #374151 !important;
+        }
+        #navbar.scrolled .nav-link-item:hover {
+            color: #16a34a !important;
+        }
+        #navbar.scrolled .mobile-bar {
+            background-color: #374151 !important;
+        }
+
         .nav-link-item::after {
             content: '';
             position: absolute;
@@ -201,12 +227,13 @@
     <!-- ===== NAVBAR ===== -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-[1000] py-4 transition-all duration-400 ease-in-out [&.scrolled]:bg-white/92 [&.scrolled]:backdrop-blur-[20px] [&.scrolled]:shadow-[0_4px_30px_rgba(0,0,0,0.08)] [&.scrolled]:py-2.5">
         <div class="max-w-[1200px] mx-auto px-6 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3 font-extrabold text-2xl text-white transition-colors duration-300 navbar-brand">
+            <a href="#" class="flex items-center gap-3 font-extrabold text-2xl navbar-brand transition-colors duration-300">
 <div class="w-11 h-11 flex items-center justify-center">
     <img
-        src="https://img.icons8.com/?size=100&id=ngxhKjJtc4LX&format=png&color=000000"
+        id="brandIcon"
+        src="https://img.icons8.com/?size=100&id=ngxhKjJtc4LX&format=png&color=FFFFFF"
         alt="Recycle Icon"
-        class="w-7 h-7"
+        class="w-7 h-7 transition-all duration-300"
     >
 </div>ARUNA
             </a>
@@ -773,26 +800,19 @@
         // ===== NAVBAR SCROLL =====
         const navbar = document.getElementById('navbar');
         const backToTop = document.getElementById('backToTop');
+        const brandIcon = document.getElementById('brandIcon');
 
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
-                // Update navbar brand and link colors when scrolled
-                navbar.querySelector('.navbar-brand').classList.add('!text-green-800');
-                navbar.querySelectorAll('.nav-link-item').forEach(l => {
-                    l.classList.add('!text-neutral-600');
-                    l.classList.remove('hover:text-white');
-                    l.addEventListener('mouseenter', () => l.classList.add('!text-green-600'));
-                    l.addEventListener('mouseleave', () => l.classList.remove('!text-green-600'));
-                });
-                navbar.querySelectorAll('.mobile-bar').forEach(b => b.classList.add('!bg-neutral-700'));
+                if (brandIcon) {
+                    brandIcon.src = "https://img.icons8.com/?size=100&id=ngxhKjJtc4LX&format=png&color=16a34a";
+                }
             } else {
                 navbar.classList.remove('scrolled');
-                navbar.querySelector('.navbar-brand').classList.remove('!text-green-800');
-                navbar.querySelectorAll('.nav-link-item').forEach(l => {
-                    l.classList.remove('!text-neutral-600', '!text-green-600');
-                });
-                navbar.querySelectorAll('.mobile-bar').forEach(b => b.classList.remove('!bg-neutral-700'));
+                if (brandIcon) {
+                    brandIcon.src = "https://img.icons8.com/?size=100&id=ngxhKjJtc4LX&format=png&color=FFFFFF";
+                }
             }
 
             if (window.scrollY > 500) {
