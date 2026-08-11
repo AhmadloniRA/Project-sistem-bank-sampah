@@ -20,24 +20,23 @@
         </div>
 
         {{-- Search & Add Button --}}
-        <div class="flex items-center gap-3">
-            <div class="relative">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div class="relative flex-1 sm:flex-initial">
                 <span class="material-symbols-outlined text-[18px] text-on-surface-variant/60 absolute left-3 top-1/2 -translate-y-1/2">search</span>
                 <input type="text" x-model="search" placeholder="Cari nasabah..." 
                        class="h-10 w-full sm:w-64 pl-9 pr-4 rounded-xl border border-outline-variant/50 text-xs placeholder-on-surface-variant/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all duration-200 bg-surface-container-lowest">
             </div>
 
             <button @click="createModalOpen = true" 
-        class="px-5 py-2.5 bg-[#065f46] text-[#FFFFFF] rounded-xl text-xs font-bold hover:shadow-lg hover:shadow-primary/20 transition-all flex items-center gap-2 cursor-pointer">
-    <span class="material-symbols-outlined text-[18px]">add</span>
-    Tambah Nasabah
-</button>
-
+                    class="px-5 py-2.5 bg-[#065f46] text-[#FFFFFF] rounded-xl text-xs font-bold hover:shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0">
+                <span class="material-symbols-outlined text-[18px]">add</span>
+                Tambah Nasabah
+            </button>
         </div>
     </div>
 
     {{-- Stats Summary --}}
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
         <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 px-5 py-4 flex items-center gap-4 shadow-xs">
             <div class="w-10 h-10 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
                 <span class="material-symbols-outlined text-[20px]">group</span>
@@ -67,14 +66,99 @@
         </div>
     </div>
 
-    {{-- Data Table --}}
+    {{-- Data Table & Mobile Cards Container --}}
     <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 overflow-hidden shadow-xs">
-        <div class="px-6 py-4 border-b border-outline-variant/20 flex items-center justify-between">
+        <div class="px-5 py-4 border-b border-outline-variant/20 flex items-center justify-between">
             <h3 class="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider">Tabel Data Nasabah</h3>
             <span class="text-[10px] font-bold text-primary bg-primary/5 px-2.5 py-1 rounded-lg border border-primary/10">{{ $totalNasabah ?? 0 }} Data</span>
         </div>
 
-        <div class="overflow-x-auto">
+        {{-- MOBILE VIEW: Individual Distinct Cards (Per Kotak) --}}
+        <div class="block md:hidden space-y-3.5 p-3.5 sm:p-4 bg-surface-container-low/20">
+            @forelse($nasabah as $item)
+                <div class="p-4 space-y-3 bg-surface-container-lowest rounded-2xl border border-outline-variant/40 shadow-xs hover:shadow-md transition-all duration-200"
+                     x-show="search === '' || '{{ strtolower($item->name) }}'.includes(search.toLowerCase()) || '{{ $item->kk_number }}'.includes(search) || '{{ $item->email }}'.includes(search) || '{{ strtolower($item->no_id) }}'.includes(search.toLowerCase())">
+                    
+                    {{-- Header: Avatar, Name, No ID, and Actions --}}
+                    <div class="flex items-start justify-between gap-3 pb-2.5 border-b border-outline-variant/20">
+                        <div class="flex items-center gap-2.5 min-w-0">
+                            @if($item->profile_photo)
+                                <div class="w-10 h-10 rounded-full overflow-hidden shrink-0 border border-primary/20">
+                                    <img src="{{ asset($item->profile_photo) }}" alt="Avatar" class="w-full h-full object-cover">
+                                </div>
+                            @else
+                                <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs shrink-0 border border-primary/15">
+                                    {{ strtoupper(substr($item->name, 0, 1)) }}
+                                </div>
+                            @endif
+                            <div class="min-w-0">
+                                <div class="font-bold text-sm text-on-surface truncate">{{ $item->name }}</div>
+                                <div class="text-[11px] font-bold text-primary font-mono tracking-wide mt-0.5">{{ $item->no_id }}</div>
+                            </div>
+                        </div>
+
+                        {{-- Action Buttons --}}
+                        <div class="flex items-center gap-1.5 shrink-0">
+                            <a href="{{ route('admin.nasabah.history', $item) }}"
+                               class="w-8 h-8 rounded-lg bg-secondary-container/20 text-on-secondary-container flex items-center justify-center border border-secondary-container/25 transition-all hover:bg-secondary-container/45 cursor-pointer"
+                               title="Buku Tabungan">
+                                <span class="material-symbols-outlined text-[18px]">menu_book</span>
+                            </a>
+                            <button @click="currentNasabah = { id: '{{ $item->id }}', no_id: '{{ $item->no_id }}', name: '{{ addslashes($item->name) }}', email: '{{ $item->email }}', phone_number: '{{ $item->phone_number ?? '' }}', kk_number: '{{ $item->kk_number }}', address: '{{ addslashes($item->address ?? '') }}' }; editModalOpen = true;"
+                                    class="w-8 h-8 rounded-lg bg-primary/5 text-primary flex items-center justify-center border border-primary/10 transition-all hover:bg-primary/10 cursor-pointer"
+                                    title="Edit Data">
+                                <span class="material-symbols-outlined text-[18px]">edit</span>
+                            </button>
+                            <button @click="currentNasabah = { id: '{{ $item->id }}', name: '{{ addslashes($item->name) }}' }; deleteModalOpen = true;"
+                                    class="w-8 h-8 rounded-lg bg-error-container/20 text-error flex items-center justify-center border border-error-container/30 transition-all hover:bg-error-container/40 cursor-pointer"
+                                    title="Hapus Nasabah">
+                                <span class="material-symbols-outlined text-[18px]">delete</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    {{-- Details Grid --}}
+                    <div class="grid grid-cols-2 gap-2 text-[11px]">
+                        <div class="col-span-2 flex items-center gap-2 text-on-surface-variant/80">
+                            <span class="material-symbols-outlined text-[15px] text-primary/70 shrink-0">mail</span>
+                            <span class="truncate font-medium">{{ $item->email }}</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-on-surface-variant/80">
+                            <span class="material-symbols-outlined text-[15px] text-primary/70 shrink-0">call</span>
+                            <span class="font-mono font-semibold">{{ $item->phone_number ?? '-' }}</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-on-surface-variant/80">
+                            <span class="material-symbols-outlined text-[15px] text-primary/70 shrink-0">badge</span>
+                            <span class="font-mono">{{ $item->kk_number }}</span>
+                        </div>
+                        <div class="col-span-2 flex items-start gap-2 text-on-surface-variant/80">
+                            <span class="material-symbols-outlined text-[15px] text-primary/70 shrink-0 mt-0.5">location_on</span>
+                            <span class="line-clamp-2 leading-relaxed">{{ $item->address ?? '-' }}</span>
+                        </div>
+                    </div>
+
+                    {{-- Footer: Saldo & Date --}}
+                    <div class="flex items-center justify-between pt-2.5 border-t border-outline-variant/20 text-[11px]">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-on-surface-variant/60 font-medium">Saldo:</span>
+                            <span class="font-bold text-primary font-mono bg-primary/5 px-2.5 py-1 rounded-lg border border-primary/15 text-xs">Rp {{ number_format($item->total_tabungan, 0, ',', '.') }}</span>
+                        </div>
+                        <div class="text-on-surface-variant/60 font-mono text-[10px]">
+                            {{ $item->created_at->translatedFormat('d M Y') }}
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <div class="p-8 text-center text-on-surface-variant/50">
+                    <span class="material-symbols-outlined text-[40px] text-on-surface-variant/20 block mb-2">person_off</span>
+                    <p class="text-xs font-bold text-on-surface-variant/60">Belum ada data nasabah</p>
+                    <p class="text-[10px] mt-0.5">Silakan tambahkan data baru melalui tombol di atas.</p>
+                </div>
+            @endforelse
+        </div>
+
+        {{-- DESKTOP VIEW: Table --}}
+        <div class="hidden md:block overflow-x-auto">
             <table class="w-full text-left">
                 <thead>
                     <tr class="border-b border-outline-variant/20 bg-surface-container-low/20">

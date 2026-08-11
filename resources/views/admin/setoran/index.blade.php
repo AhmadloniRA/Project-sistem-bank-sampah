@@ -181,14 +181,73 @@
 
     </div>
 
-    {{-- Recent Setoran Log Table --}}
+    {{-- Recent Setoran Log Table & Mobile Cards --}}
     <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 overflow-hidden shadow-xs">
-        <div class="px-6 py-4 border-b border-outline-variant/20 flex items-center justify-between">
+        <div class="px-5 py-4 border-b border-outline-variant/20 flex items-center justify-between">
             <h3 class="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider">Histori Jurnal Setoran Sampah Terakhir</h3>
             <span class="text-[10px] font-bold text-primary bg-primary/5 px-2.5 py-1 rounded-lg border border-primary/10">{{ $recentSetoran->count() }} Setoran Terakhir</span>
         </div>
 
-        <div class="overflow-x-auto">
+        {{-- MOBILE VIEW: Individual Distinct Cards (Per Kotak) --}}
+        <div class="block md:hidden space-y-3.5 p-3.5 sm:p-4 bg-surface-container-low/20">
+            @forelse($recentSetoran as $setoran)
+                <div class="p-4 space-y-3 bg-surface-container-lowest rounded-2xl border border-outline-variant/40 shadow-xs hover:shadow-md transition-all duration-200">
+                    {{-- Header: Nasabah & Status --}}
+                    <div class="flex items-start justify-between gap-3 pb-2.5 border-b border-outline-variant/20">
+                        <div class="min-w-0">
+                            <div class="font-bold text-sm text-on-surface truncate">{{ $setoran->nasabah->name ?? 'Nasabah Terhapus' }}</div>
+                            <div class="text-[11px] font-bold text-primary font-mono tracking-wide mt-0.5">{{ $setoran->nasabah->no_id ?? '-' }}</div>
+                        </div>
+
+                        {{-- Status Badge --}}
+                        <div class="shrink-0">
+                            @if($setoran->status === 'gudang')
+                                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[9px] font-bold bg-primary/10 border border-primary/15 text-primary">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                    Mengendap di Gudang
+                                </span>
+                            @else
+                                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[9px] font-bold bg-secondary-container/20 text-on-secondary-container border border-secondary-container/25">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                                    Dilikuidasi
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    {{-- Details Grid --}}
+                    <div class="grid grid-cols-2 gap-2 text-[11px]">
+                        <div class="space-y-0.5">
+                            <span class="text-on-surface-variant/60 font-medium block">Jenis Sampah:</span>
+                            <span class="font-bold text-on-surface capitalize block text-xs">{{ $setoran->jenis_sampah }}</span>
+                        </div>
+                        <div class="space-y-0.5 text-right">
+                            <span class="text-on-surface-variant/60 font-medium block">Berat Timbangan:</span>
+                            <span class="font-bold text-on-surface font-mono block text-xs">{{ number_format($setoran->berat_kg, 2, ',', '.') }} kg</span>
+                        </div>
+                    </div>
+
+                    {{-- Footer: Total Hasil & Date --}}
+                    <div class="flex items-center justify-between pt-2.5 border-t border-outline-variant/20 text-[11px]">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-on-surface-variant/60 font-medium">Hasil:</span>
+                            <span class="font-bold text-primary font-mono text-xs bg-primary/5 px-2.5 py-1 rounded-lg border border-primary/15">Rp {{ number_format($setoran->total_harga_nasabah, 0, ',', '.') }}</span>
+                        </div>
+                        <div class="text-on-surface-variant/60 font-mono text-[10px]">
+                            {{ $setoran->created_at->translatedFormat('d M Y - H:i') }} WIB
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <div class="p-8 text-center text-on-surface-variant/50">
+                    <span class="material-symbols-outlined text-[40px] text-on-surface-variant/20 block mb-2">history</span>
+                    <p class="text-xs font-bold text-on-surface-variant/60">Belum ada riwayat setoran</p>
+                </div>
+            @endforelse
+        </div>
+
+        {{-- DESKTOP VIEW: Full Table --}}
+        <div class="hidden md:block overflow-x-auto">
             <table class="w-full text-left">
                 <thead>
                     <tr class="border-b border-outline-variant/20 bg-surface-container-low/20">

@@ -22,13 +22,63 @@
         </div>
     </div>
 
-    {{-- Data Table --}}
+    {{-- Data Table & Mobile Cards --}}
     <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 overflow-hidden shadow-xs">
-        <div class="px-6 py-4 border-b border-outline-variant/20">
+        <div class="px-5 py-4 border-b border-outline-variant/20">
             <h3 class="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider">Kebijakan Nominal Konversi Sampah</h3>
         </div>
 
-        <div class="overflow-x-auto">
+        {{-- MOBILE VIEW: Individual Distinct Cards (Per Kotak) --}}
+        <div class="block md:hidden space-y-3.5 p-3.5 sm:p-4 bg-surface-container-low/20">
+            @forelse($hargaList as $harga)
+                <div class="p-4 space-y-3 bg-surface-container-lowest rounded-2xl border border-outline-variant/40 shadow-xs hover:shadow-md transition-all duration-200">
+                    <div class="flex items-center justify-between gap-2 pb-2.5 border-b border-outline-variant/20">
+                        <div class="font-bold text-sm text-on-surface capitalize">{{ $harga->jenis_sampah }}</div>
+                        <button 
+                            @click="
+                                currentHarga = { 
+                                    id: '{{ $harga->id }}', 
+                                    jenis_sampah: '{{ addslashes($harga->jenis_sampah) }}', 
+                                    harga_beli_nasabah: '{{ $harga->harga_beli_nasabah }}', 
+                                    harga_jual_pengepul: '{{ $harga->harga_jual_pengepul }}' 
+                                };
+                                editModalOpen = true;
+                            "
+                            class="w-8 h-8 rounded-lg bg-primary/5 text-primary flex items-center justify-center border border-primary/10 transition-all hover:bg-primary/10 cursor-pointer"
+                            title="Edit Kebijakan Harga">
+                            <span class="material-symbols-outlined text-[18px]">edit</span>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 text-[11px] pt-1">
+                        <div class="space-y-0.5">
+                            <span class="text-on-surface-variant/60 font-medium block">Beli Nasabah:</span>
+                            <span class="font-bold text-primary font-mono block text-xs">Rp {{ number_format($harga->harga_beli_nasabah, 0, ',', '.') }}/kg</span>
+                        </div>
+                        <div class="space-y-0.5 text-right">
+                            <span class="text-on-surface-variant/60 font-medium block">Jual Pengepul:</span>
+                            <span class="font-bold text-secondary font-mono block text-xs">Rp {{ number_format($harga->harga_jual_pengepul, 0, ',', '.') }}/kg</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2.5 border-t border-outline-variant/20 text-[11px]">
+                        <span class="text-on-surface-variant/60 font-medium">Margin Profit:</span>
+                        <span class="font-bold text-primary font-mono bg-primary/5 px-2.5 py-1 rounded-lg border border-primary/15 text-xs">
+                            Rp {{ number_format($harga->harga_jual_pengepul - $harga->harga_beli_nasabah, 0, ',', '.') }}
+                            <span class="text-[10px] text-on-surface-variant/60 font-medium">({{ number_format((($harga->harga_jual_pengepul - $harga->harga_beli_nasabah) / $harga->harga_jual_pengepul) * 100, 1) }}%)</span>
+                        </span>
+                    </div>
+                </div>
+            @empty
+                <div class="p-8 text-center text-on-surface-variant/50">
+                    <span class="material-symbols-outlined text-[40px] text-on-surface-variant/20 block mb-2">sell</span>
+                    <p class="text-xs font-bold text-on-surface-variant/60">Tidak ada data harga</p>
+                </div>
+            @endforelse
+        </div>
+
+        {{-- DESKTOP VIEW: Full Table --}}
+        <div class="hidden md:block overflow-x-auto">
             <table class="w-full text-left">
                 <thead>
                     <tr class="border-b border-outline-variant/20 bg-surface-container-low/20">

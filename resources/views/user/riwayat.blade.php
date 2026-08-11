@@ -76,8 +76,61 @@
         </div>
     </div>
 
-    {{-- Table Area --}}
-    <div class="overflow-x-auto">
+    {{-- MOBILE VIEW: Individual Distinct Cards (Per Kotak) --}}
+    <div id="transactionMobileCards" class="block md:hidden space-y-3.5 p-3.5 sm:p-4 bg-surface-container-low/20">
+        @forelse($transactions as $tx)
+            <div class="p-4 space-y-3 bg-surface-container-lowest rounded-2xl border border-outline-variant/40 shadow-xs hover:shadow-md transition-all duration-200 tx-card" data-type="{{ $tx->jenis_transaksi }}">
+                {{-- Header: Jenis Transaksi & Nominal --}}
+                <div class="flex items-center justify-between gap-2 pb-2.5 border-b border-outline-variant/20">
+                    <div>
+                        @if($tx->jenis_transaksi === 'masuk')
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-[10px] font-extrabold border border-emerald-500/20">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                Setoran Masuk
+                            </span>
+                        @else
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-700 dark:text-rose-400 text-[10px] font-extrabold border border-rose-500/20">
+                                <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                                Penarikan Keluar
+                            </span>
+                        @endif
+                    </div>
+                    <div class="font-extrabold font-mono text-sm {{ $tx->jenis_transaksi === 'masuk' ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400' }}">
+                        {{ $tx->jenis_transaksi === 'masuk' ? '+' : '-' }} Rp {{ number_format($tx->nominal, 0, ',', '.') }}
+                    </div>
+                </div>
+
+                {{-- Waktu & Catatan --}}
+                <div class="space-y-2 text-xs">
+                    <div class="text-[11px] font-mono text-on-surface-variant/70 flex items-center gap-1.5 font-medium">
+                        <span class="material-symbols-outlined text-[15px] text-primary/70">schedule</span>
+                        <span>{{ $tx->created_at->translatedFormat('d M Y') }} • {{ $tx->created_at->format('H:i') }} WIB</span>
+                    </div>
+                    @if($tx->keterangan)
+                        <div class="text-on-surface font-semibold text-xs leading-relaxed bg-surface-container-low/50 p-2.5 rounded-xl border border-outline-variant/15">
+                            {{ $tx->keterangan }}
+                        </div>
+                    @endif
+                </div>
+
+                {{-- Footer: Saldo Buku --}}
+                <div class="flex items-center justify-between pt-2.5 border-t border-outline-variant/20 text-[11px]">
+                    <span class="text-on-surface-variant/60 font-medium">Saldo Rekening:</span>
+                    <span class="font-bold text-primary font-mono bg-primary/5 px-2.5 py-1 rounded-lg border border-primary/15 text-xs">
+                        Rp {{ number_format($tx->saldo_terakhir, 0, ',', '.') }}
+                    </span>
+                </div>
+            </div>
+        @empty
+            <div class="p-8 text-center text-on-surface-variant/50">
+                <span class="material-symbols-outlined text-4xl block mb-2">folder_open</span>
+                <p class="text-xs font-bold">Belum ada transaksi terekam pada rekening Anda.</p>
+            </div>
+        @endforelse
+    </div>
+
+    {{-- DESKTOP VIEW: Full Table --}}
+    <div class="hidden md:block overflow-x-auto">
         <table class="w-full text-left border-collapse">
             <thead>
                 <tr class="text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-wider border-b border-outline-variant/20 bg-surface-container-low/10">
@@ -161,31 +214,52 @@
         const searchInput = document.getElementById('searchInput');
         const typeFilter = document.getElementById('typeFilter');
         const tableBody = document.getElementById('transactionTable');
-        const rows = tableBody.querySelectorAll('tr');
+        const mobileContainer = document.getElementById('transactionMobileCards');
 
         function filterTable() {
-            const query = searchInput.value.toLowerCase().trim();
-            const filterValue = typeFilter.value;
+            const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+            const filterValue = typeFilter ? typeFilter.value : '';
 
-            rows.forEach(row => {
-                const text = row.innerText.toLowerCase();
-                const typeCell = row.querySelector('[data-type]');
-                const type = typeCell ? typeCell.getAttribute('data-type') : '';
+            // Filter Desktop Table Rows
+            if (tableBody) {
+                const rows = tableBody.querySelectorAll('tr');
+                rows.forEach(row => {
+                    const text = row.innerText.toLowerCase();
+                    const typeCell = row.querySelector('[data-type]');
+                    const type = typeCell ? typeCell.getAttribute('data-type') : '';
 
-                const matchesSearch = text.includes(query);
-                const matchesFilter = filterValue === '' || type === filterValue;
+                    const matchesSearch = text.includes(query);
+                    const matchesFilter = filterValue === '' || type === filterValue;
 
-                if (matchesSearch && matchesFilter) {
-                    row.style.display = '';
-                    row.style.animation = 'fadeInUp 0.3s ease forwards';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
+                    if (matchesSearch && matchesFilter) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+
+            // Filter Mobile Cards
+            if (mobileContainer) {
+                const cards = mobileContainer.querySelectorAll('.tx-card');
+                cards.forEach(card => {
+                    const text = card.innerText.toLowerCase();
+                    const type = card.getAttribute('data-type') || '';
+
+                    const matchesSearch = text.includes(query);
+                    const matchesFilter = filterValue === '' || type === filterValue;
+
+                    if (matchesSearch && matchesFilter) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
         }
 
-        searchInput.addEventListener('input', filterTable);
-        typeFilter.addEventListener('change', filterTable);
+        if (searchInput) searchInput.addEventListener('input', filterTable);
+        if (typeFilter) typeFilter.addEventListener('change', filterTable);
     });
 </script>
 @endpush

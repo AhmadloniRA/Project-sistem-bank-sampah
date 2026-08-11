@@ -88,14 +88,77 @@
 
 </div>
 
-{{-- Cashflow Log table --}}
+{{-- Cashflow Log table & Mobile Cards --}}
 <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-xs overflow-hidden mt-6">
-    <div class="px-6 py-4 border-b border-outline-variant/20 flex items-center justify-between">
+    <div class="px-5 py-4 border-b border-outline-variant/20 flex items-center justify-between">
         <h3 class="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider">Jurnal Arus Kas Internal</h3>
         <span class="text-[10px] font-bold text-primary bg-primary/5 px-2.5 py-1 rounded-lg border border-primary/10">{{ $cashflows->count() }} Data</span>
     </div>
 
-    <div class="overflow-x-auto">
+    {{-- MOBILE VIEW: Individual Distinct Cards (Per Kotak) --}}
+    <div class="block md:hidden space-y-3.5 p-3.5 sm:p-4 bg-surface-container-low/20">
+        @forelse($cashflows as $cf)
+            <div class="p-4 space-y-3 bg-surface-container-lowest rounded-2xl border border-outline-variant/40 shadow-xs hover:shadow-md transition-all duration-200">
+                <div class="flex items-center justify-between gap-2 pb-2.5 border-b border-outline-variant/20">
+                    <div>
+                        @if($cf->jenis_aliran === 'masuk')
+                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-bold bg-primary/10 border border-primary/15 text-primary">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                Masuk (Keuntungan)
+                            </span>
+                        @else
+                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-500/10 border border-amber-500/15 text-amber-700">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                Keluar (Operasional)
+                            </span>
+                        @endif
+                    </div>
+                    <div class="font-bold font-mono text-xs {{ $cf->jenis_aliran === 'masuk' ? 'text-primary' : 'text-amber-600' }}">
+                        {{ $cf->jenis_aliran === 'masuk' ? '+' : '-' }} Rp {{ number_format($cf->nominal, 0, ',', '.') }}
+                    </div>
+                </div>
+
+                <div class="text-xs space-y-1.5">
+                    <div class="font-bold text-on-surface">
+                        @if($cf->kategori === 'operasional_bensin')
+                            Bensin Armada
+                        @elseif($cf->kategori === 'atk')
+                            ATK Kantor
+                        @elseif($cf->kategori === 'perawatan_alat')
+                            Servis Alat
+                        @elseif($cf->kategori === 'keuntungan_bersih')
+                            Profit Bersih Sampah
+                        @else
+                            Lain-lain
+                        @endif
+                    </div>
+                    @if($cf->keterangan)
+                        <div class="text-on-surface font-semibold text-xs leading-relaxed bg-surface-container-low/50 p-2.5 rounded-xl border border-outline-variant/15">
+                            {{ $cf->keterangan }}
+                        </div>
+                    @endif
+                </div>
+
+                <div class="flex items-center justify-between pt-2.5 border-t border-outline-variant/20 text-[11px]">
+                    <div class="text-on-surface-variant/60 font-mono text-[10px]">
+                        {{ $cf->created_at->translatedFormat('d M Y - H:i') }} WIB
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <span class="text-on-surface-variant/60 font-medium">Kas Berjalan:</span>
+                        <span class="font-bold text-primary font-mono bg-primary/5 px-2 py-0.5 rounded-md border border-primary/15">Rp {{ number_format($cf->sisa_saldo_kas, 0, ',', '.') }}</span>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="p-8 text-center text-on-surface-variant/50">
+                <span class="material-symbols-outlined text-[40px] text-on-surface-variant/20 block mb-2">account_balance_wallet</span>
+                <p class="text-xs font-bold text-on-surface-variant/60">Belum ada riwayat transaksi kas internal</p>
+            </div>
+        @endforelse
+    </div>
+
+    {{-- DESKTOP VIEW: Full Table --}}
+    <div class="hidden md:block overflow-x-auto">
         <table class="w-full text-left">
             <thead>
                 <tr class="border-b border-outline-variant/20 bg-surface-container-low/20">
