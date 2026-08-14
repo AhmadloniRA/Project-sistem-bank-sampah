@@ -324,61 +324,65 @@
     {{-- ============================================================ --}}
     {{-- SIDEBAR (DESKTOP & MOBILE DRAWER) --}}
     {{-- ============================================================ --}}
+    {{-- ============================================================ --}}
+    {{-- SIDEBAR (DESKTOP & MOBILE DRAWER) --}}
+    {{-- ============================================================ --}}
     <aside
         :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'"
-        class="fixed inset-y-0 left-0 h-screen flex flex-col p-6 z-50 border-r border-outline-variant/30 bg-surface-container-lowest w-72 transition-transform duration-300 ease-out shrink-0"
+        class="fixed inset-y-0 left-0 h-[100dvh] max-h-screen flex flex-col justify-between p-5 z-50 border-r border-outline-variant/30 bg-surface-container-lowest w-72 transition-transform duration-300 ease-out shrink-0 overflow-y-auto custom-scrollbar"
     >
-        {{-- Brand Logo --}}
-        <div class="mb-10 px-2 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-9 h-9 bg-primary rounded-xl flex items-center justify-center shadow-md shadow-primary/10">
-                    <span class="material-symbols-outlined text-on-primary text-[22px]">eco</span>
+        {{-- Top Section: Brand & Nav Links --}}
+        <div class="flex flex-col flex-1 min-h-0">
+            {{-- Brand Logo --}}
+            <div class="mb-6 px-1 flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-primary rounded-xl flex items-center justify-center shadow-md shadow-primary/10">
+                        <span class="material-symbols-outlined text-on-primary text-[22px]">eco</span>
+                    </div>
+                    <div>
+                        <h1 class="font-inter text-[18px] font-extrabold text-primary leading-tight tracking-tight">ARUNA</h1>
+                        <p class="text-on-surface-variant/60 text-[10px] uppercase font-bold tracking-widest">Portal Nasabah</p>
+                    </div>
                 </div>
-                <div>
-                    <h1 class="font-inter text-[18px] font-extrabold text-primary leading-tight tracking-tight">ARUNA</h1>
-                    <p class="text-on-surface-variant/60 text-[10px] uppercase font-bold tracking-widest">Portal Nasabah</p>
-                </div>
+                <button @click="sidebarOpen = false" class="md:hidden w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant/40 hover:text-on-surface hover:bg-surface-container transition-all">
+                    <span class="material-symbols-outlined text-[20px]">close</span>
+                </button>
             </div>
-            <button @click="sidebarOpen = false" class="md:hidden w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant/40 hover:text-on-surface hover:bg-surface-container transition-all">
-                <span class="material-symbols-outlined text-[20px]">close</span>
-            </button>
+
+            {{-- Nav Menu --}}
+            <nav class="flex flex-col gap-1 shrink-0">
+                <p class="text-[10px] font-bold text-on-surface-variant/40 uppercase tracking-widest mb-2 px-3">Menu Utama</p>
+                
+                {{-- Dashboard --}}
+                <a href="{{ route('user.dashboard') }}"
+                   class="flex items-center gap-3 rounded-xl px-4 py-2.5 font-semibold transition-all group duration-200
+                          {{ request()->routeIs('user.dashboard') ? 'bg-primary/5 text-primary' : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface' }}">
+                    <span class="material-symbols-outlined text-[22px] {{ request()->routeIs('user.dashboard') ? 'text-primary' : 'text-on-surface-variant group-hover:text-primary' }}">dashboard</span>
+                    <span class="text-sm font-medium">Dashboard</span>
+                </a>
+
+                {{-- Riwayat --}}
+                <a href="{{ route('user.riwayat') }}"
+                   class="flex items-center gap-3 rounded-xl px-4 py-2.5 font-semibold transition-all group duration-200
+                          {{ request()->routeIs('user.riwayat') ? 'bg-primary/5 text-primary' : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface' }}">
+                    <span class="material-symbols-outlined text-[22px] {{ request()->routeIs('user.riwayat') ? 'text-primary' : 'text-on-surface-variant group-hover:text-primary' }}">receipt_long</span>
+                    <span class="text-sm font-medium">Riwayat Transaksi</span>
+                </a>
+
+                {{-- Profil --}}
+                <a href="{{ route('user.profil') }}"
+                   class="flex items-center gap-3 rounded-xl px-4 py-2.5 font-semibold transition-all group duration-200
+                          {{ request()->routeIs('user.profil') ? 'bg-primary/5 text-primary' : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface' }}">
+                    <span class="material-symbols-outlined text-[22px] {{ request()->routeIs('user.profil') ? 'text-primary' : 'text-on-surface-variant group-hover:text-primary' }}">person</span>
+                    <span class="text-sm font-medium">Profil Saya</span>
+                </a>
+            </nav>
         </div>
 
-        {{-- Nav Menu --}}
-        <nav class="flex flex-col gap-1 flex-1">
-            <p class="text-[10px] font-bold text-on-surface-variant/40 uppercase tracking-widest mb-3 px-4">Menu Utama</p>
-            
-            {{-- Dashboard --}}
-            <a href="{{ route('user.dashboard') }}"
-               class="flex items-center gap-3 rounded-xl px-4 py-3 font-semibold transition-all group duration-200
-                      {{ request()->routeIs('user.dashboard') ? 'bg-primary/5 text-primary' : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface' }}">
-                <span class="material-symbols-outlined text-[22px] {{ request()->routeIs('user.dashboard') ? 'text-primary' : 'text-on-surface-variant group-hover:text-primary' }}">dashboard</span>
-                <span class="text-sm font-medium">Dashboard</span>
-            </a>
-
-            {{-- Riwayat --}}
-            <a href="{{ route('user.riwayat') }}"
-               class="flex items-center gap-3 rounded-xl px-4 py-3 font-semibold transition-all group duration-200
-                      {{ request()->routeIs('user.riwayat') ? 'bg-primary/5 text-primary' : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface' }}">
-                <span class="material-symbols-outlined text-[22px] {{ request()->routeIs('user.riwayat') ? 'text-primary' : 'text-on-surface-variant group-hover:text-primary' }}">receipt_long</span>
-                <span class="text-sm font-medium">Riwayat Transaksi</span>
-            </a>
-
-            {{-- Profil --}}
-            <a href="{{ route('user.profil') }}"
-               class="flex items-center gap-3 rounded-xl px-4 py-3 font-semibold transition-all group duration-200
-                      {{ request()->routeIs('user.profil') ? 'bg-primary/5 text-primary' : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface' }}">
-                <span class="material-symbols-outlined text-[22px] {{ request()->routeIs('user.profil') ? 'text-primary' : 'text-on-surface-variant group-hover:text-primary' }}">person</span>
-                <span class="text-sm font-medium">Profil Saya</span>
-            </a>
-
-
-        </nav>
-
-        {{-- Footer Area (User Card & Logout) --}}
-        <div class="mt-auto pt-6 border-t border-outline-variant/30">
-            <div class="bg-surface-container/50 rounded-2xl p-4 mb-4 border border-outline-variant/10">
-                <div class="flex items-center gap-3 mb-3">
+        {{-- Footer Area (User Card & Logout Button) --}}
+        <div class="mt-6 pt-4 border-t border-outline-variant/30 shrink-0 space-y-3">
+            <div class="bg-surface-container/50 rounded-2xl p-3.5 border border-outline-variant/10">
+                <div class="flex items-center gap-3 mb-2.5">
                     @if(Auth::user()->profile_photo)
                         <div class="w-9 h-9 rounded-xl overflow-hidden border border-primary/20 shadow-xs shrink-0">
                             <img src="{{ asset(Auth::user()->profile_photo) }}" alt="Avatar" class="w-full h-full object-cover">
@@ -399,15 +403,13 @@
                 </div>
             </div>
 
-            <div class="flex flex-col gap-1">
-                <form method="POST" action="{{ route('user.logout') }}" class="w-full">
-                    @csrf
-                    <button type="submit" class="w-full flex items-center gap-3 text-error/80 px-4 py-2.5 rounded-xl hover:bg-error-container/10 hover:text-error transition-all group duration-200 cursor-pointer">
-                        <span class="material-symbols-outlined text-[20px] group-hover:translate-x-0.5 transition-transform">logout</span>
-                        <span class="text-xs font-bold font-inter">Keluar</span>
-                    </button>
-                </form>
-            </div>
+            <form method="POST" action="{{ route('user.logout') }}" class="w-full">
+                @csrf
+                <button type="submit" class="w-full flex items-center gap-3 text-error bg-error-container/30 hover:bg-error-container hover:text-on-error-container border border-error-container/20 px-4 py-2.5 rounded-xl transition-all group duration-200 cursor-pointer font-bold text-xs">
+                    <span class="material-symbols-outlined text-[20px] group-hover:translate-x-0.5 transition-transform">logout</span>
+                    <span class="font-inter">Keluar Sistem</span>
+                </button>
+            </form>
         </div>
     </aside>
 

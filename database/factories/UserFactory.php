@@ -31,10 +31,7 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
             'no_id' => function () {
-                $year = now()->format('Y');
-                $count = User::count();
-                $sequence = $count + 1;
-                return 'BS-' . $year . '-' . str_pad($sequence, 3, '0', STR_PAD_LEFT);
+                return User::generateUniqueNoId();
             }
         ];
     }

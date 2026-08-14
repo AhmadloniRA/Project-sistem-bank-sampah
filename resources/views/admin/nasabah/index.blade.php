@@ -6,8 +6,8 @@
 @section('content')
 <div x-data="{ 
     search: '',
-    createModalOpen: false,
-    editModalOpen: false, 
+    createModalOpen: {{ $errors->any() && !old('_method') ? 'true' : 'false' }},
+    editModalOpen: {{ $errors->any() && old('_method') === 'PUT' ? 'true' : 'false' }}, 
     deleteModalOpen: false, 
     currentNasabah: { id: '', no_id: '', name: '', email: '', phone_number: '', kk_number: '', address: '' } 
 }" class="space-y-6">
@@ -293,40 +293,58 @@
                     <div class="space-y-4">
                         <div class="flex flex-col gap-1">
                             <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nama Lengkap</label>
-                            <input type="text" name="name" required placeholder="Nama nasabah..."
+                            <input type="text" name="name" value="{{ old('name') }}" required placeholder="Nama nasabah..."
                                    class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
+                            @error('name')
+                                <span class="text-[10px] text-red-500 font-medium">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="flex flex-col gap-1">
                             <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Alamat Email</label>
-                            <input type="email" name="email" required placeholder="email@domain.com"
+                            <input type="email" name="email" value="{{ old('email') }}" required placeholder="email@domain.com"
                                    class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
+                            @error('email')
+                                <span class="text-[10px] text-red-500 font-medium">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div class="flex flex-col gap-1">
                                 <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nomor HP</label>
-                                <input type="text" name="phone_number" required placeholder="08xxxxxxxxxx"
+                                <input type="text" name="phone_number" value="{{ old('phone_number') }}" placeholder="08xxxxxxxxxx"
                                        class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
+                                @error('phone_number')
+                                    <span class="text-[10px] text-red-500 font-medium">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="flex flex-col gap-1">
                                 <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nomor KK (16 digit)</label>
-                                <input type="text" name="kk_number" required maxlength="16" minlength="16" placeholder="Nomor KK..."
+                                <input type="text" name="kk_number" value="{{ old('kk_number') }}" required maxlength="16" minlength="16" placeholder="Nomor KK..."
                                        class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
+                                @error('kk_number')
+                                    <span class="text-[10px] text-red-500 font-medium">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="flex flex-col gap-1">
                             <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Alamat Lengkap</label>
                             <textarea name="address" rows="3" placeholder="Alamat domisili..."
-                                      class="w-full p-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all resize-none bg-surface-container-lowest text-on-surface"></textarea>
+                                      class="w-full p-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all resize-none bg-surface-container-lowest text-on-surface">{{ old('address') }}</textarea>
+                            @error('address')
+                                <span class="text-[10px] text-red-500 font-medium">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="flex flex-col gap-1">
                             <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Password Akun</label>
                             <input type="password" name="password" required placeholder="Minimal 8 karakter"
                                    class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
+                            @error('password')
+                                <span class="text-[10px] text-red-500 font-medium">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 

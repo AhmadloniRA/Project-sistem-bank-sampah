@@ -30,6 +30,21 @@ class AdminNasabahController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'name.required' => 'Nama lengkap wajib diisi.',
+            'name.string' => 'Nama harus berupa teks.',
+            'name.max' => 'Nama maksimal 255 karakter.',
+            'email.required' => 'Alamat email wajib diisi.',
+            'email.email' => 'Format alamat email tidak valid.',
+            'email.unique' => 'Alamat email sudah terdaftar.',
+            'phone_number.max' => 'Nomor HP maksimal 15 karakter.',
+            'kk_number.required' => 'Nomor KK wajib diisi.',
+            'kk_number.size' => 'Nomor KK harus 16 digit.',
+            'kk_number.unique' => 'Nomor KK sudah terdaftar.',
+            'password.required' => 'Password wajib diisi.',
+            'password.min' => 'Password minimal 8 karakter.',
+        ];
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -37,7 +52,7 @@ class AdminNasabahController extends Controller
             'kk_number' => ['required', 'string', 'size:16', 'unique:users'],
             'address' => ['nullable', 'string'],
             'password' => ['required', 'string', 'min:8'],
-        ]);
+        ], $messages);
 
         User::create([
             'name' => $request->name,
@@ -67,6 +82,20 @@ class AdminNasabahController extends Controller
      */
     public function update(Request $request, User $nasabah)
     {
+        $messages = [
+            'name.required' => 'Nama lengkap wajib diisi.',
+            'name.string' => 'Nama harus berupa teks.',
+            'name.max' => 'Nama maksimal 255 karakter.',
+            'email.required' => 'Alamat email wajib diisi.',
+            'email.email' => 'Format alamat email tidak valid.',
+            'email.unique' => 'Alamat email sudah terdaftar untuk nasabah lain.',
+            'phone_number.max' => 'Nomor HP maksimal 15 karakter.',
+            'kk_number.required' => 'Nomor KK wajib diisi.',
+            'kk_number.size' => 'Nomor KK harus 16 digit.',
+            'kk_number.unique' => 'Nomor KK sudah terdaftar untuk nasabah lain.',
+            'password.min' => 'Password minimal 8 karakter.',
+        ];
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($nasabah->id)],
@@ -74,7 +103,7 @@ class AdminNasabahController extends Controller
             'kk_number' => ['required', 'string', 'size:16', Rule::unique('users')->ignore($nasabah->id)],
             'address' => ['nullable', 'string'],
             'password' => ['nullable', 'string', 'min:8'],
-        ]);
+        ], $messages);
 
         $data = [
             'name' => $request->name,

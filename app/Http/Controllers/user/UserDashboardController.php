@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\HargaSampah;
+
 class UserDashboardController extends Controller
 {
     /**
@@ -23,7 +25,34 @@ class UserDashboardController extends Controller
             ->take(15)
             ->get();
 
-        return view('user.dashboard', compact('user', 'totalTimbangan', 'transactions'));
+        // Reference waste prices
+        $hargaList = HargaSampah::all();
+
+        // 5-week deposit activity statistics for chart
+        $weeklyStats = collect();
+        $now = \Carbon\Carbon::now();
+
+        for ($i = 4; $i >= 0; $i--) {
+            $startOfWeek = (clone $now)->subWeeks($i)->startOfWeek();
+            $endOfWeek   = (clone $now)->subWeeks($i)->endOfWeek();
+
+            $beratKg = (float) $user->setoranSampah()
+                ->whereBetween('created_at', [$startOfWeek, $endOfWeek])
+                ->sum('berat_kg');
+
+            $label = ($i === 0) ? 'Sekarang' : 'Minggu ' . (5 - $i);
+            $sublabel = $startOfWeek->format('d M') . ' - ' . $endOfWeek->format('d M');
+
+            $weeklyStats->push([
+                'label' => $label,
+                'sublabel' => $sublabel,
+                'berat_kg' => $beratKg,
+            ]);
+        }
+
+        $maxBerat = $weeklyStats->max('berat_kg');
+
+        return view('user.dashboard', compact('user', 'totalTimbangan', 'transactions', 'hargaList', 'weeklyStats', 'maxBerat'));
     }
 
     /**

@@ -74,110 +74,130 @@
         </div>
     </div>
 
-    {{-- 2. Eco Impact Card (col-span-12 lg:col-span-4) --}}
+    {{-- 2. Waste Price Reference Card (col-span-12 lg:col-span-4) --}}
     <div data-reveal="scale" data-reveal-delay="200"
-         class="col-span-12 lg:col-span-4 bg-surface-container-lowest p-8 rounded-[2rem] border border-outline-variant/30 flex flex-col justify-between card-shadow tilt-card" data-glow>
+         class="col-span-12 lg:col-span-4 bg-surface-container-lowest p-6 sm:p-8 rounded-[2rem] border border-outline-variant/30 flex flex-col justify-between card-shadow tilt-card" data-glow>
         <div>
-            <div class="flex justify-between items-center mb-6">
-                <h4 class="text-md font-bold text-on-surface">Dampak Lingkungan</h4>
-                <span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-xl text-[20px] magnetic-hover">compost</span>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="p-2.5 bg-primary/10 text-primary rounded-xl magnetic-hover shrink-0">
+                    <span class="material-symbols-outlined text-[22px]">sell</span>
+                </div>
+                <div>
+                    <h4 class="text-xs font-black text-on-surface uppercase tracking-wider">Acuan Harga Beli ARUNA</h4>
+                    <p class="text-[11px] text-on-surface-variant/60 font-medium">Harga patokan sampah untuk nasabah</p>
+                </div>
             </div>
             
-            <div class="space-y-4">
-                {{-- Carbon Saved --}}
-                <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant/10 group hover:border-primary/30 transition-colors duration-300 ripple-container" data-reveal data-reveal-delay="350">
-                    <div class="flex items-center gap-3 mb-2">
-                        <div class="p-2 bg-primary/10 text-primary rounded-xl magnetic-hover">
-                            <span class="material-symbols-outlined text-[18px]">cloud</span>
+            <div class="space-y-3" data-stagger="80">
+                @php
+                    $displayNames = [
+                        'botol plastik' => 'Botol Plastik',
+                        'kardus' => 'Kardus / Karton',
+                        'kaleng' => 'Kaleng Logam',
+                    ];
+                @endphp
+                @forelse($hargaList ?? [] as $harga)
+                    <div class="p-4 rounded-2xl bg-[#eff5ff] dark:bg-emerald-950/30 border border-[#dbe6fe] dark:border-emerald-800/30 flex items-center justify-between group hover:border-primary/40 transition-colors duration-300 ripple-container" data-reveal data-reveal-delay="{{ 300 + ($loop->index * 100) }}">
+                        <div class="min-w-0 flex-1 pr-2">
+                            <h5 class="text-sm font-extrabold text-on-surface truncate">
+                                {{ $displayNames[strtolower($harga->jenis_sampah)] ?? ucwords($harga->jenis_sampah) }}
+                            </h5>
+                            <p class="text-[11px] text-on-surface-variant/60 font-medium mt-0.5">Konversi per kilogram</p>
                         </div>
-                        <div class="flex-1">
-                            <p class="text-[10px] font-bold text-on-surface-variant/70 uppercase tracking-wider">Karbon Dihemat</p>
-                            <p class="text-lg font-bold text-on-surface font-mono">
-                                <span data-count="{{ $totalTimbangan * 3.0 }}" data-count-decimals="1" data-count-duration="1600" data-count-suffix=" ">{{ number_format($totalTimbangan * 3.0, 1, ',', '.') }}</span><span class="text-xs font-medium opacity-60">kg CO2e</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden progress-animated">
-                        <div class="h-full bg-primary rounded-full progress-fill" data-width="{{ min(($totalTimbangan * 3.0 / 150) * 100, 100) }}%"></div>
-                    </div>
-                </div>
-
-                {{-- Trees Equivalent --}}
-                <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant/10 group hover:border-secondary/30 transition-colors duration-300 ripple-container" data-reveal data-reveal-delay="450">
-                    <div class="flex items-center gap-3 mb-2">
-                        <div class="p-2 bg-secondary/10 text-secondary rounded-xl magnetic-hover">
-                            <span class="material-symbols-outlined text-[18px]">forest</span>
-                        </div>
-                        <div class="flex-1">
-                            <p class="text-[10px] font-bold text-on-surface-variant/70 uppercase tracking-wider">Setara Penyerapan</p>
-                            <p class="text-lg font-bold text-on-surface font-mono">
-                                <span data-count="{{ ($totalTimbangan * 3.0) / 22.0 }}" data-count-decimals="1" data-count-duration="1800" data-count-suffix=" ">{{ number_format(($totalTimbangan * 3.0) / 22.0, 1, ',', '.') }}</span><span class="text-xs font-medium opacity-60">Pohon / Thn</span>
-                            </p>
+                        <div class="text-right shrink-0">
+                            <span class="text-sm sm:text-base font-black text-primary font-mono tracking-tight">
+                                Rp {{ number_format($harga->harga_beli_nasabah, 0, ',', '.') }}<span class="text-xs font-bold text-primary/80">/kg</span>
+                            </span>
                         </div>
                     </div>
-                    <div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden progress-animated">
-                        <div class="h-full bg-secondary rounded-full progress-fill" data-width="{{ min((($totalTimbangan * 3.0 / 22) / 10) * 100, 100) }}%"></div>
+                @empty
+                    <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant/10 text-center py-6">
+                        <p class="text-xs text-on-surface-variant/60 font-medium">Belum ada acuan harga sampah</p>
                     </div>
-                </div>
+                @endforelse
             </div>
         </div>
 
-        <div class="mt-6 pt-5 border-t border-outline-variant/20" data-reveal data-reveal-delay="550">
-            <div class="flex justify-between items-end mb-2">
-                <p class="text-xs font-bold text-on-surface">Target Penyetoran Anggota</p>
-                <p class="text-xs font-bold text-primary"><span data-count="{{ min(round(($totalTimbangan / 50) * 100), 100) }}" data-count-suffix="%" data-count-duration="1200">{{ min(round(($totalTimbangan / 50) * 100), 100) }}%</span></p>
-            </div>
-            <div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden progress-animated">
-                <div class="h-full bg-gradient-to-r from-primary to-[#2a7a58] rounded-full shadow-xs progress-fill" data-width="{{ min(($totalTimbangan / 50) * 100, 100) }}%"></div>
-            </div>
-            <p class="text-[10px] text-on-surface-variant/60 mt-2 font-medium">Target berikutnya: Capai setoran 50 kg sampah</p>
+        <div class="mt-6 pt-4 border-t border-outline-variant/20 flex items-center gap-2 text-[10px] text-on-surface-variant/70 font-medium">
+            <span class="material-symbols-outlined text-primary text-[14px]">info</span>
+            <span>Harga berlaku untuk setiap penimbangan di loket ARUNA</span>
         </div>
     </div>
 
-    {{-- 3. Mock Activity Chart (col-span-12 lg:col-span-7) --}}
+    {{-- 3. Activity Chart (col-span-12 lg:col-span-7) --}}
     <div data-reveal data-reveal-delay="300"
-         class="col-span-12 lg:col-span-7 bg-surface-container-lowest p-8 rounded-[2rem] border border-outline-variant/30 card-shadow h-[400px] flex flex-col" data-glow>
-        <div class="flex justify-between items-center mb-6">
+         class="col-span-12 lg:col-span-7 bg-surface-container-lowest p-6 sm:p-8 rounded-[2rem] border border-outline-variant/30 card-shadow h-[400px] flex flex-col justify-between" data-glow>
+        <div class="flex justify-between items-center mb-4">
             <div>
                 <h4 class="text-md font-bold text-on-surface" data-typewriter="Grafik Aktivitas Setoran" data-typewriter-speed="45">Grafik Aktivitas Setoran</h4>
-                <p class="text-xs text-on-surface-variant/60">Statistik kebiasaan hijau Anda setiap minggu</p>
+                <p class="text-xs text-on-surface-variant/60">Statistik total setoran sampah Anda (kg) setiap minggu</p>
             </div>
             <div class="flex gap-2">
                 <span class="bg-primary/10 text-primary px-3 py-1.5 rounded-lg text-[10px] font-bold animate-bounce-in" style="animation-delay: 0.5s;">5 Minggu Terakhir</span>
             </div>
         </div>
         
-        {{-- Refined Bar Chart --}}
-        <div class="flex-1 flex items-end justify-between gap-4 px-4 pb-4" data-stagger="100">
-            <div class="flex-1 flex flex-col items-center gap-3">
-                <div class="w-full bg-primary/10 rounded-xl hover:bg-primary/20 transition-all cursor-pointer relative group h-[30%] animate-scale-y ripple-container" style="animation-delay: 0.35s; animation-fill-mode: forwards;">
-                    <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-all pointer-events-none">2.4kg</div>
+        {{-- Dynamic Bar Chart Container --}}
+        <div class="flex-1 flex flex-col justify-end">
+            <div class="h-52 w-full flex items-end justify-between gap-3 sm:gap-6 px-3 pb-2 border-b border-outline-variant/20 relative">
+                {{-- Background Dashed Lines --}}
+                <div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20 py-2">
+                    <div class="w-full border-b border-dashed border-on-surface-variant"></div>
+                    <div class="w-full border-b border-dashed border-on-surface-variant"></div>
+                    <div class="w-full border-b border-dashed border-on-surface-variant"></div>
                 </div>
-                <span class="text-[10px] font-bold text-on-surface-variant/60">Minggu 1</span>
+
+                @php
+                    $maxVal = max($maxBerat ?? 0, 1);
+                @endphp
+
+                @foreach($weeklyStats ?? [] as $stat)
+                    @php
+                        $isCurrentWeek = $loop->last;
+                        $hasDeposit = $stat['berat_kg'] > 0;
+                        $calcHeight = $hasDeposit ? max(12, min(100, round(($stat['berat_kg'] / $maxVal) * 100))) : 6;
+                    @endphp
+                    <div class="flex-1 h-full flex flex-col justify-end items-center relative group z-10">
+                        {{-- Hover Tooltip --}}
+                        <div class="absolute -top-12 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[11px] font-bold px-3 py-1.5 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap z-30 flex flex-col items-center">
+                            <span>{{ number_format($stat['berat_kg'], 1, ',', '.') }} kg</span>
+                            <span class="text-[9px] font-normal opacity-75 font-mono">{{ $stat['sublabel'] }}</span>
+                        </div>
+
+                        {{-- Value Label on top of Bar --}}
+                        <div class="mb-1 text-center">
+                            @if($hasDeposit)
+                                <span class="text-[10px] font-black text-primary tracking-tight block">
+                                    {{ number_format($stat['berat_kg'], 1, ',', '.') }}<span class="text-[8px] font-bold text-primary/70">kg</span>
+                                </span>
+                            @else
+                                <span class="text-[9px] font-semibold text-on-surface-variant/40 block">0kg</span>
+                            @endif
+                        </div>
+
+                        {{-- Bar Element --}}
+                        <div class="w-full max-w-[42px] rounded-t-2xl transition-all duration-700 cursor-pointer relative ripple-container
+                                    {{ $isCurrentWeek 
+                                        ? ($hasDeposit ? 'bg-gradient-to-t from-primary to-emerald-400 shadow-md shadow-primary/30 pulse-glow' : 'bg-primary/30 border border-primary/40') 
+                                        : ($hasDeposit ? 'bg-primary/25 hover:bg-primary/50' : 'bg-surface-container-high border border-outline-variant/15') }}"
+                             style="height: {{ $calcHeight }}%;">
+                        </div>
+                    </div>
+                @endforeach
             </div>
-            <div class="flex-1 flex flex-col items-center gap-3">
-                <div class="w-full bg-primary/10 rounded-xl hover:bg-primary/20 transition-all cursor-pointer relative group h-[45%] animate-scale-y ripple-container" style="animation-delay: 0.4s; animation-fill-mode: forwards;">
-                    <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-all pointer-events-none">3.8kg</div>
-                </div>
-                <span class="text-[10px] font-bold text-on-surface-variant/60">Minggu 2</span>
-            </div>
-            <div class="flex-1 flex flex-col items-center gap-3">
-                <div class="w-full bg-primary/10 rounded-xl hover:bg-primary/20 transition-all cursor-pointer relative group h-[15%] animate-scale-y ripple-container" style="animation-delay: 0.45s; animation-fill-mode: forwards;">
-                    <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-all pointer-events-none">1.0kg</div>
-                </div>
-                <span class="text-[10px] font-bold text-on-surface-variant/60">Minggu 3</span>
-            </div>
-            <div class="flex-1 flex flex-col items-center gap-3">
-                <div class="w-full bg-primary/10 rounded-xl hover:bg-primary/20 transition-all cursor-pointer relative group h-[60%] animate-scale-y ripple-container" style="animation-delay: 0.5s; animation-fill-mode: forwards;">
-                    <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-all pointer-events-none">5.2kg</div>
-                </div>
-                <span class="text-[10px] font-bold text-on-surface-variant/60">Minggu 4</span>
-            </div>
-            <div class="flex-1 flex flex-col items-center gap-3">
-                <div class="w-full bg-primary rounded-xl shadow-lg shadow-primary/20 relative group h-[80%] animate-scale-y pulse-glow ripple-container" style="animation-delay: 0.55s; animation-fill-mode: forwards;">
-                    <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-all pointer-events-none">6.8kg</div>
-                </div>
-                <span class="text-[10px] font-bold text-primary">Sekarang</span>
+
+            {{-- X-Axis Labels --}}
+            <div class="flex justify-between items-center gap-3 sm:gap-6 px-3 pt-3">
+                @foreach($weeklyStats ?? [] as $stat)
+                    <div class="flex-1 text-center min-w-0">
+                        <span class="text-[10px] sm:text-xs font-bold block truncate {{ $loop->last ? 'text-primary' : 'text-on-surface-variant/70' }}">
+                            {{ $stat['label'] }}
+                        </span>
+                        <span class="text-[9px] text-on-surface-variant/50 font-mono hidden sm:block truncate mt-0.5">
+                            {{ $stat['sublabel'] }}
+                        </span>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

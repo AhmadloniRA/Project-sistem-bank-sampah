@@ -36,16 +36,45 @@ class User extends Authenticatable
     }
 
     /**
+     * Generate a unique member ID (no_id).
+     */
+    public static function generateUniqueNoId(): string
+    {
+        $year = now()->format('Y');
+        $prefix = 'BS-' . $year . '-';
+
+        $maxSequence = 0;
+        $existingNoIds = static::where('no_id', 'like', $prefix . '%')->pluck('no_id');
+
+        foreach ($existingNoIds as $noId) {
+            $parts = explode('-', $noId);
+            $seq = (int) end($parts);
+            if ($seq > $maxSequence) {
+                $maxSequence = $seq;
+            }
+        }
+
+        $sequence = max($maxSequence + 1, static::count() + 1);
+
+        do {
+            $candidate = $prefix . str_pad($sequence, 3, '0', STR_PAD_LEFT);
+            $exists = static::where('no_id', $candidate)->exists();
+            if ($exists) {
+                $sequence++;
+            }
+        } while ($exists);
+
+        return $candidate;
+    }
+
+    /**
      * The "booted" method of the model.
      */
     protected static function booted()
     {
         static::creating(function ($user) {
             if (empty($user->no_id)) {
-                $year = now()->format('Y');
-                $count = self::count();
-                $sequence = $count + 1;
-                $user->no_id = 'BS-' . $year . '-' . str_pad($sequence, 3, '0', STR_PAD_LEFT);
+                $user->no_id = static::generateUniqueNoId();
             }
         });
     }

@@ -136,7 +136,8 @@
         {{-- SIDEBAR NAVIGATION --}}
         {{-- ============================================================ --}}
         <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
-               class="fixed inset-y-0 left-0 z-50 w-64 bg-surface-container-lowest border-r border-outline-variant/65 flex flex-col p-5 transition-transform duration-300 ease-in-out lg:translate-x-0 lg:fixed lg:inset-y-0 lg:left-0 lg:h-screen">
+               class="fixed inset-y-0 left-0 z-50 w-64 h-[100dvh] max-h-screen overflow-y-auto custom-scrollbar bg-surface-container-lowest border-r border-outline-variant/65 flex flex-col justify-between p-5 transition-transform duration-300 ease-in-out lg:translate-x-0 lg:fixed lg:inset-y-0 lg:left-0">
+
             
             {{-- Brand Header --}}
             <div class="mb-8 px-2 flex items-center justify-between">

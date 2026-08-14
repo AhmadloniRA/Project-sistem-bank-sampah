@@ -221,7 +221,20 @@
             <p class="text-[9px] text-on-surface-variant/50 font-bold uppercase tracking-wider">Bergabung Sejak</p>
             <h3 class="text-sm font-bold text-on-surface mt-1 font-mono">{{ $user->created_at->translatedFormat('d M Y') }}</h3>
         </div>
+
+        {{-- Card Logout Sesi --}}
+        <div class="bg-surface-container-lowest p-5 rounded-2xl border border-error-container/30 shadow-xs">
+            <p class="text-[9px] text-error font-bold uppercase tracking-wider mb-2">Sesi Akses</p>
+            <form method="POST" action="{{ route('user.logout') }}" class="w-full">
+                @csrf
+                <button type="submit" class="w-full flex items-center justify-center gap-2 text-error bg-error-container/20 hover:bg-error-container hover:text-on-error-container border border-error-container/30 px-4 py-3 rounded-xl transition-all cursor-pointer font-bold text-xs shadow-xs">
+                    <span class="material-symbols-outlined text-[18px]">logout</span>
+                    <span>Keluar dari Sesi Akun</span>
+                </button>
+            </form>
+        </div>
     </div>
 </div>
+
 
 @endsection
