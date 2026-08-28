@@ -46,8 +46,8 @@
                 </div>
 
                 <div class="pt-4 flex items-center justify-end">
-                    <button type="button" @click="confirmPenarikanOpen = true" class="h-11 px-6 bg-error hover:bg-error/95 text-on-error rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer border border-transparent flex items-center gap-1.5">
-                        <span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+                    <button type="button" @click="confirmPenarikanOpen = true" class="h-11 px-6 bg-error hover:bg-error/95 text-white rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer border border-transparent flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-[18px] text-white">account_balance_wallet</span>
                         Proses Pencairan Tunai
                     </button>
                 </div>
@@ -118,49 +118,51 @@
     {{-- MODAL CONFIRM PENARIKAN --}}
     {{-- ============================================================ --}}
     @if($nasabah)
-        <div x-show="confirmPenarikanOpen" 
-             class="fixed inset-0 z-50 overflow-y-auto" 
-             style="display: none;"
-             x-transition:enter="transition ease-out duration-300"
-             x-transition:enter-start="opacity-0"
-             x-transition:enter-end="opacity-100"
-             x-transition:leave="transition ease-in duration-200"
-             x-transition:leave-start="opacity-100"
-             x-transition:leave-end="opacity-0">
-            <div class="fixed inset-0 bg-neutral-900/40 backdrop-blur-xs"></div>
-            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                <div class="relative transform overflow-hidden rounded-2xl bg-surface-container-lowest text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md border border-outline-variant/30 animate-pageSlideIn"
-                     @click.away="confirmPenarikanOpen = false"
-                     x-transition:enter="transition ease-out duration-300"
-                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                     x-transition:leave="transition ease-in duration-200"
-                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                    <div class="p-6 text-center">
-                        <div class="w-12 h-12 rounded-full bg-error-container/20 text-error flex items-center justify-center mx-auto mb-4 border border-error-container/30">
-                            <span class="material-symbols-outlined text-[24px]">warning</span>
-                        </div>
+        <template x-teleport="body">
+            <div x-show="confirmPenarikanOpen" 
+                 class="fixed inset-0 z-50 overflow-y-auto" 
+                 style="display: none;"
+                 x-transition:enter="transition ease-out duration-300"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0">
+                <div class="fixed inset-0 bg-neutral-900/40 backdrop-blur-xs"></div>
+                <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                    <div class="relative transform overflow-hidden rounded-2xl bg-surface-container-lowest text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md border border-outline-variant/30 animate-pageSlideIn"
+                         @click.away="confirmPenarikanOpen = false"
+                         x-transition:enter="transition ease-out duration-300"
+                         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                         x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                         x-transition:leave="transition ease-in duration-200"
+                         x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                         x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+                        <div class="p-6 text-center">
+                            <div class="w-12 h-12 rounded-full bg-error-container/20 text-error flex items-center justify-center mx-auto mb-4 border border-error-container/30">
+                                <span class="material-symbols-outlined text-[24px]">warning</span>
+                            </div>
 
-                        <h3 class="text-sm font-extrabold text-on-surface mb-2">Konfirmasi Pencairan Tunai?</h3>
-                        <p class="text-xs text-on-surface-variant/80 leading-relaxed px-2 mb-6">
-                            Apakah Anda yakin ingin memproses pencairan uang tunai dari tabungan warga atas nama <strong class="text-on-surface font-extrabold">{{ $nasabah->name }}</strong>? Nominal saldo nasabah akan dipotong secara langsung.
-                        </p>
+                            <h3 class="text-sm font-extrabold text-on-surface mb-2">Konfirmasi Pencairan Tunai?</h3>
+                            <p class="text-xs text-on-surface-variant/80 leading-relaxed px-2 mb-6">
+                                Apakah Anda yakin ingin memproses pencairan uang tunai dari tabungan warga atas nama <strong class="text-on-surface font-extrabold">{{ $nasabah->name }}</strong>? Nominal saldo nasabah akan dipotong secara langsung.
+                            </p>
 
-                        <div class="flex items-center justify-center gap-3">
-                            <button type="button" @click="confirmPenarikanOpen = false"
-                                    class="px-5 py-2.5 rounded-xl border border-outline-variant/45 hover:bg-surface-container text-xs font-bold text-on-surface-variant transition-colors cursor-pointer">
-                                Batal
-                            </button>
-                            <button type="button" @click="document.getElementById('penarikan-form').submit()"
-                                    class="px-5 py-2.5 rounded-xl bg-error text-on-error hover:bg-error/95 text-xs font-bold transition-all shadow-xs cursor-pointer">
-                                Ya, Cairkan Sekarang
-                            </button>
+                            <div class="flex items-center justify-center gap-3">
+                                <button type="button" @click="confirmPenarikanOpen = false"
+                                        class="px-5 py-2.5 rounded-xl border border-outline-variant/45 hover:bg-surface-container text-xs font-bold text-on-surface-variant transition-colors cursor-pointer">
+                                    Batal
+                                </button>
+                                <button type="button" @click="document.getElementById('penarikan-form').submit()"
+                                        class="px-5 py-2.5 rounded-xl bg-error text-white hover:bg-error/95 text-xs font-bold transition-all shadow-xs cursor-pointer">
+                                    Ya, Cairkan Sekarang
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </template>
     @endif
 
 </div>

@@ -261,251 +261,257 @@
     {{-- ============================================================ --}}
     {{-- MODAL REGISTRASI NASABAH BARU --}}
     {{-- ============================================================ --}}
-    <div x-show="createModalOpen" 
-         class="fixed inset-0 z-50 overflow-y-auto" 
-         style="display: none;"
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0"
-         x-transition:enter-end="opacity-100"
-         x-transition:leave="transition ease-in duration-200"
-         x-transition:leave-start="opacity-100"
-         x-transition:leave-end="opacity-0">
-        <div class="fixed inset-0 bg-neutral-900/40 backdrop-blur-xs"></div>
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <div class="relative transform overflow-hidden rounded-2xl bg-surface-container-lowest text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg border border-outline-variant/30"
-                 @click.away="createModalOpen = false"
-                 x-transition:enter="transition ease-out duration-300"
-                 x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                 x-transition:leave="transition ease-in duration-200"
-                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                <form action="{{ route('admin.nasabah.store') }}" method="POST" class="p-6 space-y-4">
-                    @csrf
-                    
-                    <div class="flex items-center justify-between pb-3.5 border-b border-outline-variant/20 mb-2">
-                        <h3 class="text-sm font-extrabold text-primary">Registrasi Nasabah Baru</h3>
-                        <button type="button" @click="createModalOpen = false" class="text-on-surface-variant/40 hover:text-on-surface transition-colors cursor-pointer">
-                            <span class="material-symbols-outlined text-[20px]">close</span>
-                        </button>
-                    </div>
-
-                    <div class="space-y-4">
-                        <div class="flex flex-col gap-1">
-                            <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nama Lengkap</label>
-                            <input type="text" name="name" value="{{ old('name') }}" required placeholder="Nama nasabah..."
-                                   class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
-                            @error('name')
-                                <span class="text-[10px] text-red-500 font-medium">{{ $message }}</span>
-                            @enderror
+    <template x-teleport="body">
+        <div x-show="createModalOpen" 
+             class="fixed inset-0 z-50 overflow-y-auto" 
+             style="display: none;"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0">
+            <div class="fixed inset-0 bg-neutral-900/40 backdrop-blur-xs"></div>
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-2xl bg-surface-container-lowest text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg border border-outline-variant/30"
+                     @click.away="createModalOpen = false"
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                     x-transition:leave="transition ease-in duration-200"
+                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+                    <form action="{{ route('admin.nasabah.store') }}" method="POST" class="p-6 space-y-4">
+                        @csrf
+                        
+                        <div class="flex items-center justify-between pb-3.5 border-b border-outline-variant/20 mb-2">
+                            <h3 class="text-sm font-extrabold text-primary">Registrasi Nasabah Baru</h3>
+                            <button type="button" @click="createModalOpen = false" class="text-on-surface-variant/40 hover:text-on-surface transition-colors cursor-pointer">
+                                <span class="material-symbols-outlined text-[20px]">close</span>
+                            </button>
                         </div>
 
-                        <div class="flex flex-col gap-1">
-                            <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Alamat Email</label>
-                            <input type="email" name="email" value="{{ old('email') }}" required placeholder="email@domain.com"
-                                   class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
-                            @error('email')
-                                <span class="text-[10px] text-red-500 font-medium">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-4">
                             <div class="flex flex-col gap-1">
-                                <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nomor HP</label>
-                                <input type="text" name="phone_number" value="{{ old('phone_number') }}" placeholder="08xxxxxxxxxx"
+                                <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nama Lengkap</label>
+                                <input type="text" name="name" value="{{ old('name') }}" required placeholder="Nama nasabah..."
                                        class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
-                                @error('phone_number')
+                                @error('name')
                                     <span class="text-[10px] text-red-500 font-medium">{{ $message }}</span>
                                 @enderror
                             </div>
 
                             <div class="flex flex-col gap-1">
-                                <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nomor KK (16 digit)</label>
-                                <input type="text" name="kk_number" value="{{ old('kk_number') }}" required maxlength="16" minlength="16" placeholder="Nomor KK..."
+                                <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Alamat Email</label>
+                                <input type="email" name="email" value="{{ old('email') }}" required placeholder="email@domain.com"
                                        class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
-                                @error('kk_number')
+                                @error('email')
+                                    <span class="text-[10px] text-red-500 font-medium">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1">
+                                    <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nomor HP</label>
+                                    <input type="text" name="phone_number" value="{{ old('phone_number') }}" placeholder="08xxxxxxxxxx"
+                                           class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
+                                    @error('phone_number')
+                                        <span class="text-[10px] text-red-500 font-medium">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="flex flex-col gap-1">
+                                    <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nomor KK (16 digit)</label>
+                                    <input type="text" name="kk_number" value="{{ old('kk_number') }}" required maxlength="16" minlength="16" placeholder="Nomor KK..."
+                                           class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
+                                    @error('kk_number')
+                                        <span class="text-[10px] text-red-500 font-medium">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col gap-1">
+                                <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Alamat Lengkap</label>
+                                <textarea name="address" rows="3" placeholder="Alamat domisili..."
+                                          class="w-full p-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all resize-none bg-surface-container-lowest text-on-surface">{{ old('address') }}</textarea>
+                                @error('address')
+                                    <span class="text-[10px] text-red-500 font-medium">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="flex flex-col gap-1">
+                                <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Password Akun</label>
+                                <input type="password" name="password" required placeholder="Minimal 8 karakter"
+                                       class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
+                                @error('password')
                                     <span class="text-[10px] text-red-500 font-medium">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
 
-                        <div class="flex flex-col gap-1">
-                            <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Alamat Lengkap</label>
-                            <textarea name="address" rows="3" placeholder="Alamat domisili..."
-                                      class="w-full p-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all resize-none bg-surface-container-lowest text-on-surface">{{ old('address') }}</textarea>
-                            @error('address')
-                                <span class="text-[10px] text-red-500 font-medium">{{ $message }}</span>
-                            @enderror
+                        <div class="flex items-center justify-end gap-3 pt-4 border-t border-outline-variant/20">
+                            <button type="button" @click="createModalOpen = false"
+                                    class="px-5 py-2.5 rounded-xl border border-outline-variant/45 hover:bg-surface-container text-xs font-bold text-on-surface-variant transition-colors cursor-pointer">
+                                Batal
+                            </button>
+                            <button type="submit"
+                                    class="h-10 px-4 bg-[#065f46] hover:bg-[#065f46]/90 text-[#FFFFFF] rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 cursor-pointer border border-transparent">
+                                Daftarkan Nasabah
+                            </button>
                         </div>
-
-                        <div class="flex flex-col gap-1">
-                            <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Password Akun</label>
-                            <input type="password" name="password" required placeholder="Minimal 8 karakter"
-                                   class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
-                            @error('password')
-                                <span class="text-[10px] text-red-500 font-medium">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-end gap-3 pt-4 border-t border-outline-variant/20">
-                        <button type="button" @click="createModalOpen = false"
-                                class="px-5 py-2.5 rounded-xl border border-outline-variant/45 hover:bg-surface-container text-xs font-bold text-on-surface-variant transition-colors cursor-pointer">
-                            Batal
-                        </button>
-                        <button type="submit"
-                                class="h-10 px-4 bg-[#065f46] hover:bg-[#065f46]/90 text-[#FFFFFF] rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 cursor-pointer border border-transparent">
-                            Daftarkan Nasabah
-                        </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    </template>
 
     {{-- ============================================================ --}}
     {{-- MODAL EDIT NASABAH --}}
     {{-- ============================================================ --}}
-    <div x-show="editModalOpen" 
-         class="fixed inset-0 z-50 overflow-y-auto" 
-         style="display: none;"
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0"
-         x-transition:enter-end="opacity-100"
-         x-transition:leave="transition ease-in duration-200"
-         x-transition:leave-start="opacity-100"
-         x-transition:leave-end="opacity-0">
-        <div class="fixed inset-0 bg-neutral-900/40 backdrop-blur-xs"></div>
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <div class="relative transform overflow-hidden rounded-2xl bg-surface-container-lowest text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg border border-outline-variant/30"
-                 @click.away="editModalOpen = false"
-                 x-transition:enter="transition ease-out duration-300"
-                 x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                 x-transition:leave="transition ease-in duration-200"
-                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                <form :action="'{{ url('admin/nasabah') }}/' + currentNasabah.id" method="POST" class="p-6 space-y-4">
-                    @csrf
-                    @method('PUT')
+    <template x-teleport="body">
+        <div x-show="editModalOpen" 
+             class="fixed inset-0 z-50 overflow-y-auto" 
+             style="display: none;"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0">
+            <div class="fixed inset-0 bg-neutral-900/40 backdrop-blur-xs"></div>
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-2xl bg-surface-container-lowest text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg border border-outline-variant/30"
+                     @click.away="editModalOpen = false"
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                     x-transition:leave="transition ease-in duration-200"
+                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+                    <form :action="'{{ url('admin/nasabah') }}/' + currentNasabah.id" method="POST" class="p-6 space-y-4">
+                        @csrf
+                        @method('PUT')
 
-                    <div class="flex items-center justify-between pb-3.5 border-b border-outline-variant/20 mb-2">
-                        <h3 class="text-sm font-extrabold text-primary">Perbarui Data Nasabah</h3>
-                        <button type="button" @click="editModalOpen = false" class="text-on-surface-variant/40 hover:text-on-surface transition-colors cursor-pointer">
-                            <span class="material-symbols-outlined text-[20px]">close</span>
-                        </button>
-                    </div>
-
-                    <div class="space-y-4">
-                        <div class="flex flex-col gap-1">
-                            <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">No. ID Rekening</label>
-                            <input type="text" x-model="currentNasabah.no_id" readonly
-                                   class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs bg-surface-container text-on-surface-variant/60 cursor-not-allowed outline-none select-none">
+                        <div class="flex items-center justify-between pb-3.5 border-b border-outline-variant/20 mb-2">
+                            <h3 class="text-sm font-extrabold text-primary">Perbarui Data Nasabah</h3>
+                            <button type="button" @click="editModalOpen = false" class="text-on-surface-variant/40 hover:text-on-surface transition-colors cursor-pointer">
+                                <span class="material-symbols-outlined text-[20px]">close</span>
+                            </button>
                         </div>
 
-                        <div class="flex flex-col gap-1">
-                            <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nama Lengkap</label>
-                            <input type="text" name="name" x-model="currentNasabah.name" required
-                                   class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
-                        </div>
-
-                        <div class="flex flex-col gap-1">
-                            <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Alamat Email</label>
-                            <input type="email" name="email" x-model="currentNasabah.email" required
-                                   class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-4">
                             <div class="flex flex-col gap-1">
-                                <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nomor HP</label>
-                                <input type="text" name="phone_number" x-model="currentNasabah.phone_number" required
+                                <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">No. ID Rekening</label>
+                                <input type="text" x-model="currentNasabah.no_id" readonly
+                                       class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs bg-surface-container text-on-surface-variant/60 cursor-not-allowed outline-none select-none">
+                            </div>
+
+                            <div class="flex flex-col gap-1">
+                                <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nama Lengkap</label>
+                                <input type="text" name="name" x-model="currentNasabah.name" required
                                        class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
                             </div>
 
                             <div class="flex flex-col gap-1">
-                                <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nomor KK (16 digit)</label>
-                                <input type="text" name="kk_number" x-model="currentNasabah.kk_number" required maxlength="16" minlength="16"
+                                <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Alamat Email</label>
+                                <input type="email" name="email" x-model="currentNasabah.email" required
+                                       class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1">
+                                    <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nomor HP</label>
+                                    <input type="text" name="phone_number" x-model="currentNasabah.phone_number" required
+                                           class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
+                                </div>
+
+                                <div class="flex flex-col gap-1">
+                                    <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Nomor KK (16 digit)</label>
+                                    <input type="text" name="kk_number" x-model="currentNasabah.kk_number" required maxlength="16" minlength="16"
+                                           class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col gap-1">
+                                <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Alamat Lengkap</label>
+                                <textarea name="address" x-model="currentNasabah.address" rows="3"
+                                          class="w-full p-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all resize-none bg-surface-container-lowest text-on-surface"></textarea>
+                            </div>
+
+                            <div class="flex flex-col gap-1 pt-2 border-t border-outline-variant/20">
+                                <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Password Baru (Opsional)</label>
+                                <input type="password" name="password" placeholder="Kosongkan jika tidak ingin diubah"
                                        class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
                             </div>
                         </div>
 
-                        <div class="flex flex-col gap-1">
-                            <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Alamat Lengkap</label>
-                            <textarea name="address" x-model="currentNasabah.address" rows="3"
-                                      class="w-full p-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all resize-none bg-surface-container-lowest text-on-surface"></textarea>
+                        <div class="flex items-center justify-end gap-3 pt-4 border-t border-outline-variant/20">
+                            <button type="button" @click="editModalOpen = false"
+                                    class="px-5 py-2.5 rounded-xl border border-outline-variant/45 hover:bg-surface-container text-xs font-bold text-on-surface-variant transition-colors cursor-pointer">
+                                Batal
+                            </button>
+                            <button type="submit"
+                                    class="px-5 py-2.5 text-[#FFFFFF] rounded-xl bg-primary text-on-primary hover:bg-primary/95 text-xs font-bold transition-all shadow-xs cursor-pointer">
+                                Simpan Perubahan
+                            </button>
                         </div>
-
-                        <div class="flex flex-col gap-1 pt-2 border-t border-outline-variant/20">
-                            <label class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider">Password Baru (Opsional)</label>
-                            <input type="password" name="password" placeholder="Kosongkan jika tidak ingin diubah"
-                                   class="w-full h-11 px-4 rounded-xl border border-outline-variant/45 text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all bg-surface-container-lowest text-on-surface">
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-end gap-3 pt-4 border-t border-outline-variant/20">
-                        <button type="button" @click="editModalOpen = false"
-                                class="px-5 py-2.5 rounded-xl border border-outline-variant/45 hover:bg-surface-container text-xs font-bold text-on-surface-variant transition-colors cursor-pointer">
-                            Batal
-                        </button>
-                        <button type="submit"
-                                class="px-5 py-2.5 text-[#FFFFFF] rounded-xl bg-primary text-on-primary hover:bg-primary/95 text-xs font-bold transition-all shadow-xs cursor-pointer">
-                            Simpan Perubahan
-                        </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    </template>
 
     {{-- ============================================================ --}}
     {{-- MODAL DELETE CONFIRMATION --}}
     {{-- ============================================================ --}}
-    <div x-show="deleteModalOpen" 
-         class="fixed inset-0 z-50 overflow-y-auto" 
-         style="display: none;"
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0"
-         x-transition:enter-end="opacity-100"
-         x-transition:leave="transition ease-in duration-200"
-         x-transition:leave-start="opacity-100"
-         x-transition:leave-end="opacity-0">
-        <div class="fixed inset-0 bg-neutral-900/40 backdrop-blur-xs"></div>
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <div class="relative transform overflow-hidden rounded-2xl bg-surface-container-lowest text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md border border-outline-variant/30 animate-pageSlideIn"
-                 @click.away="deleteModalOpen = false"
-                 x-transition:enter="transition ease-out duration-300"
-                 x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                 x-transition:leave="transition ease-in duration-200"
-                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                <form :action="'{{ url('admin/nasabah') }}/' + currentNasabah.id" method="POST" class="p-6 text-center">
-                    @csrf
-                    @method('DELETE')
+    <template x-teleport="body">
+        <div x-show="deleteModalOpen" 
+             class="fixed inset-0 z-50 overflow-y-auto" 
+             style="display: none;"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0">
+            <div class="fixed inset-0 bg-neutral-900/40 backdrop-blur-xs"></div>
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-2xl bg-surface-container-lowest text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md border border-outline-variant/30 animate-pageSlideIn"
+                     @click.away="deleteModalOpen = false"
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                     x-transition:leave="transition ease-in duration-200"
+                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+                    <form :action="'{{ url('admin/nasabah') }}/' + currentNasabah.id" method="POST" class="p-6 text-center">
+                        @csrf
+                        @method('DELETE')
 
-                    <div class="w-12 h-12 rounded-full bg-error-container/20 text-error flex items-center justify-center mx-auto mb-4 border border-error-container/30">
-                        <span class="material-symbols-outlined text-[24px]">warning</span>
-                    </div>
+                        <div class="w-12 h-12 rounded-full bg-error-container/20 text-error flex items-center justify-center mx-auto mb-4 border border-error-container/30">
+                            <span class="material-symbols-outlined text-[24px]">warning</span>
+                        </div>
 
-                    <h3 class="text-sm font-extrabold text-on-surface mb-2">Hapus Akun Nasabah?</h3>
-                    <p class="text-xs text-on-surface-variant/80 leading-relaxed px-2 mb-6">
-                        Apakah Anda yakin ingin menghapus akun nasabah <strong class="text-on-surface font-extrabold" x-text="currentNasabah.name"></strong>? Seluruh data tabungan dan riwayat transaksi nasabah ini juga akan terhapus secara permanen dari sistem.
-                    </p>
+                        <h3 class="text-sm font-extrabold text-on-surface mb-2">Hapus Akun Nasabah?</h3>
+                        <p class="text-xs text-on-surface-variant/80 leading-relaxed px-2 mb-6">
+                            Apakah Anda yakin ingin menghapus akun nasabah <strong class="text-on-surface font-extrabold" x-text="currentNasabah.name"></strong>? Seluruh data tabungan dan riwayat transaksi nasabah ini juga akan terhapus secara permanen dari sistem.
+                        </p>
 
-                    <div class="flex items-center justify-center gap-3">
-                        <button type="button" @click="deleteModalOpen = false"
-                                class="px-5 py-2.5 rounded-xl border border-outline-variant/45 hover:bg-surface-container text-xs font-bold text-on-surface-variant transition-colors cursor-pointer">
-                            Batal
-                        </button>
-                        <button type="submit"
-                                class="px-5 py-2.5 rounded-xl bg-error text-on-error hover:bg-error/95 text-xs font-bold transition-all shadow-xs cursor-pointer">
-                            Ya, Hapus Permanen
-                        </button>
-                    </div>
-                </form>
+                        <div class="flex items-center justify-center gap-3">
+                            <button type="button" @click="deleteModalOpen = false"
+                                    class="px-5 py-2.5 rounded-xl border border-outline-variant/45 hover:bg-surface-container text-xs font-bold text-on-surface-variant transition-colors cursor-pointer">
+                                Batal
+                            </button>
+                            <button type="submit"
+                                    class="px-5 py-2.5 rounded-xl bg-error text-white hover:bg-error/95 text-xs font-bold transition-all shadow-xs cursor-pointer">
+                                Ya, Hapus Permanen
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    </template>
 
 </div>
 @endsection

@@ -97,7 +97,7 @@
                     ];
                 @endphp
                 @forelse($hargaList ?? [] as $harga)
-                    <div class="p-4 rounded-2xl bg-[#eff5ff] dark:bg-emerald-950/30 border border-[#dbe6fe] dark:border-emerald-800/30 flex items-center justify-between group hover:border-primary/40 transition-colors duration-300 ripple-container" data-reveal data-reveal-delay="{{ 300 + ($loop->index * 100) }}">
+                    <div class="p-4 rounded-2xl bg-surface-container-low border border-outline-variant/30 flex items-center justify-between group hover:border-primary/40 transition-colors duration-300 ripple-container" data-reveal data-reveal-delay="{{ 300 + ($loop->index * 100) }}">
                         <div class="min-w-0 flex-1 pr-2">
                             <h5 class="text-sm font-extrabold text-on-surface truncate">
                                 {{ $displayNames[strtolower($harga->jenis_sampah)] ?? ucwords($harga->jenis_sampah) }}

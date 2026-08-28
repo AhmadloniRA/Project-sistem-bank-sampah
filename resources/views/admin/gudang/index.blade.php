@@ -137,51 +137,53 @@
     {{-- ============================================================ --}}
     {{-- MODAL CONFIRM JUAL --}}
     {{-- ============================================================ --}}
-    <div x-show="confirmJualOpen" 
-         class="fixed inset-0 z-50 overflow-y-auto" 
-         style="display: none;"
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0"
-         x-transition:enter-end="opacity-100"
-         x-transition:leave="transition ease-in duration-200"
-         x-transition:leave-start="opacity-100"
-         x-transition:leave-end="opacity-0">
-        <div class="fixed inset-0 bg-neutral-900/40 backdrop-blur-xs"></div>
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <div class="relative transform overflow-hidden rounded-2xl bg-surface-container-lowest text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md border border-outline-variant/30 animate-pageSlideIn"
-                 @click.away="confirmJualOpen = false"
-                 x-transition:enter="transition ease-out duration-300"
-                 x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                 x-transition:leave="transition ease-in duration-200"
-                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                <form action="{{ route('admin.gudang.jual') }}" method="POST" class="p-6 text-center">
-                    @csrf
+    <template x-teleport="body">
+        <div x-show="confirmJualOpen" 
+             class="fixed inset-0 z-50 overflow-y-auto" 
+             style="display: none;"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0">
+            <div class="fixed inset-0 bg-neutral-900/40 backdrop-blur-xs"></div>
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-2xl bg-surface-container-lowest text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md border border-outline-variant/30 animate-pageSlideIn"
+                     @click.away="confirmJualOpen = false"
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                     x-transition:leave="transition ease-in duration-200"
+                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+                    <form action="{{ route('admin.gudang.jual') }}" method="POST" class="p-6 text-center">
+                        @csrf
 
-                    <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4 border border-primary/20 shadow-xs">
-                        <span class="material-symbols-outlined text-[24px]">verified</span>
-                    </div>
+                        <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4 border border-primary/20 shadow-xs">
+                            <span class="material-symbols-outlined text-[24px]">verified</span>
+                        </div>
 
-                    <h3 class="text-sm font-extrabold text-on-surface mb-2">Konfirmasi Jual Sampah?</h3>
-                    <p class="text-xs text-on-surface-variant/80 leading-relaxed px-2 mb-6">
-                        Menyetujui penjualan seluruh timbangan sampah di gudang seberat <strong class="text-on-surface font-mono font-extrabold">{{ number_format($totalBerat, 2, ',', '.') }} kg</strong> ke pengepul pabrik. Keuntungan bersih sebesar <strong class="text-primary font-mono font-extrabold">Rp {{ number_format($estimasiKeuntungan, 0, ',', '.') }}</strong> akan otomatis ditambahkan ke Kas Kantor.
-                    </p>
+                        <h3 class="text-sm font-extrabold text-on-surface mb-2">Konfirmasi Jual Sampah?</h3>
+                        <p class="text-xs text-on-surface-variant/80 leading-relaxed px-2 mb-6">
+                            Menyetujui penjualan seluruh timbangan sampah di gudang seberat <strong class="text-on-surface font-mono font-extrabold">{{ number_format($totalBerat, 2, ',', '.') }} kg</strong> ke pengepul pabrik. Keuntungan bersih sebesar <strong class="text-primary font-mono font-extrabold">Rp {{ number_format($estimasiKeuntungan, 0, ',', '.') }}</strong> akan otomatis ditambahkan ke Kas Kantor.
+                        </p>
 
-                    <div class="flex items-center justify-center gap-3">
-                        <button type="button" @click="confirmJualOpen = false"
-                                class="px-5 py-2.5 rounded-xl border border-outline-variant/45 hover:bg-surface-container text-xs font-bold text-on-surface-variant transition-colors cursor-pointer">
-                            Batal
-                        </button>
-                        <button type="submit"
-                                class="px-5 py-2.5 text-[#FFFFFF] rounded-xl bg-primary text-on-primary hover:bg-primary/95 text-xs font-bold transition-all shadow-xs cursor-pointer">
-                            Ya, Jual Sekarang
-                        </button>
-                    </div>
-                </form>
+                        <div class="flex items-center justify-center gap-3">
+                            <button type="button" @click="confirmJualOpen = false"
+                                    class="px-5 py-2.5 rounded-xl border border-outline-variant/45 hover:bg-surface-container text-xs font-bold text-on-surface-variant transition-colors cursor-pointer">
+                                Batal
+                            </button>
+                            <button type="submit"
+                                    class="px-5 py-2.5 text-[#FFFFFF] rounded-xl bg-primary text-on-primary hover:bg-primary/95 text-xs font-bold transition-all shadow-xs cursor-pointer">
+                                Ya, Jual Sekarang
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    </template>
 
 </div>
 @endsection

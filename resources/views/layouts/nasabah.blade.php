@@ -51,21 +51,21 @@
 
         /* ===== DARK MODE THEME ===== */
         html.dark {
-            --color-primary: #34d399;
-            --color-on-primary: #0b1f14;
-            --color-surface: #0c1510;
-            --color-surface-container-lowest: #111d16;
-            --color-surface-container-low: #162318;
-            --color-surface-container: #1b2b1e;
-            --color-surface-container-high: #233524;
-            --color-surface-container-highest: #2b3f2c;
-            --color-on-surface: #e8f0ea;
-            --color-on-surface-variant: #8fa898;
-            --color-outline: #5a7362;
-            --color-outline-variant: #263830;
+            --color-primary: #10b981;
+            --color-on-primary: #ffffff;
+            --color-surface: #121214;
+            --color-surface-container-lowest: #18181b;
+            --color-surface-container-low: #1f1f23;
+            --color-surface-container: #27272a;
+            --color-surface-container-high: #323238;
+            --color-surface-container-highest: #3f3f46;
+            --color-on-surface: #f4f4f5;
+            --color-on-surface-variant: #a1a1aa;
+            --color-outline: #71717a;
+            --color-outline-variant: #27272a;
             --color-tertiary: #2dd4bf;
             --color-secondary: #f59e0b;
-            --color-on-secondary: #0b1f14;
+            --color-on-secondary: #18181b;
             --color-secondary-container: #78350f;
             --color-on-secondary-container: #fde68a;
             --color-error: #f87171;
@@ -78,8 +78,8 @@
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #707973; border-radius: 999px; }
         ::-webkit-scrollbar-thumb:hover { background: #0f5238; }
-        html.dark ::-webkit-scrollbar-thumb { background: #34d399; }
-        html.dark ::-webkit-scrollbar-thumb:hover { background: #6ee7b7; }
+        html.dark ::-webkit-scrollbar-thumb { background: #3f3f46; }
+        html.dark ::-webkit-scrollbar-thumb:hover { background: #52525b; }
 
         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
@@ -92,8 +92,8 @@
             background-size: 32px 32px;
         }
         html.dark .dashboard-bg {
-            background-color: #0c1510;
-            background-image: radial-gradient(#34d39912 1px, transparent 1px);
+            background-color: #121214;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
         }
 
         /* ===== SHADOWS ===== */
@@ -754,7 +754,8 @@
                     draw() {
                         ctx.beginPath();
                         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(15, 82, 56, ${this.opacity})`;
+                        const isDark = document.documentElement.classList.contains('dark');
+                        ctx.fillStyle = isDark ? `rgba(255, 255, 255, ${this.opacity * 0.35})` : `rgba(15, 82, 56, ${this.opacity})`;
                         ctx.fill();
                     }
                 }
@@ -768,6 +769,7 @@
                     particles.forEach(p => { p.update(); p.draw(); });
 
                     // Draw connecting lines between nearby particles
+                    const isDark = document.documentElement.classList.contains('dark');
                     for (let i = 0; i < particles.length; i++) {
                         for (let j = i + 1; j < particles.length; j++) {
                             const dx = particles[i].x - particles[j].x;
@@ -777,7 +779,7 @@
                                 ctx.beginPath();
                                 ctx.moveTo(particles[i].x, particles[i].y);
                                 ctx.lineTo(particles[j].x, particles[j].y);
-                                ctx.strokeStyle = `rgba(15, 82, 56, ${0.06 * (1 - dist / 120)})`;
+                                ctx.strokeStyle = isDark ? `rgba(255, 255, 255, ${0.04 * (1 - dist / 120)})` : `rgba(15, 82, 56, ${0.06 * (1 - dist / 120)})`;
                                 ctx.lineWidth = 0.5;
                                 ctx.stroke();
                             }
@@ -884,9 +886,12 @@
                     const rect = card.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
+                    const isDark = document.documentElement.classList.contains('dark');
                     card.style.setProperty('--glow-x', `${x}px`);
                     card.style.setProperty('--glow-y', `${y}px`);
-                    card.style.background = `radial-gradient(250px circle at var(--glow-x) var(--glow-y), rgba(15,82,56,0.06), transparent 80%)`;
+                    card.style.background = isDark
+                        ? `radial-gradient(250px circle at var(--glow-x) var(--glow-y), rgba(255,255,255,0.03), transparent 80%)`
+                        : `radial-gradient(250px circle at var(--glow-x) var(--glow-y), rgba(15,82,56,0.06), transparent 80%)`;
                 });
                 card.addEventListener('mouseleave', () => {
                     card.style.background = '';

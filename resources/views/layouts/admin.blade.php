@@ -50,22 +50,23 @@
             --color-outline: #6f7973;
             --color-outline-variant: #bec9c2;
             --color-error: #ba1a1a;
+            --color-on-error: #ffffff;
             --color-error-container: #ffdad6;
             --color-on-error-container: #93000a;
         }
 
         html.dark {
-            --color-background: #0b1320;
-            --color-surface: #0b1320;
-            --color-surface-container-lowest: #131e30;
-            --color-surface-container-low: #18263c;
-            --color-surface-container: #1e2f4a;
-            --color-surface-container-high: #273b5c;
-            --color-surface-container-highest: #30476e;
-            --color-on-surface: #f1f5f9;
-            --color-on-surface-variant: #94a3b8;
-            --color-outline: #64748b;
-            --color-outline-variant: #1e293b;
+            --color-background: #121214;
+            --color-surface: #121214;
+            --color-surface-container-lowest: #18181b;
+            --color-surface-container-low: #1f1f23;
+            --color-surface-container: #27272a;
+            --color-surface-container-high: #323238;
+            --color-surface-container-highest: #3f3f46;
+            --color-on-surface: #f4f4f5;
+            --color-on-surface-variant: #a1a1aa;
+            --color-outline: #71717a;
+            --color-outline-variant: #27272a;
             --color-primary: #10b981;
             --color-primary-container: #065f46;
             --color-on-primary-container: #a7f3d0;
@@ -75,21 +76,170 @@
             --color-tertiary: #a3e635;
             --color-tertiary-container: #3f6212;
             --color-on-tertiary-container: #d9f99d;
+            --color-error: #f87171;
+            --color-on-error: #ffffff;
+            --color-error-container: #450a0a;
+            --color-on-error-container: #fecaca;
         }
 
         /* ===== SCROLLBAR ===== */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #004532; border-radius: 999px; }
-        html.dark ::-webkit-scrollbar-thumb { background: #059669; }
+        html.dark ::-webkit-scrollbar-thumb { background: #3f3f46; }
         ::-webkit-scrollbar-thumb:hover { background: #065f46; }
+        html.dark ::-webkit-scrollbar-thumb:hover { background: #52525b; }
+
+        /* ===== BACKGROUND TEXTURE ===== */
+        .admin-bg {
+            background-color: #f8f9ff;
+            background-image: radial-gradient(rgba(0, 69, 50, 0.04) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        html.dark .admin-bg {
+            background-color: #121214;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        }
+
+        /* ===== SHADOWS ===== */
+        .card-shadow {
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);
+        }
 
         /* ===== ANIMATIONS ===== */
         @keyframes pageSlideIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: none; }
         }
-        .page-slide-in { animation: pageSlideIn 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+        .page-slide-in { 
+            animation: pageSlideIn 0.35s cubic-bezier(0.22, 1, 0.36, 1); 
+        }
+
+        @keyframes floatBubble {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1.5deg); }
+        }
+        .float-bubble { animation: floatBubble 6s ease-in-out infinite; }
+        .float-bubble-delay { animation: floatBubble 7s ease-in-out infinite 1.5s; }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.3); }
+            50% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+        }
+        .pulse-glow { animation: pulseGlow 2.5s ease-in-out infinite; }
+
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .spin-slow { animation: spinSlow 20s linear infinite; }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .animate-bounce-in {
+            animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        /* Smooth Elevation */
+        .hover-elevate {
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+        .hover-elevate:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Scroll Reveal */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        [data-reveal].revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        [data-reveal="left"] {
+            opacity: 0;
+            transform: translateX(-40px);
+        }
+        [data-reveal="left"].revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        [data-reveal="right"] {
+            opacity: 0;
+            transform: translateX(40px);
+        }
+        [data-reveal="right"].revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        [data-reveal="scale"] {
+            opacity: 0;
+            transform: scale(0.85);
+        }
+        [data-reveal="scale"].revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+        [data-reveal="flip"] {
+            opacity: 0;
+            transform: perspective(600px) rotateX(15deg);
+        }
+        [data-reveal="flip"].revealed {
+            opacity: 1;
+            transform: perspective(600px) rotateX(0);
+        }
+
+        /* Ripple click effect container */
+        .ripple-container { position: relative; overflow: hidden; }
+        .ripple-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.2);
+            transform: scale(0);
+            animation: rippleExpand 0.6s ease-out forwards;
+            pointer-events: none;
+        }
+        @keyframes rippleExpand {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        /* 3D Tilt card perspective */
+        .tilt-card {
+            transition: transform 0.15s ease-out;
+            will-change: transform;
+        }
+
+        /* Magnetic hover for icons */
+        .magnetic-hover {
+            transition: transform 0.2s ease-out;
+        }
+
+        /* Typewriter cursor blink */
+        @keyframes cursorBlink {
+            0%, 100% { border-color: rgba(16, 185, 129, 0.8); }
+            50% { border-color: transparent; }
+        }
+        .typewriter-cursor {
+            border-right: 2px solid rgba(16, 185, 129, 0.8);
+            animation: cursorBlink 1s step-end infinite;
+            padding-right: 2px;
+        }
+
+        /* Glow pulse on data values */
+        @keyframes dataGlow {
+            0%, 100% { text-shadow: 0 0 0 transparent; }
+            50% { text-shadow: 0 0 12px rgba(16, 185, 129, 0.25); }
+        }
+        .data-glow {
+            animation: dataGlow 3s ease-in-out infinite;
+        }
 
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -100,7 +250,7 @@
     </style>
     @stack('styles')
 </head>
-<body class="font-jakarta bg-surface text-on-surface antialiased overflow-x-hidden transition-colors duration-300">
+<body class="font-jakarta admin-bg text-on-surface antialiased overflow-x-hidden transition-colors duration-300">
 
     <div class="flex min-h-screen" 
          x-data="{ 
@@ -282,7 +432,7 @@
             </header>
 
             {{-- Main Canvas --}}
-            <main class="flex-1 p-4 sm:p-6 lg:p-8 max-w-[1440px] w-full page-slide-in">
+            <main class="flex-1 p-4 sm:p-6 lg:p-8 max-w-[1440px] w-full">
                 @yield('content')
             </main>
 
@@ -342,6 +492,208 @@
             interactiveBtns.forEach(btn => {
                 btn.addEventListener('mousedown', () => btn.classList.add('scale-[0.98]'));
                 btn.addEventListener('mouseup', () => btn.classList.remove('scale-[0.98]'));
+                btn.addEventListener('mouseleave', () => btn.classList.remove('scale-[0.98]'));
+            });
+
+            // ============================================================
+            //  1. SCROLL REVEAL — IntersectionObserver
+            // ============================================================
+            const revealElements = document.querySelectorAll('[data-reveal]');
+            if (revealElements.length > 0) {
+                const revealObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const delay = entry.target.dataset.revealDelay || 0;
+                            setTimeout(() => {
+                                entry.target.classList.add('revealed');
+                            }, parseInt(delay));
+                            revealObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+                revealElements.forEach(el => revealObserver.observe(el));
+            }
+
+            // ============================================================
+            //  2. ANIMATED NUMBER COUNTER
+            // ============================================================
+            const counters = document.querySelectorAll('[data-count]');
+            if (counters.length > 0) {
+                const counterObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateCounter(entry.target);
+                            counterObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.3 });
+                counters.forEach(el => counterObserver.observe(el));
+            }
+
+            function animateCounter(el) {
+                const target = parseFloat(el.dataset.count);
+                const duration = parseInt(el.dataset.countDuration || 1500);
+                const suffix = el.dataset.countSuffix || '';
+                const prefix = el.dataset.countPrefix || '';
+                const decimals = parseInt(el.dataset.countDecimals || 0);
+                const useThousandSep = el.dataset.countSep !== 'false';
+                const startTime = performance.now();
+
+                function easeOutExpo(t) {
+                    return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+                }
+
+                function formatNumber(num) {
+                    const fixed = num.toFixed(decimals);
+                    if (!useThousandSep) return fixed;
+                    const parts = fixed.split('.');
+                    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                    return parts.join(',');
+                }
+
+                function tick(now) {
+                    const elapsed = now - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const current = target * easeOutExpo(progress);
+                    el.textContent = prefix + formatNumber(current) + suffix;
+                    if (progress < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+            }
+
+            // ============================================================
+            //  3. 3D TILT CARD EFFECT
+            // ============================================================
+            const tiltCards = document.querySelectorAll('.tilt-card');
+            tiltCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -5;
+                    const rotateY = ((x - centerX) / centerX) * 5;
+                    card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.015, 1.015, 1.015)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(600px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                });
+            });
+
+            // ============================================================
+            //  4. RIPPLE CLICK EFFECT
+            // ============================================================
+            const rippleElements = document.querySelectorAll('.ripple-container');
+            rippleElements.forEach(el => {
+                el.addEventListener('click', function(e) {
+                    const rect = el.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const circle = document.createElement('span');
+                    circle.classList.add('ripple-circle');
+                    circle.style.width = circle.style.height = size + 'px';
+                    circle.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                    circle.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                    el.appendChild(circle);
+                    setTimeout(() => circle.remove(), 600);
+                });
+            });
+
+            // ============================================================
+            //  5. MAGNETIC HOVER FOR ICONS
+            // ============================================================
+            const magneticElements = document.querySelectorAll('.magnetic-hover');
+            magneticElements.forEach(el => {
+                el.addEventListener('mousemove', (e) => {
+                    const rect = el.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    el.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+                });
+                el.addEventListener('mouseleave', () => {
+                    el.style.transform = 'translate(0, 0)';
+                });
+            });
+
+            // ============================================================
+            //  6. TYPEWRITER GREETING EFFECT
+            // ============================================================
+            const typewriterElements = document.querySelectorAll('[data-typewriter]');
+            typewriterElements.forEach(el => {
+                const text = el.dataset.typewriter;
+                const speed = parseInt(el.dataset.typewriterSpeed || 50);
+                el.textContent = '';
+                el.classList.add('typewriter-cursor');
+                let i = 0;
+
+                function typeChar() {
+                    if (i < text.length) {
+                        el.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeChar, speed);
+                    } else {
+                        setTimeout(() => {
+                            el.classList.remove('typewriter-cursor');
+                        }, 1500);
+                    }
+                }
+                
+                const twObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setTimeout(typeChar, 250);
+                            twObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.3 });
+                twObserver.observe(el);
+            });
+
+            // ============================================================
+            //  7. STAGGERED REVEAL FOR GRID CHILDREN
+            // ============================================================
+            const staggerContainers = document.querySelectorAll('[data-stagger]');
+            staggerContainers.forEach(container => {
+                const children = container.children;
+                const baseDelay = parseInt(container.dataset.stagger || 80);
+                const staggerObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            Array.from(children).forEach((child, i) => {
+                                child.style.opacity = '0';
+                                child.style.transform = 'translateY(16px)';
+                                child.style.transition = `opacity 0.45s ease ${i * baseDelay}ms, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) ${i * baseDelay}ms`;
+                                setTimeout(() => {
+                                    child.style.opacity = '1';
+                                    child.style.transform = 'translateY(0)';
+                                }, 50);
+                            });
+                            staggerObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                staggerObserver.observe(container);
+            });
+
+            // ============================================================
+            //  8. HOVER GLOW CURSOR TRACKER
+            // ============================================================
+            const glowCards = document.querySelectorAll('[data-glow]');
+            glowCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const isDark = document.documentElement.classList.contains('dark');
+                    card.style.setProperty('--glow-x', `${x}px`);
+                    card.style.setProperty('--glow-y', `${y}px`);
+                    card.style.background = isDark
+                        ? `radial-gradient(250px circle at var(--glow-x) var(--glow-y), rgba(255,255,255,0.035), transparent 80%)`
+                        : `radial-gradient(250px circle at var(--glow-x) var(--glow-y), rgba(0,69,50,0.05), transparent 80%)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.background = '';
+                });
             });
         });
     </script>
