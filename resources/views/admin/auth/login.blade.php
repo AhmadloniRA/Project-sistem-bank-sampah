@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Admin Portal - ARUNA">
     <title>Admin Portal — ARUNA</title>
+    <link rel="icon" type="image/png" href="{{ asset('storage/resource/icon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -59,8 +60,8 @@
 
         <div class="relative z-10 max-w-lg animate-slide-up">
             <!-- Icon/Logo -->
-            <div class="inline-flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl mb-8">
-                <img src="https://img.icons8.com/?size=100&id=ngxhKjJtc4LX&format=png&color=ffffff" alt="Recycle Logo" class="w-10 h-10">
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl mb-8 p-3">
+                <img src="{{ asset('storage/resource/icon.png') }}" alt="ARUNA Logo" class="w-full h-full object-contain">
             </div>
             
             <h1 class="text-4xl font-extrabold text-white mb-6 leading-tight">
@@ -100,8 +101,8 @@
             
             <!-- Mobile Header (Hidden on Desktop) -->
             <div class="lg:hidden mb-10 text-center">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-600 to-teal-500 rounded-2xl shadow-xl shadow-emerald-500/20 mb-4">
-                    <img src="https://img.icons8.com/?size=100&id=ngxhKjJtc4LX&format=png&color=ffffff" alt="Recycle Logo" class="w-8 h-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-white/10 border border-white/20 rounded-2xl shadow-xl mb-4 p-2.5">
+                    <img src="{{ asset('storage/resource/icon.png') }}" alt="ARUNA Logo" class="w-full h-full object-contain">
                 </div>
                 <h1 class="text-2xl font-bold text-neutral-900">Admin Portal</h1>
                 <p class="text-neutral-500 text-sm mt-1">ARUNA Management</p>

@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="@yield('meta-description', 'Dashboard Nasabah ARUNA — Kelola tabungan sampah Anda dengan mudah.')">
     <title>@yield('title', 'Dashboard') — ARUNA Nasabah</title>
+    <link rel="icon" type="image/png" href="{{ asset('storage/resource/icon.png') }}">
     
     {{-- Script Anti-Flicker untuk Dark Mode --}}
     <script>
@@ -336,8 +337,8 @@
             {{-- Brand Logo --}}
             <div class="mb-6 px-1 flex items-center justify-between shrink-0">
                 <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 bg-primary rounded-xl flex items-center justify-center shadow-md shadow-primary/10">
-                        <span class="material-symbols-outlined text-on-primary text-[22px]">eco</span>
+                    <div class="w-9 h-9 bg-primary/10 rounded-xl flex items-center justify-center shadow-md shadow-primary/10 p-1">
+                        <img src="{{ asset('storage/resource/icon.png') }}" alt="ARUNA Icon" class="w-full h-full object-contain">
                     </div>
                     <div>
                         <h1 class="font-inter text-[18px] font-extrabold text-primary leading-tight tracking-tight">ARUNA</h1>
@@ -482,8 +483,8 @@
         {{-- Desktop Footer --}}
         <footer class="hidden md:block border-t border-outline-variant/30 bg-surface-container-lowest/50 px-8 py-4">
             <div class="flex items-center justify-between text-[11px] text-on-surface-variant/50 font-medium">
-                <span class="flex items-center gap-1">
-                    <span class="material-symbols-outlined text-xs text-primary">eco</span>
+                <span class="flex items-center gap-1.5">
+                    <img src="{{ asset('storage/resource/icon.png') }}" alt="ARUNA Icon" class="w-4 h-4 object-contain inline-block">
                     &copy; {{ date('Y') }} ARUNA. Seluruh hak cipta dilindungi.
                 </span>
                 <span>Portal Nasabah v1.1.0</span>

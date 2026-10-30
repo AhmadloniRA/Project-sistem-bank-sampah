@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Login ke ARUNA — Administrasi Ramah Untuk Nasabah Bank Sampah.">
     <title>Login — ARUNA</title>
+    <link rel="icon" type="image/png" href="{{ asset('storage/resource/icon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -95,11 +96,11 @@
                 <!-- Logo & Title -->
                 <div class="mb-10">
                     <a href="/" class="inline-flex items-center gap-3 mb-6 group">
-                        <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:shadow-emerald-500/40 transition-shadow duration-300">
+                        <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-md border border-neutral-100 group-hover:shadow-lg transition-shadow duration-300 p-2">
                             <img
-                                src="https://img.icons8.com/?size=100&id=ngxhKjJtc4LX&format=png&color=ffffff"
-                                alt="Recycle Icon"
-                                class="w-6 h-6"
+                                src="{{ asset('storage/resource/icon.png') }}"
+                                alt="ARUNA Icon"
+                                class="w-full h-full object-contain"
                             >
                         </div>
                         <span class="text-xl font-extrabold text-neutral-800">ARUNA</span>
@@ -247,8 +248,8 @@
             <div class="relative z-10 max-w-md animate-slide-right">
                 <!-- Glass card -->
                 <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-3xl p-10 shadow-2xl">
-                    <div class="w-16 h-16 bg-white/15 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/20 mb-8">
-                        <img src="https://img.icons8.com/?size=100&id=ngxhKjJtc4LX&format=png&color=ffffff" alt="Recycle" class="w-9 h-9">
+                    <div class="w-16 h-16 bg-white/15 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/20 mb-8 p-2.5">
+                        <img src="{{ asset('storage/resource/icon.png') }}" alt="ARUNA Logo" class="w-full h-full object-contain">
                     </div>
 
                     <h2 class="text-3xl font-extrabold text-white mb-4 leading-tight">

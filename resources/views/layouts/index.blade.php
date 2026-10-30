@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="ARUNA (Administrasi Ramah Untuk Nasabah Bank Sampah) - Platform pengelolaan sampah berbasis masyarakat. Tukarkan sampahmu menjadi rupiah, wujudkan lingkungan bersih dan sejahtera.">
     <title>ARUNA — Administrasi Ramah Untuk Nasabah Bank Sampah</title>
+    <link rel="icon" type="image/png" href="{{ asset('storage/resource/icon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -233,9 +234,9 @@
                 <div class="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center">
                     <img
                         id="brandIcon"
-                        src="https://img.icons8.com/?size=100&id=ngxhKjJtc4LX&format=png&color=FFFFFF"
-                        alt="Recycle Icon"
-                        class="w-6 h-6 sm:w-7 sm:h-7 transition-all duration-300"
+                        src="{{ asset('storage/resource/icon.png') }}"
+                        alt="ARUNA Icon"
+                        class="w-7 h-7 sm:w-8 sm:h-8 object-contain transition-all duration-300"
                     >
                 </div>ARUNA
             </a>
@@ -743,7 +744,9 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 md:gap-12 mb-12 md:mb-16">
                 <div>
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-br from-green-400 to-teal-400 rounded-lg flex items-center justify-center text-[1.3rem] sm:text-[1.4rem]">♻️</div>
+                        <div class="w-10 h-10 sm:w-11 sm:h-11 bg-white/10 rounded-xl flex items-center justify-center p-2 shadow-sm border border-white/10">
+                            <img src="{{ asset('storage/resource/icon.png') }}" alt="ARUNA Icon" class="w-full h-full object-contain">
+                        </div>
                         <span class="text-xl sm:text-2xl font-extrabold text-white">ARUNA</span>
                     </div>
                     <p class="text-sm sm:text-[0.95rem] leading-[1.7] mb-6">
@@ -811,14 +814,8 @@
 
             if (isScrolled || isMenuOpen) {
                 navbar.classList.add('scrolled');
-                if (brandIcon) {
-                    brandIcon.src = "https://img.icons8.com/?size=100&id=ngxhKjJtc4LX&format=png&color=16a34a";
-                }
             } else {
                 navbar.classList.remove('scrolled');
-                if (brandIcon) {
-                    brandIcon.src = "https://img.icons8.com/?size=100&id=ngxhKjJtc4LX&format=png&color=FFFFFF";
-                }
             }
         }
 

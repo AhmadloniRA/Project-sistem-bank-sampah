@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Admin Panel') — ARUNA</title>
+    <link rel="icon" type="image/png" href="{{ asset('storage/resource/icon.png') }}">
     
     {{-- Script Anti-Flicker untuk Dark Mode --}}
     <script>
@@ -291,9 +292,14 @@
             
             {{-- Brand Header --}}
             <div class="mb-8 px-2 flex items-center justify-between">
-                <div>
-                    <h1 class="text-xl font-extrabold text-primary tracking-tight">ARUNA</h1>
-                    <p class="text-[10px] font-bold text-on-surface-variant/70 uppercase tracking-widest mt-0.5">Bank Sampah Digital</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-primary/10 rounded-xl flex items-center justify-center shadow-sm p-1">
+                        <img src="{{ asset('storage/resource/icon.png') }}" alt="ARUNA Icon" class="w-full h-full object-contain">
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-extrabold text-primary tracking-tight leading-tight">ARUNA</h1>
+                        <p class="text-[10px] font-bold text-on-surface-variant/70 uppercase tracking-widest mt-0.5">Bank Sampah Digital</p>
+                    </div>
                 </div>
                 <button @click="sidebarOpen = false" class="lg:hidden w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant/40 hover:text-on-surface hover:bg-surface-container transition-all">
                     <span class="material-symbols-outlined text-[20px]">close</span>
