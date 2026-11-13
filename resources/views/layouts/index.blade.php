@@ -1,827 +1,1190 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ARUNA (Administrasi Ramah Untuk Nasabah Bank Sampah) - Platform pengelolaan sampah berbasis masyarakat. Tukarkan sampahmu menjadi rupiah, wujudkan lingkungan bersih dan sejahtera.">
-    <title>ARUNA — Administrasi Ramah Untuk Nasabah Bank Sampah</title>
-    <link rel="icon" type="image/png" href="{{ asset('storage/resource/icon.png') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style type="text/tailwindcss">
-        /* ===== CUSTOM THEME ===== */
-        @theme {
-            --font-jakarta: 'Plus Jakarta Sans', sans-serif;
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="ARUNA (Administrasi Ramah Untuk Nasabah Bank Sampah) — Platform bank sampah digital modern yang memudahkan warga memilah, menimbang presisi dengan IoT, dan menukarkan sampah anorganik menjadi saldo terverifikasi."/>
+    <title>ARUNA — Bank Sampah Digital</title>
+    <link rel="icon" type="image/png" href="{{ asset('storage/resource/icon.png') }}"/>
 
-            --animate-fade-in-up: fadeInUp 1s ease-out;
-            --animate-fade-in-left: fadeInLeft 1s ease-out;
-            --animate-fade-in-right: fadeInRight 1s ease-out 0.3s both;
-            --animate-float: float 6s ease-in-out infinite;
-            --animate-float-slow: floatSlow 8s ease-in-out infinite;
-            --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
-            --animate-spin-slow: spin-slow 20s linear infinite;
-            --animate-blob: blob 8s ease-in-out infinite;
-            --animate-blob-reverse: blob 10s ease-in-out infinite reverse;
-            --animate-blob-fast: blob 6s ease-in-out infinite;
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#002217",
+                        "on-primary-fixed-variant": "#274e3f",
+                        "primary-fixed": "#c1ecd7",
+                        "inverse-on-surface": "#f2f1ed",
+                        "on-surface": "#1b1c1a",
+                        "on-tertiary-fixed": "#0c1f11",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#002114",
+                        "tertiary-fixed": "#d1e9d1",
+                        "on-primary-container": "#79a28f",
+                        "primary-fixed-dim": "#a5d0bc",
+                        "surface": "#faf9f5",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#0e5138",
+                        "inverse-surface": "#2f312e",
+                        "surface-variant": "#e3e2df",
+                        "background": "#faf9f5",
+                        "surface-container-highest": "#e3e2df",
+                        "tertiary": "#0d2112",
+                        "on-tertiary-container": "#899f8a",
+                        "outline-variant": "#e2e1dc",
+                        "surface-container-high": "#e9e8e4",
+                        "surface-container-low": "#f4f4f0",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#95d4b3",
+                        "outline": "#717974",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#374c3b",
+                        "secondary": "#2c694e",
+                        "surface-tint": "#3f6656",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#faf9f5",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#002116",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#dbdad6",
+                        "tertiary-fixed-dim": "#b5cdb6",
+                        "on-background": "#1b1c1a",
+                        "inverse-primary": "#a5d0bc",
+                        "secondary-container": "#aeeecb",
+                        "secondary-fixed": "#b1f0ce",
+                        "on-surface-variant": "#545a55",
+                        "on-secondary-container": "#316e52",
+                        "primary-container": "#0f382a",
+                        "tertiary-container": "#223626",
+                        "surface-container": "#efeeea"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Newsreader", "serif"],
+                        "display-lg": ["Newsreader", "serif"],
+                        "headline-md": ["Newsreader", "serif"],
+                        "title-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "body-sm": ["Plus Jakarta Sans", "sans-serif"],
+                        "title-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "label-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "display-lg-mobile": ["Newsreader", "serif"],
+                        "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg-mobile": ["Newsreader", "serif"],
+                        "body-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "label-sm": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg": ["Newsreader", "serif"]
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        @layer base {
+            html, body {
+                margin: 0;
+                padding: 0;
+                scroll-behavior: smooth;
+                background-color: #faf9f5;
+                color: #1b1c1a;
+            }
+            html {
+                scroll-padding-top: 5.5rem;
+            }
+            body {
+                overscroll-behavior: none;
+            }
+            main > :first-child {
+                margin-top: 0 !important;
+            }
+            main > :last-child {
+                margin-bottom: 0 !important;
+            }
+        }
+        input[type=range] {
+            accent-color: #002217;
         }
 
-        /* ===== KEYFRAMES ===== */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Subtle floating animation keyframes */
+        @keyframes subtleBobbing {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
         }
-
-        @keyframes fadeInLeft {
-            from { opacity: 0; transform: translateX(-40px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(40px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @keyframes floatSlow {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(5deg); }
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.6); }
-        }
-
-        @keyframes spin-slow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes blob {
-            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-        }
-
-        /* ===== SCROLL ANIMATION ===== */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .animate-delay-1 { transition-delay: 0.1s; }
-        .animate-delay-2 { transition-delay: 0.2s; }
-        .animate-delay-3 { transition-delay: 0.3s; }
-        .animate-delay-4 { transition-delay: 0.4s; }
-        .animate-delay-5 { transition-delay: 0.5s; }
-
-        /* ===== NAV LINK STYLING & UNDERLINE ===== */
-        #navbar:not(.scrolled):not(.menu-open) .navbar-brand {
-            color: #ffffff !important;
-        }
-        #navbar:not(.scrolled):not(.menu-open) .nav-link-item {
-            color: rgba(255, 255, 255, 0.9) !important;
-        }
-        #navbar:not(.scrolled):not(.menu-open) .nav-link-item:hover {
-            color: #ffffff !important;
-        }
-        #navbar:not(.scrolled):not(.menu-open) .mobile-bar {
-            background-color: #ffffff !important;
-        }
-
-        #navbar.scrolled .navbar-brand,
-        #navbar.menu-open .navbar-brand {
-            color: #16a34a !important;
-        }
-        #navbar.scrolled .nav-link-item {
-            color: #374151 !important;
-        }
-        #navbar.scrolled .nav-link-item:hover {
-            color: #16a34a !important;
-        }
-        #navbar.scrolled .mobile-bar,
-        #navbar.menu-open .mobile-bar {
-            background-color: #374151 !important;
-        }
-
-        .nav-link-item::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #34d399;
-            transition: width 0.3s;
-            border-radius: 1px;
-        }
-
-        .nav-link-item:hover::after {
-            width: 100%;
-        }
-
-        .nav-cta::after {
-            display: none !important;
-        }
-
-        /* ===== FEATURE CARD TOP BAR (pseudo-element) ===== */
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #34d399, #2dd4bf);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s;
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        /* ===== HERO PSEUDO-ELEMENTS ===== */
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(52, 211, 153, 0.3) 0%, transparent 70%);
-            animation: blob 8s ease-in-out infinite;
-        }
-
-        .hero-bg::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(45, 212, 191, 0.2) 0%, transparent 70%);
-            animation: blob 10s ease-in-out infinite reverse;
-        }
-
-        /* ===== STATS PSEUDO-ELEMENT ===== */
-        .stats-bg::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        /* ===== HOW IT WORKS CONNECTOR LINE ===== */
-        .steps-line::before {
-            content: '';
-            position: absolute;
-            top: 60px;
-            left: 12.5%;
-            right: 12.5%;
-            height: 3px;
-            background: linear-gradient(90deg, #a7f3d0, #34d399, #2dd4bf, #a7f3d0);
-            z-index: 0;
-            border-radius: 2px;
-        }
-
-        /* ===== CTA PSEUDO-ELEMENT ===== */
-        .cta-bg::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(52, 211, 153, 0.2) 0%, transparent 70%);
-            animation: blob 10s ease-in-out infinite;
-        }
-
-        /* ===== IMPACT PSEUDO-ELEMENT ===== */
-        .impact-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: radial-gradient(circle at 20% 80%, rgba(16,185,129,0.08) 0%, transparent 50%),
-                              radial-gradient(circle at 80% 20%, rgba(20,184,166,0.08) 0%, transparent 50%);
-        }
-    </style>
-</head>
-<body class="font-jakarta text-neutral-800 bg-neutral-50 leading-relaxed overflow-x-hidden [&_a]:no-underline [&_a]:text-inherit [&_img]:max-w-full [&_img]:block">
-    <!-- ===== NAVBAR ===== -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-[1000] py-3 md:py-4 transition-all duration-400 ease-in-out [&.scrolled]:bg-white/95 [&.scrolled]:backdrop-blur-[20px] [&.scrolled]:shadow-[0_4px_30px_rgba(0,0,0,0.08)] [&.scrolled]:py-2.5 [&.menu-open]:bg-white [&.menu-open]:shadow-lg">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2.5 sm:gap-3 font-extrabold text-xl sm:text-2xl navbar-brand transition-colors duration-300">
-                <div class="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center">
-                    <img
-                        id="brandIcon"
-                        src="{{ asset('storage/resource/icon.png') }}"
-                        alt="ARUNA Icon"
-                        class="w-7 h-7 sm:w-8 sm:h-8 object-contain transition-all duration-300"
-                    >
-                </div>ARUNA
-            </a>
-            <ul id="navLinks" class="flex items-center gap-4 xl:gap-8 list-none nav-links-list max-lg:hidden">
-                <li><a href="#beranda" class="nav-link-item text-white/85 font-medium text-[0.9rem] xl:text-[0.95rem] transition-all duration-300 relative hover:text-white">Beranda</a></li>
-                <li><a href="#fitur" class="nav-link-item text-white/85 font-medium text-[0.9rem] xl:text-[0.95rem] transition-all duration-300 relative hover:text-white">Fitur</a></li>
-                <li><a href="#cara-kerja" class="nav-link-item text-white/85 font-medium text-[0.9rem] xl:text-[0.95rem] transition-all duration-300 relative hover:text-white">Cara Kerja</a></li>
-                <li><a href="#kategori" class="nav-link-item text-white/85 font-medium text-[0.9rem] xl:text-[0.95rem] transition-all duration-300 relative hover:text-white">Kategori</a></li>
-                <li><a href="#dampak" class="nav-link-item text-white/85 font-medium text-[0.9rem] xl:text-[0.95rem] transition-all duration-300 relative hover:text-white">Dampak</a></li>
-                <li><a href="#testimoni" class="nav-link-item text-white/85 font-medium text-[0.9rem] xl:text-[0.95rem] transition-all duration-300 relative hover:text-white">Testimoni</a></li>
-                <li><a href="/login" class="nav-cta py-2 sm:py-2.5 px-5 sm:px-6 bg-gradient-to-br from-green-500 to-teal-500 !text-white rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 shadow-[0_4px_15px_rgba(16,185,129,0.3)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(16,185,129,0.4)] text-center">Login/Daftar</a></li>
-            </ul>
-            <div id="mobileToggle" onclick="toggleNav()" class="hidden max-lg:flex flex-col gap-[5px] cursor-pointer p-[5px]">
-                <span class="w-[25px] h-[2.5px] bg-white rounded-sm transition-all duration-300 mobile-bar"></span>
-                <span class="w-[25px] h-[2.5px] bg-white rounded-sm transition-all duration-300 mobile-bar"></span>
-                <span class="w-[25px] h-[2.5px] bg-white rounded-sm transition-all duration-300 mobile-bar"></span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- ===== HERO SECTION ===== -->
-    <section class="hero-bg min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-green-950 via-green-800 via-60% to-green-600 pt-20 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24" id="beranda">
-        <div class="absolute pointer-events-none z-[1] top-[15%] right-[8%] text-[4rem] animate-float opacity-15">🌿</div>
-        <div class="absolute pointer-events-none z-[1] bottom-[20%] right-[15%] text-[3rem] animate-float-slow opacity-10">🌱</div>
-        <div class="absolute pointer-events-none z-[1] top-[30%] left-[5%] text-[2.5rem] animate-float opacity-10" style="animation-delay: 1s;">🍃</div>
-        <div class="absolute pointer-events-none z-[1] bottom-[15%] left-[10%] w-[100px] h-[100px] border-2 border-white/8 rounded-full animate-spin-slow"></div>
-        <div class="absolute pointer-events-none z-[1] top-[20%] right-[30%] w-[60px] h-[60px] border-2 border-white/6 animate-blob" style="border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;"></div>
-
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center relative z-[2] w-full">
-            <div class="animate-fade-in-left lg:text-left text-center">
-                <div class="inline-flex items-center gap-2 py-1.5 px-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-green-200 text-xs sm:text-sm font-medium mb-5 max-w-full leading-normal shadow-sm">
-                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse-glow shrink-0"></span>
-                    <span>Platform ARUNA — Administrasi Ramah Untuk Nasabah Bank Sampah</span>
-                </div>
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.18] mb-5">
-                    Sampahmu <span class="bg-gradient-to-br from-green-300 via-teal-300 to-lime-300 bg-clip-text text-transparent">Bernilai,</span><br>
-                    Lingkungan <span class="bg-gradient-to-br from-green-300 via-teal-300 to-lime-300 bg-clip-text text-transparent">Lestari</span>
-                </h1>
-                <p class="text-sm sm:text-base lg:text-[1.15rem] text-white/85 leading-relaxed sm:leading-[1.7] mb-8 max-w-[540px] lg:mx-0 mx-auto">
-                    Bergabunglah dengan ribuan warga yang telah mengubah sampah menjadi berkah.
-                    Kelola, pilah, dan tukarkan sampahmu menjadi rupiah sambil menjaga bumi tetap hijau.
-                </p>
-                <div class="flex gap-3 sm:gap-4 flex-wrap lg:justify-start justify-center max-[480px]:flex-col max-[480px]:w-full">
-                    <a href="/login" class="inline-flex items-center justify-center gap-2.5 py-3.5 px-7 bg-white !text-green-800 font-bold text-sm sm:text-base rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-green-50 hover:-translate-y-[2px] transition-all duration-300 max-[480px]:w-full">
-                        <img
-                            src="https://img.icons8.com/?size=100&id=B0YxODenuYvG&format=png&color=16a34a"
-                            alt="Mulai"
-                            class="w-5 h-5"
-                        >
-                        Mulai Sekarang
-                    </a>
-                    <a href="#cara-kerja" class="inline-flex items-center justify-center gap-2.5 py-3.5 px-7 bg-white/15 backdrop-blur-md !text-white font-semibold text-sm sm:text-base rounded-full border border-white/30 hover:bg-white/25 hover:-translate-y-[2px] transition-all duration-300 max-[480px]:w-full shadow-sm">
-                        <img
-                            src="https://img.icons8.com/?size=100&id=bwUgs69v7bOd&format=png&color=FFFFFF"
-                            alt="Pelajari"
-                            class="w-5 h-5"
-                        >
-                        Pelajari Lebih Lanjut
-                    </a>
-                </div>
-            </div>
-
-            <div class="flex justify-center items-center relative animate-fade-in-right lg:mt-0 mt-8 w-full">
-                <div class="bg-white/12 backdrop-blur-[20px] border border-white/20 rounded-3xl p-5 sm:p-7 lg:p-9 w-full max-w-[420px] relative shadow-[0_20px_50px_rgba(0,0,0,0.2)]">
-                    <div class="flex items-center gap-3.5 sm:gap-4 mb-5 sm:mb-7">
-                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-green-400 to-teal-400 rounded-2xl flex items-center justify-center shrink-0 shadow-md">
-                            <img src="https://img.icons8.com/?size=100&id=DAoPjn2XoTUN&format=png&color=000000" alt="icon chart" class="w-6 h-6">
-                        </div>
-                        <div class="text-left">
-                            <div class="text-white font-bold text-base sm:text-[1.1rem]">Dashboard Sampah</div>
-                            <div class="text-white/70 text-xs sm:text-sm">Ringkasan bulan ini</div>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 sm:gap-4">
-                        <div class="bg-white/10 rounded-2xl p-4 sm:p-5 text-center border border-white/15 transition-all duration-300 hover:bg-white/20 hover:-translate-y-0.5">
-                            <div class="mb-2">
-                                <img
-                                    src="https://img.icons8.com/?size=100&id=XLYyiimvk3fV&format=png&color=000000"
-                                    alt="Icon Tempat Sampah"
-                                    class="w-9 h-9 sm:w-10 sm:h-10 mx-auto"
-                                >
-                            </div>
-                            <div class="text-xl sm:text-2xl font-extrabold text-white">125<span class="text-sm sm:text-base text-green-300 font-bold ml-0.5">kg</span></div>
-                            <div class="text-[0.75rem] sm:text-xs text-white/80 mt-1 leading-snug">Sampah Terkumpul</div>
-                        </div>
-                        <div class="bg-white/10 rounded-2xl p-4 sm:p-5 text-center border border-white/15 transition-all duration-300 hover:bg-white/20 hover:-translate-y-0.5">
-                            <div class="mb-2">
-                                <img
-                                    src="https://img.icons8.com/?size=100&id=SQUhc67Yi70U&format=png&color=000000"
-                                    alt="Icon Uang"
-                                    class="w-9 h-9 sm:w-10 sm:h-10 mx-auto"
-                                >
-                            </div>
-                            <div class="text-xl sm:text-2xl font-extrabold text-white">350<span class="text-sm sm:text-base text-green-300 font-bold ml-0.5">rb</span></div>
-                            <div class="text-[0.75rem] sm:text-xs text-white/80 mt-1 leading-snug">Total Pendapatan</div>
-                        </div>
-                        <div class="bg-white/10 rounded-2xl p-4 sm:p-5 text-center border border-white/15 transition-all duration-300 hover:bg-white/20 hover:-translate-y-0.5">
-                            <div class="mb-2">
-                                <img
-                                    src="https://img.icons8.com/?size=100&id=XsvEZR0h6fav&format=png&color=000000"
-                                    alt="Icon Bumi"
-                                    class="w-9 h-9 sm:w-10 sm:h-10 mx-auto"
-                                >
-                            </div>
-                            <div class="text-xl sm:text-2xl font-extrabold text-white">89<span class="text-sm sm:text-base text-green-300 font-bold ml-0.5">kg</span></div>
-                            <div class="text-[0.75rem] sm:text-xs text-white/80 mt-1 leading-snug">CO₂ Dicegah</div>
-                        </div>
-                        <div class="bg-white/10 rounded-2xl p-4 sm:p-5 text-center border border-white/15 transition-all duration-300 hover:bg-white/20 hover:-translate-y-0.5">
-                            <div class="mb-2">
-                                <img
-                                    src="https://img.icons8.com/?size=100&id=XBMnwwJYQvfN&format=png&color=000000"
-                                    alt="Icon Bintang"
-                                    class="w-9 h-9 sm:w-10 sm:h-10 mx-auto"
-                                >
-                            </div>
-                            <div class="text-xl sm:text-2xl font-extrabold text-white">12<span class="text-sm sm:text-base text-green-300 font-bold ml-0.5">x</span></div>
-                            <div class="text-[0.75rem] sm:text-xs text-white/80 mt-1 leading-snug">Setor Bulan Ini</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="absolute bottom-[-1px] left-0 right-0 z-[3]">
-            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="block w-full h-auto">
-                <path d="M0 120L60 110C120 100 240 80 360 73.3C480 67 600 73 720 80C840 87 960 93 1080 90C1200 87 1320 73 1380 66.7L1440 60V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
-            </svg>
-        </div>
-    </section>
-
-    <!-- ===== FEATURES SECTION ===== -->
-    <section class="py-16 md:py-24 bg-white" id="fitur">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
-            <div class="text-center max-w-[640px] mx-auto mb-12 sm:mb-16 animate-on-scroll">
-                <div class="inline-flex items-center gap-2 py-1.5 px-4 bg-green-50 text-green-700 font-semibold text-[0.85rem] rounded-full mb-4 border border-green-100">
-                    <img
-                        src="https://img.icons8.com/?size=100&id=JqFP89u5slPn&format=png&color=000000"
-                        alt="Fitur Unggulan"
-                        class="w-5 h-5"
-                    >
-                    Fitur Unggulan
-                </div>
-                <h2 class="text-[clamp(1.75rem,4vw,2.75rem)] font-extrabold text-neutral-900 leading-[1.2] mb-4">Semua yang Anda Butuhkan untuk Mengelola Sampah</h2>
-                <p class="text-base sm:text-[1.05rem] text-neutral-500 leading-[1.7]">Platform lengkap untuk memudahkan warga dalam memilah, menyetor, dan mendapatkan manfaat dari pengelolaan sampah.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                <div class="feature-card p-6 sm:p-8 lg:p-10 rounded-2xl bg-neutral-50 border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] relative overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:border-green-200 animate-on-scroll animate-delay-1">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-lg flex items-center justify-center text-[1.75rem] mb-6 bg-gradient-to-br from-green-50 to-green-100">
-                        <img src="https://img.icons8.com/?size=100&id=L9ByuHGgbUNK&format=png&color=000000" alt="icon phone" class="w-8 h-8 sm:w-10 sm:h-10">
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-neutral-900 mb-3">Pencatatan Digital</h3>
-                    <p class="text-sm sm:text-[0.95rem] text-neutral-500 leading-[1.65]">Catat setiap setoran sampah secara digital. Pantau riwayat dan saldo Anda kapan saja, di mana saja.</p>
-                </div>
-                <div class="feature-card p-6 sm:p-8 lg:p-10 rounded-2xl bg-neutral-50 border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] relative overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:border-green-200 animate-on-scroll animate-delay-2">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-lg flex items-center justify-center mb-6 bg-gradient-to-br from-teal-50 to-teal-100">
-                        <img
-                            src="https://img.icons8.com/?size=100&id=h3USDbkfsNWM&format=png&color=000000"
-                            alt="Icon Uang"
-                            class="w-8 h-8 sm:w-10 sm:h-10"
-                        >
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-neutral-900 mb-3">Tabungan Sampah</h3>
-                    <p class="text-sm sm:text-[0.95rem] text-neutral-500 leading-[1.65]">Setiap sampah yang Anda setorkan memiliki nilai ekonomis. Kumpulkan saldo dan tarik kapan saja.</p>
-                </div>
-                <div class="feature-card p-6 sm:p-8 lg:p-10 rounded-2xl bg-neutral-50 border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] relative overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:border-green-200 animate-on-scroll animate-delay-3">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-lg flex items-center justify-center mb-6 bg-gradient-to-br from-amber-50 to-amber-100">
-                        <img src="https://img.icons8.com/?size=100&id=pSKGjhit2j5J&format=png&color=000000"
-                            alt="Icon Statistik"
-                            class="w-8 h-8 sm:w-10 sm:h-10">
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-neutral-900 mb-3">Laporan & Statistik</h3>
-                    <p class="text-sm sm:text-[0.95rem] text-neutral-500 leading-[1.65]">Lihat laporan lengkap kontribusi Anda dalam menjaga lingkungan melalui grafik interaktif.</p>
-                </div>
-                <div class="feature-card p-6 sm:p-8 lg:p-10 rounded-2xl bg-neutral-50 border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] relative overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:border-green-200 animate-on-scroll animate-delay-1">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-lg flex items-center justify-center text-[1.75rem] mb-6 bg-gradient-to-br from-emerald-50 to-emerald-200">
-                        <img src="https://img.icons8.com/?size=100&id=MR39NpxEXFHr&format=png&color=000000" alt="icon piala" class="w-8 h-8 sm:w-10 sm:h-10">
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-neutral-900 mb-3">Reward & Penghargaan</h3>
-                    <p class="text-sm sm:text-[0.95rem] text-neutral-500 leading-[1.65]">Dapatkan poin dan penghargaan untuk setiap kontribusi. Jadilah pahlawan lingkungan!</p>
-                </div>
-                <div class="feature-card p-6 sm:p-8 lg:p-10 rounded-2xl bg-neutral-50 border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] relative overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:border-green-200 animate-on-scroll animate-delay-2">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-lg flex items-center justify-center text-[1.75rem] mb-6 bg-gradient-to-br from-lime-50 to-lime-200">
-                        <img src="https://img.icons8.com/?size=100&id=sH5IBgX3H7wP&format=png&color=000000" alt="icon truck" class="w-8 h-8 sm:w-10 sm:h-10">
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-neutral-900 mb-3">Penjemputan Sampah</h3>
-                    <p class="text-sm sm:text-[0.95rem] text-neutral-500 leading-[1.65]">Jadwalkan penjemputan sampah langsung dari rumah Anda. Praktis dan mudah.</p>
-                </div>
-                <div class="feature-card p-6 sm:p-8 lg:p-10 rounded-2xl bg-neutral-50 border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] relative overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:border-green-200 animate-on-scroll animate-delay-3">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-lg flex items-center justify-center text-[1.75rem] mb-6 bg-gradient-to-br from-cyan-50 to-cyan-100">
-                        <img src="https://img.icons8.com/?size=100&id=TFeQnEBQv6kG&format=png&color=000000" alt="icon bumi" class="w-8 h-8 sm:w-10 sm:h-10">
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-neutral-900 mb-3">Dampak Lingkungan</h3>
-                    <p class="text-sm sm:text-[0.95rem] text-neutral-500 leading-[1.65]">Ketahui dampak positif kontribusi Anda terhadap pengurangan emisi karbon dan pelestarian alam.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== STATS SECTION ===== -->
-    <section class="stats-bg py-16 md:py-24 bg-gradient-to-br from-green-800 to-green-900 relative overflow-hidden">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 relative z-[1]">
-                <div class="text-center p-6 sm:p-8 animate-on-scroll animate-delay-1">
-                    <div class="mb-4">
-                        <img
-                            src="https://img.icons8.com/?size=100&id=YxIwF8tLXAsF&format=png&color=000000"
-                            alt="Icon Tim"
-                            class="w-12 h-12 sm:w-16 sm:h-16 mx-auto"
-                        >
-                    </div>
-                    <div class="text-4xl sm:text-5xl font-extrabold text-white leading-none mb-2 stat-number" data-target="2500">0<span class="text-xl sm:text-2xl text-green-300">+</span></div>
-                    <div class="text-sm sm:text-[0.95rem] text-green-300 font-medium">Nasabah Aktif</div>
-                </div>
-                <div class="text-center p-6 sm:p-8 animate-on-scroll animate-delay-2">
-                    <div class="mb-4">
-                        <img
-                            src="https://img.icons8.com/?size=100&id=AkCOclxuEDay&format=png&color=000000"
-                            alt="Icon Timbangan"
-                            class="w-12 h-12 sm:w-16 sm:h-16 mx-auto"
-                        >
-                    </div>
-                    <div class="text-4xl sm:text-5xl font-extrabold text-white leading-none mb-2 stat-number" data-target="15000">0<span class="text-xl sm:text-2xl text-green-300"> kg</span></div>
-                    <div class="text-sm sm:text-[0.95rem] text-green-300 font-medium">Sampah Terkelola</div>
-                </div>
-                <div class="text-center p-6 sm:p-8 animate-on-scroll animate-delay-3">
-                    <div class="mb-4">
-                        <img
-                            src="https://img.icons8.com/?size=100&id=yUTNKgUuTlsA&format=png&color=000000"
-                            alt="Icon Uang"
-                            class="w-12 h-12 sm:w-16 sm:h-16 mx-auto"
-                        >
-                    </div>
-                    <div class="text-4xl sm:text-5xl font-extrabold text-white leading-none mb-2 stat-number">Rp 50<span class="text-xl sm:text-2xl text-green-300"> jt+</span></div>
-                    <div class="text-sm sm:text-[0.95rem] text-green-300 font-medium">Dana Tersalurkan</div>
-                </div>
-                <div class="text-center p-6 sm:p-8 animate-on-scroll animate-delay-4">
-                    <div class="mb-4">
-                        <img
-                            src="https://img.icons8.com/?size=100&id=G0NpAnwlY0U4&format=png&color=000000"
-                            alt="Icon Pohon"
-                            class="w-12 h-12 sm:w-16 sm:h-16 mx-auto"
-                        >
-                    </div>
-                    <div class="text-4xl sm:text-5xl font-extrabold text-white leading-none mb-2 stat-number" data-target="500">0<span class="text-xl sm:text-2xl text-green-300">+</span></div>
-                    <div class="text-sm sm:text-[0.95rem] text-green-300 font-medium">Pohon Diselamatkan</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== HOW IT WORKS ===== -->
-    <section class="py-16 md:py-24 bg-neutral-50" id="cara-kerja">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
-            <div class="text-center max-w-[640px] mx-auto mb-12 sm:mb-16 animate-on-scroll">
-                <div class="inline-flex items-center gap-2 py-1.5 px-4 bg-green-50 text-green-700 font-semibold text-[0.85rem] rounded-full mb-4 border border-green-100">🔄 Cara Kerja</div>
-                <h2 class="text-[clamp(1.75rem,4vw,2.75rem)] font-extrabold text-neutral-900 leading-[1.2] mb-4">Mudah & Praktis dalam 4 Langkah</h2>
-                <p class="text-base sm:text-[1.05rem] text-neutral-500 leading-[1.7]">Mulai perjalanan pengelolaan sampah Anda dengan langkah-langkah sederhana berikut.</p>
-            </div>
-            <div class="steps-line grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative max-lg:before:hidden">
-                <div class="text-center relative z-[1] animate-on-scroll animate-delay-1 group">
-                    <div class="w-[64px] h-[64px] sm:w-[72px] sm:h-[72px] mx-auto mb-6 bg-white border-3 border-green-400 rounded-full flex items-center justify-center text-xl sm:text-2xl font-extrabold text-green-700 shadow-lg transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-green-500 group-hover:to-teal-500 group-hover:text-white group-hover:scale-110 group-hover:border-green-500">1</div>
-                    <div class="mb-3">
-                        <img
-                            src="https://img.icons8.com/?size=100&id=oZAinaxvg8AD&format=png&color=000000"
-                            alt="Icon Dokumen"
-                            class="w-12 h-12 sm:w-14 sm:h-14 mx-auto"
-                        >
-                    </div>
-                    <h3 class="text-base sm:text-[1.1rem] font-bold text-neutral-900 mb-2">Daftar Akun</h3>
-                    <p class="text-xs sm:text-sm text-neutral-500 leading-relaxed">Daftarkan diri Anda sebagai nasabah ARUNA dengan mudah dan gratis.</p>
-                </div>
-                <div class="text-center relative z-[1] animate-on-scroll animate-delay-2 group">
-                    <div class="w-[64px] h-[64px] sm:w-[72px] sm:h-[72px] mx-auto mb-6 bg-white border-3 border-green-400 rounded-full flex items-center justify-center text-xl sm:text-2xl font-extrabold text-green-700 shadow-lg transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-green-500 group-hover:to-teal-500 group-hover:text-white group-hover:scale-110 group-hover:border-green-500">2</div>
-                    <div class="mb-3">
-                        <img
-                            src="https://img.icons8.com/?size=100&id=ngxhKjJtc4LX&format=png&color=000000"
-                            alt="Icon Daur Ulang"
-                            class="w-12 h-12 sm:w-14 sm:h-14 mx-auto"
-                        >
-                    </div>
-                    <h3 class="text-base sm:text-[1.1rem] font-bold text-neutral-900 mb-2">Pilah Sampah</h3>
-                    <p class="text-xs sm:text-sm text-neutral-500 leading-relaxed">Pisahkan sampah berdasarkan jenisnya: plastik, kertas, logam, kaca, dan organik.</p>
-                </div>
-                <div class="text-center relative z-[1] animate-on-scroll animate-delay-3 group">
-                    <div class="w-[64px] h-[64px] sm:w-[72px] sm:h-[72px] mx-auto mb-6 bg-white border-3 border-green-400 rounded-full flex items-center justify-center text-xl sm:text-2xl font-extrabold text-green-700 shadow-lg transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-green-500 group-hover:to-teal-500 group-hover:text-white group-hover:scale-110 group-hover:border-green-500">3</div>
-                    <div class="mb-3">
-                        <img
-                            src="https://img.icons8.com/?size=100&id=LcVQQn9beLrS&format=png&color=000000"
-                            alt="Icon Toko"
-                            class="w-14 h-14 sm:w-16 sm:h-16 mx-auto"
-                        >
-                    </div>
-                    <h3 class="text-base sm:text-[1.1rem] font-bold text-neutral-900 mb-2">Setor ke ARUNA</h3>
-                    <p class="text-xs sm:text-sm text-neutral-500 leading-relaxed">Bawa sampah yang sudah dipilah ke ARUNA atau jadwalkan penjemputan.</p>
-                </div>
-                <div class="text-center relative z-[1] animate-on-scroll animate-delay-4 group">
-                    <div class="w-[64px] h-[64px] sm:w-[72px] sm:h-[72px] mx-auto mb-6 bg-white border-3 border-green-400 rounded-full flex items-center justify-center text-xl sm:text-2xl font-extrabold text-green-700 shadow-lg transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-green-500 group-hover:to-teal-500 group-hover:text-white group-hover:scale-110 group-hover:border-green-500">4</div>
-                    <div class="mb-3">
-                        <img
-                            src="https://img.icons8.com/?size=100&id=EAJO2Tj4XI6Z&format=png&color=000000"
-                            alt="Icon Uang"
-                            class="w-14 h-14 sm:w-16 sm:h-16 mx-auto"
-                        >
-                    </div>
-                    <h3 class="text-base sm:text-[1.1rem] font-bold text-neutral-900 mb-2">Terima Penghasilan</h3>
-                    <p class="text-xs sm:text-sm text-neutral-500 leading-relaxed">Sampah Anda ditimbang, dicatat, dan saldo langsung masuk ke rekening tabungan Anda.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== WASTE CATEGORIES ===== -->
-    <section class="py-16 md:py-24 bg-white" id="kategori">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
-            <div class="text-center max-w-[640px] mx-auto mb-12 sm:mb-16 animate-on-scroll">
-                <div class="inline-flex items-center gap-2 py-1.5 px-4 bg-green-50 text-green-700 font-semibold text-[0.85rem] rounded-full mb-4 border border-green-100">
-                    <img
-                        src="https://img.icons8.com/?size=100&id=Vps0Nsl80v4P&format=png&color=000000"
-                        alt="Kategori Sampah"
-                        class="w-5 h-5"
-                    >
-                    Kategori Sampah
-                </div>
-                <h2 class="text-[clamp(1.75rem,4vw,2.75rem)] font-extrabold text-neutral-900 leading-[1.2] mb-4">Jenis Sampah yang Kami Terima</h2>
-                <p class="text-base sm:text-[1.05rem] text-neutral-500 leading-[1.7]">Berbagai jenis sampah bernilai yang dapat Anda setorkan ke ARUNA.</p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-                <div class="p-6 sm:p-8 rounded-2xl text-center border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer relative overflow-hidden bg-gradient-to-br from-amber-100 to-amber-50 hover:-translate-y-1.5 hover:shadow-xl hover:border-amber-400 animate-on-scroll animate-delay-1">
-                    <div class="text-4xl sm:text-5xl mb-4">🧴</div>
-                    <h3 class="text-lg sm:text-[1.15rem] font-bold text-neutral-900 mb-2">Plastik</h3>
-                    <span class="text-xs sm:text-[0.85rem] text-green-600 font-semibold py-1 px-3 bg-green-500/10 rounded-full inline-block">Rp 2.000 - 5.000/kg</span>
-                    <p class="text-xs text-neutral-400 mt-3">Botol, gelas, kantong, ember</p>
-                </div>
-                <div class="p-6 sm:p-8 rounded-2xl text-center border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer relative overflow-hidden bg-gradient-to-br from-blue-100 to-blue-50 hover:-translate-y-1.5 hover:shadow-xl hover:border-blue-400 animate-on-scroll animate-delay-2">
-                    <div class="text-4xl sm:text-5xl mb-4">📄</div>
-                    <h3 class="text-lg sm:text-[1.15rem] font-bold text-neutral-900 mb-2">Kertas & Kardus</h3>
-                    <span class="text-xs sm:text-[0.85rem] text-green-600 font-semibold py-1 px-3 bg-green-500/10 rounded-full inline-block">Rp 1.500 - 3.000/kg</span>
-                    <p class="text-xs text-neutral-400 mt-3">Koran, majalah, kardus, buku</p>
-                </div>
-                <div class="p-6 sm:p-8 rounded-2xl text-center border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer relative overflow-hidden bg-gradient-to-br from-gray-200 to-gray-100 hover:-translate-y-1.5 hover:shadow-xl hover:border-gray-400 animate-on-scroll animate-delay-3">
-                    <div class="text-4xl sm:text-5xl mb-4">🔩</div>
-                    <h3 class="text-lg sm:text-[1.15rem] font-bold text-neutral-900 mb-2">Logam</h3>
-                    <span class="text-xs sm:text-[0.85rem] text-green-600 font-semibold py-1 px-3 bg-green-500/10 rounded-full inline-block">Rp 5.000 - 15.000/kg</span>
-                    <p class="text-xs text-neutral-400 mt-3">Kaleng, besi, aluminium, tembaga</p>
-                </div>
-                <div class="p-6 sm:p-8 rounded-2xl text-center border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer relative overflow-hidden bg-gradient-to-br from-teal-100 to-teal-50 hover:-translate-y-1.5 hover:shadow-xl hover:border-teal-400 animate-on-scroll animate-delay-4">
-                    <div class="text-4xl sm:text-5xl mb-4">🫙</div>
-                    <h3 class="text-lg sm:text-[1.15rem] font-bold text-neutral-900 mb-2">Kaca</h3>
-                    <span class="text-xs sm:text-[0.85rem] text-green-600 font-semibold py-1 px-3 bg-green-500/10 rounded-full inline-block">Rp 500 - 2.000/kg</span>
-                    <p class="text-xs text-neutral-400 mt-3">Botol kaca, toples, cermin</p>
-                </div>
-                <div class="p-6 sm:p-8 rounded-2xl text-center border border-neutral-100 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer relative overflow-hidden bg-gradient-to-br from-green-100 to-green-50 hover:-translate-y-1.5 hover:shadow-xl hover:border-green-400 animate-on-scroll animate-delay-5">
-                    <div class="text-4xl sm:text-5xl mb-4">🌿</div>
-                    <h3 class="text-lg sm:text-[1.15rem] font-bold text-neutral-900 mb-2">Organik</h3>
-                    <span class="text-xs sm:text-[0.85rem] text-green-600 font-semibold py-1 px-3 bg-green-500/10 rounded-full inline-block">Rp 500 - 1.000/kg</span>
-                    <p class="text-xs text-neutral-400 mt-3">Sisa makanan, daun, ranting</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== IMPACT SECTION ===== -->
-    <section class="impact-bg py-16 md:py-24 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 relative overflow-hidden" id="dampak">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-[1]">
-                <div class="animate-on-scroll">
-                    <div class="inline-flex items-center gap-2 py-1.5 px-4 bg-green-50 text-green-700 font-semibold text-[0.85rem] rounded-full mb-4 border border-green-100">🌍 Dampak Positif</div>
-                    <h3 class="text-[clamp(1.75rem,3.5vw,2.25rem)] font-extrabold text-neutral-900 mb-6 leading-[1.2]">Bersama Kita Ciptakan Perubahan Nyata untuk Bumi</h3>
-                    <p class="text-base sm:text-[1.05rem] text-neutral-500 leading-[1.7] mb-8">Setiap kilogram sampah yang Anda setorkan adalah langkah nyata dalam menjaga kelestarian lingkungan. Bersama ARUNA, kita bisa membuat perubahan besar.</p>
-                    <ul class="list-none flex flex-col gap-4">
-                        <li class="flex items-center gap-3 text-sm sm:text-base text-neutral-700 font-medium">
-                            <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gradient-to-br from-green-400 to-teal-400 flex items-center justify-center text-white text-xs shrink-0">✓</span>
-                            Mengurangi volume sampah di TPA hingga 40%
-                        </li>
-                        <li class="flex items-center gap-3 text-sm sm:text-base text-neutral-700 font-medium">
-                            <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gradient-to-br from-green-400 to-teal-400 flex items-center justify-center text-white text-xs shrink-0">✓</span>
-                            Menurunkan emisi gas rumah kaca secara signifikan
-                        </li>
-                        <li class="flex items-center gap-3 text-sm sm:text-base text-neutral-700 font-medium">
-                            <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gradient-to-br from-green-400 to-teal-400 flex items-center justify-center text-white text-xs shrink-0">✓</span>
-                            Menciptakan lapangan kerja baru bagi masyarakat
-                        </li>
-                        <li class="flex items-center gap-3 text-sm sm:text-base text-neutral-700 font-medium">
-                            <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gradient-to-br from-green-400 to-teal-400 flex items-center justify-center text-white text-xs shrink-0">✓</span>
-                            Meningkatkan kesadaran lingkungan di komunitas
-                        </li>
-                        <li class="flex items-center gap-3 text-sm sm:text-base text-neutral-700 font-medium">
-                            <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gradient-to-br from-green-400 to-teal-400 flex items-center justify-center text-white text-xs shrink-0">✓</span>
-                            Mendukung ekonomi sirkular yang berkelanjutan
-                        </li>
-                    </ul>
-                </div>
-                <div class="grid grid-cols-2 gap-4 sm:gap-6 animate-on-scroll animate-delay-2">
-                    <div class="p-5 sm:p-8 rounded-2xl bg-white shadow-lg text-center transition-all duration-300 border border-neutral-100 hover:-translate-y-1 hover:shadow-2xl">
-                        <div class="text-3xl sm:text-[2.5rem] mb-3">🌊</div>
-                        <div class="text-xl sm:text-[1.75rem] font-extrabold text-green-700 mb-1">40%</div>
-                        <div class="text-xs sm:text-[0.85rem] text-neutral-500">Pengurangan sampah TPA</div>
-                    </div>
-                    <div class="p-5 sm:p-8 rounded-2xl bg-white shadow-lg text-center transition-all duration-300 border border-neutral-100 sm:translate-y-8 hover:translate-y-0 sm:hover:translate-y-[calc(2rem-4px)] hover:shadow-2xl">
-                        <div class="text-3xl sm:text-[2.5rem] mb-3">🌱</div>
-                        <div class="text-xl sm:text-[1.75rem] font-extrabold text-green-700 mb-1">12 ton</div>
-                        <div class="text-xs sm:text-[0.85rem] text-neutral-500">CO₂ berhasil dicegah</div>
-                    </div>
-                    <div class="p-5 sm:p-8 rounded-2xl bg-white shadow-lg text-center transition-all duration-300 border border-neutral-100 hover:-translate-y-1 hover:shadow-2xl">
-                        <div class="text-3xl sm:text-[2.5rem] mb-3">👨‍👩‍👧‍👦</div>
-                        <div class="text-xl sm:text-[1.75rem] font-extrabold text-green-700 mb-1">50+</div>
-                        <div class="text-xs sm:text-[0.85rem] text-neutral-500">Keluarga terbantu</div>
-                    </div>
-                    <div class="p-5 sm:p-8 rounded-2xl bg-white shadow-lg text-center transition-all duration-300 border border-neutral-100 hover:-translate-y-1 hover:shadow-2xl">
-                        <div class="text-3xl sm:text-[2.5rem] mb-3">🏘️</div>
-                        <div class="text-xl sm:text-[1.75rem] font-extrabold text-green-700 mb-1">8</div>
-                        <div class="text-xs sm:text-[0.85rem] text-neutral-500">Kelurahan terjangkau</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== TESTIMONIALS ===== -->
-    <section class="py-16 md:py-24 bg-white" id="testimoni">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
-            <div class="text-center max-w-[640px] mx-auto mb-12 sm:mb-16 animate-on-scroll">
-                <div class="inline-flex items-center gap-2 py-1.5 px-4 bg-green-50 text-green-700 font-semibold text-[0.85rem] rounded-full mb-4 border border-green-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />
-                    </svg>
-                    Testimoni
-                </div>
-                <h2 class="text-[clamp(1.75rem,4vw,2.75rem)] font-extrabold text-neutral-900 leading-[1.2] mb-4">Apa Kata Mereka tentang ARUNA?</h2>
-                <p class="text-base sm:text-[1.05rem] text-neutral-500 leading-[1.7]">Cerita sukses dari para nasabah yang telah merasakan manfaat bergabung dengan ARUNA.</p>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 max-lg:max-w-[500px] max-lg:mx-auto">
-                <div class="p-6 sm:p-8 rounded-2xl bg-neutral-50 border border-neutral-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 animate-on-scroll animate-delay-1">
-                    <div class="text-amber-400 text-base mb-4 tracking-[2px]">★★★★★</div>
-                    <p class="text-sm sm:text-[0.95rem] text-neutral-600 leading-[1.7] mb-6 italic">"Sejak bergabung dengan ARUNA, rumah jadi lebih bersih dan saya bisa menabung dari sampah. Luar biasa!"</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-lg sm:text-xl font-bold text-white bg-gradient-to-br from-green-400 to-green-600">S</div>
-                        <div>
-                            <div class="font-bold text-sm sm:text-[0.95rem] text-neutral-900">Ibu Sari</div>
-                            <div class="text-xs text-neutral-400">Nasabah sejak 2024</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-6 sm:p-8 rounded-2xl bg-neutral-50 border border-neutral-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 animate-on-scroll animate-delay-2">
-                    <div class="text-amber-400 text-base mb-4 tracking-[2px]">★★★★★</div>
-                    <p class="text-sm sm:text-[0.95rem] text-neutral-600 leading-[1.7] mb-6 italic">"Anak-anak jadi lebih peduli lingkungan. Mereka senang memilah sampah karena tahu sampah bisa jadi uang tabungan."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-lg sm:text-xl font-bold text-white bg-gradient-to-br from-teal-400 to-teal-500">B</div>
-                        <div>
-                            <div class="font-bold text-sm sm:text-[0.95rem] text-neutral-900">Pak Budi</div>
-                            <div class="text-xs text-neutral-400">Nasabah sejak 2023</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-6 sm:p-8 rounded-2xl bg-neutral-50 border border-neutral-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 animate-on-scroll animate-delay-3">
-                    <div class="text-amber-400 text-base mb-4 tracking-[2px]">★★★★★</div>
-                    <p class="text-sm sm:text-[0.95rem] text-neutral-600 leading-[1.7] mb-6 italic">"Program yang sangat bermanfaat! Lingkungan RT kami jadi jauh lebih bersih dan warga semakin kompak."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-lg sm:text-xl font-bold text-white bg-gradient-to-br from-amber-400 to-amber-500">A</div>
-                        <div>
-                            <div class="font-bold text-sm sm:text-[0.95rem] text-neutral-900">Ibu Ani</div>
-                            <div class="text-xs text-neutral-400">Nasabah sejak 2025</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== CTA SECTION ===== -->
-    <section class="cta-bg py-16 md:py-24 bg-gradient-to-br from-green-600 via-green-700 to-green-800 relative overflow-hidden" id="gabung">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
-            <div class="text-center relative z-[1] max-w-[700px] mx-auto animate-on-scroll">
-                <div class="text-4xl sm:text-[3.5rem] mb-6">🌿</div>
-                <h2 class="text-[clamp(1.75rem,4vw,2.75rem)] font-extrabold text-white mb-4">Siap Mengubah Sampahmu Jadi Berkah?</h2>
-                <p class="text-base sm:text-[1.1rem] text-white/80 mb-8 sm:mb-10 leading-[1.7]">Bergabung bersama ribuan nasabah ARUNA dan mulai perjalananmu menuju lingkungan yang lebih bersih dan kehidupan yang lebih sejahtera.</p>
-                <div class="flex gap-4 justify-center flex-wrap max-[480px]:flex-col max-[480px]:w-full">
-                    <a href="/login" class="inline-flex items-center justify-center gap-2 py-3.5 sm:py-4 px-8 sm:px-10 bg-white text-green-700 font-bold text-base sm:text-[1.05rem] rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:-translate-y-[3px] hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] max-[480px]:w-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
-                        </svg>
-                        Daftar Gratis Sekarang
-                    </a>
-                    <a href="#" class="inline-flex items-center justify-center gap-3 py-3.5 sm:py-4 px-8 sm:px-10 bg-transparent text-white font-semibold text-base sm:text-[1.05rem] rounded-full border-2 border-white/30 transition-all duration-300 hover:bg-white hover:text-green-700 hover:border-white hover:shadow-lg hover:-translate-y-1 max-[480px]:w-full">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             fill="none"
-                             viewBox="0 0 24 24"
-                             stroke-width="1.5"
-                             stroke="currentColor"
-                             class="w-5 h-5">
-                            <path stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
-                        </svg>
-                        <span>Hubungi Kami</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="bg-neutral-900 text-neutral-400 pt-14 md:pt-20">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 md:gap-12 mb-12 md:mb-16">
-                <div>
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 sm:w-11 sm:h-11 bg-white/10 rounded-xl flex items-center justify-center p-2 shadow-sm border border-white/10">
-                            <img src="{{ asset('storage/resource/icon.png') }}" alt="ARUNA Icon" class="w-full h-full object-contain">
-                        </div>
-                        <span class="text-xl sm:text-2xl font-extrabold text-white">ARUNA</span>
-                    </div>
-                    <p class="text-sm sm:text-[0.95rem] leading-[1.7] mb-6">
-                        Platform pengelolaan sampah berbasis masyarakat yang membantu warga mengubah sampah menjadi nilai ekonomis sambil menjaga kelestarian lingkungan.
-                    </p>
-                    <div class="flex gap-3">
-                        <a href="#" class="w-10 h-10 rounded-xl bg-neutral-800 flex items-center justify-center text-neutral-400 text-[1.1rem] transition-all duration-300 hover:bg-green-600 hover:text-white hover:-translate-y-0.5" aria-label="Facebook">📘</a>
-                        <a href="#" class="w-10 h-10 rounded-xl bg-neutral-800 flex items-center justify-center text-neutral-400 text-[1.1rem] transition-all duration-300 hover:bg-green-600 hover:text-white hover:-translate-y-0.5" aria-label="Instagram">📷</a>
-                        <a href="#" class="w-10 h-10 rounded-xl bg-neutral-800 flex items-center justify-center text-neutral-400 text-[1.1rem] transition-all duration-300 hover:bg-green-600 hover:text-white hover:-translate-y-0.5" aria-label="WhatsApp">💬</a>
-                        <a href="#" class="w-10 h-10 rounded-xl bg-neutral-800 flex items-center justify-center text-neutral-400 text-[1.1rem] transition-all duration-300 hover:bg-green-600 hover:text-white hover:-translate-y-0.5" aria-label="YouTube">🎬</a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="text-base font-bold text-white mb-4 sm:mb-5">Navigasi</h4>
-                    <ul class="list-none flex flex-col gap-2.5 sm:gap-3">
-                        <li><a href="#beranda" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">→ Beranda</a></li>
-                        <li><a href="#fitur" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">→ Fitur</a></li>
-                        <li><a href="#cara-kerja" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">→ Cara Kerja</a></li>
-                        <li><a href="#kategori" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">→ Kategori Sampah</a></li>
-                        <li><a href="#dampak" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">→ Dampak</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-base font-bold text-white mb-4 sm:mb-5">Layanan</h4>
-                    <ul class="list-none flex flex-col gap-2.5 sm:gap-3">
-                        <li><a href="#" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">→ Setor Sampah</a></li>
-                        <li><a href="#" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">→ Penjemputan</a></li>
-                        <li><a href="#" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">→ Tabungan</a></li>
-                        <li><a href="#" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">→ Edukasi</a></li>
-                        <li><a href="#" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">→ Kemitraan</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-base font-bold text-white mb-4 sm:mb-5">Kontak</h4>
-                    <ul class="list-none flex flex-col gap-2.5 sm:gap-3">
-                        <li><a href="#" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">📍 Jl. Lingkungan Hijau No. 1</a></li>
-                        <li><a href="#" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">📞 (021) 123-4567</a></li>
-                        <li><a href="#" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">📧 info@aruna.id</a></li>
-                        <li><a href="#" class="text-neutral-400 text-sm transition-all duration-300 flex items-center gap-2 hover:text-green-400 hover:pl-1">🕐 Senin - Sabtu: 08.00 - 16.00</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-neutral-800 py-6 sm:py-8 flex items-center justify-between flex-wrap gap-4 max-[480px]:flex-col max-[480px]:text-center">
-                <p class="text-xs sm:text-[0.85rem]">&copy; {{ date('Y') }} ARUNA. Seluruh hak cipta dilindungi.</p>
-                <div class="flex gap-6 sm:gap-8">
-                    <a href="#" class="text-xs sm:text-[0.85rem] text-neutral-400 transition-colors duration-300 hover:text-green-400">Kebijakan Privasi</a>
-                    <a href="#" class="text-xs sm:text-[0.85rem] text-neutral-400 transition-colors duration-300 hover:text-green-400">Syarat & Ketentuan</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Back to Top -->
-    <button id="backToTop" onclick="scrollToTop()" aria-label="Kembali ke atas" class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-[44px] h-[44px] sm:w-[50px] sm:h-[50px] bg-gradient-to-br from-green-500 to-teal-500 text-white border-none rounded-full text-lg sm:text-xl cursor-pointer flex items-center justify-center opacity-0 invisible transition-all duration-300 shadow-[0_4px_20px_rgba(16,185,129,0.4)] z-[999] [&.visible]:opacity-100 [&.visible]:visible hover:-translate-y-[3px] hover:shadow-[0_6px_25px_rgba(16,185,129,0.5)]">↑</button>
-
-    <script>
-        // ===== NAVBAR SCROLL & STATE =====
-        const navbar = document.getElementById('navbar');
-        const backToTop = document.getElementById('backToTop');
-        const brandIcon = document.getElementById('brandIcon');
-
-        function updateNavbarState() {
-            const isScrolled = window.scrollY > 50;
-            const isMenuOpen = navbar.classList.contains('menu-open');
-
-            if (isScrolled || isMenuOpen) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+        @keyframes subtleBobbingAlt {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-3.5px);
             }
         }
 
-        window.addEventListener('scroll', () => {
-            updateNavbarState();
+        .float-bob-1 {
+            animation: subtleBobbing 3.8s ease-in-out infinite;
+        }
+        .float-bob-2 {
+            animation: subtleBobbingAlt 4.4s ease-in-out infinite 0.7s;
+        }
+        .float-bob-3 {
+            animation: subtleBobbing 3.4s ease-in-out infinite 1.2s;
+        }
 
+        /* Light sheen sweep effect */
+        .sheen-layer {
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.35) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: skewX(-22deg);
+            pointer-events: none;
+            transition: left 0.85s ease-out;
+        }
+        .hero-card:hover .sheen-layer {
+            left: 170%;
+        }
+
+        /* Perspective 3D Tilt container */
+        .tilt-wrapper {
+            perspective: 1000px;
+        }
+        .hero-card {
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease;
+            will-change: transform;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .float-bob-1,
+            .float-bob-2,
+            .float-bob-3 {
+                animation: none !important;
+            }
+            .hero-card {
+                transform: none !important;
+                transition: none !important;
+            }
+            .sheen-layer {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary selection:text-white">
+
+<!-- NAVIGATION HEADER -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#faf9f5]/90 backdrop-blur-md border-b border-outline-variant transition-all">
+    <div class="h-20 w-full max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between">
+        <!-- Logo Brand -->
+        <a class="flex items-center gap-3.5 group" href="{{ url('/') }}">
+            <img src="{{ asset('storage/resource/icon.png') }}" alt="ARUNA" class="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-105">
+            <div class="flex flex-col">
+                <span class="font-headline-md text-xl tracking-tight text-primary font-semibold leading-none whitespace-nowrap">
+                    ARUNA
+                </span>
+                <span class="font-label-sm text-[10px] text-on-surface-variant tracking-widest uppercase mt-0.5 whitespace-nowrap">Bank Sampah Digital</span>
+            </div>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <nav class="hidden xl:flex items-center gap-7">
+            <a aria-current="page" class="text-sm font-medium text-primary tracking-normal whitespace-nowrap" href="#beranda">Beranda</a>
+            <a class="text-sm font-normal text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#keunggulan">Tentang Kami</a>
+            <a class="text-sm font-normal text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#cara-kerja">Cara Kerja</a>
+            <a class="text-sm font-normal text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#metrik">Dampak</a>
+            <a class="text-sm font-normal text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#katalog">Katalog &amp; Harga</a>
+            <a class="text-sm font-normal text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#testimoni">Kisah Nasabah</a>
+        </nav>
+
+        <!-- Action Buttons -->
+        <div class="flex items-center gap-3 sm:gap-4">
+            <a class="hidden sm:inline-block text-xs font-semibold text-primary hover:text-secondary uppercase tracking-wider px-3 py-2 transition-colors" href="{{ route('admin.login') }}">
+                Masuk Admin
+            </a>
+            <a class="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg bg-primary text-white text-xs sm:text-sm font-medium hover:bg-primary-container transition-all" href="{{ route('register') }}">
+                <span>Gabung Nasabah</span>
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </a>
+            <button type="button" id="menuToggle" aria-label="Buka menu" aria-expanded="false" aria-controls="mobileMenu"
+                    class="xl:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-outline-variant bg-white text-primary">
+                <span class="material-symbols-outlined text-[20px]" id="menuIcon">menu</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Nav Panel -->
+    <div id="mobileMenu" class="hidden xl:hidden border-t border-outline-variant bg-[#faf9f5]">
+        <nav class="max-w-7xl mx-auto px-6 sm:px-10 py-4 flex flex-col">
+            <a class="py-3 text-sm font-medium text-primary border-b border-outline-variant" href="#beranda">Beranda</a>
+            <a class="py-3 text-sm text-on-surface-variant border-b border-outline-variant" href="#keunggulan">Tentang Kami</a>
+            <a class="py-3 text-sm text-on-surface-variant border-b border-outline-variant" href="#cara-kerja">Cara Kerja</a>
+            <a class="py-3 text-sm text-on-surface-variant border-b border-outline-variant" href="#metrik">Dampak</a>
+            <a class="py-3 text-sm text-on-surface-variant border-b border-outline-variant" href="#katalog">Katalog &amp; Harga</a>
+            <a class="py-3 text-sm text-on-surface-variant border-b border-outline-variant" href="#testimoni">Kisah Nasabah</a>
+            <a class="py-3 text-sm font-semibold text-primary uppercase tracking-wider sm:hidden" href="{{ route('admin.login') }}">Masuk Admin</a>
+        </nav>
+    </div>
+</header>
+
+<main class="w-full pt-20 bg-surface" id="beranda">
+    <div class="flex flex-col w-full">
+
+        <!-- HERO SECTION -->
+        <section class="relative w-full border-b border-outline-variant px-6 sm:px-10 py-16 sm:py-24 lg:py-28">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+                    <!-- Left Hero Content -->
+                    <div class="flex flex-col lg:col-span-7">
+                        <div class="mb-5 inline-flex items-center gap-2 self-start py-1 px-2.5 rounded border border-outline-variant bg-surface-container-low text-on-surface-variant text-[11px] font-medium tracking-wide uppercase">
+                            <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                            Sirkularitas Presisi Rumah Tangga
+                        </div>
+                        <h1 class="font-display-lg text-4xl sm:text-5xl lg:text-6xl text-primary font-normal tracking-tight leading-[1.12] mb-6">
+                            Ubah Sampah Jadi <em class="italic font-light">Berkah &amp; Saldo Nyata</em> Bersama ARUNA.
+                        </h1>
+                        <p class="font-body-lg text-base sm:text-lg text-on-surface-variant max-w-xl mb-10 leading-relaxed font-light">
+                            Platform bank sampah digital modern yang memudahkan warga memilah, menimbang presisi dengan IoT, dan menukarkan sampah anorganik menjadi saldo terverifikasi.
+                        </p>
+                        <div class="flex flex-wrap items-center gap-4 mb-12">
+                            <a class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3.5 text-sm font-medium text-white hover:bg-primary-container transition-all" href="{{ route('register') }}">
+                                <span>Daftar Jadi Nasabah Sekarang</span>
+                                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                            </a>
+                            <a class="inline-flex items-center gap-2 rounded-lg border border-outline-variant bg-white px-5 py-3.5 text-sm font-medium text-primary hover:border-primary transition-all" href="#katalog">
+                                <span>Cek Harga Sampah Hari Ini</span>
+                            </a>
+                        </div>
+                        <!-- Clean hairline benefits -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 border-t border-outline-variant pt-6 gap-6 sm:gap-4">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-[18px] text-secondary">scale</span>
+                                <span class="text-xs text-on-surface-variant font-medium">Timbangan Digital IoT</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-[18px] text-secondary">bolt</span>
+                                <span class="text-xs text-on-surface-variant font-medium">Pencairan Saldo Instan</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-[18px] text-secondary">nest_eco_leaf</span>
+                                <span class="text-xs text-on-surface-variant font-medium">100% Daur Ulang Sah</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Minimalist Financial Graphic -->
+                    <div class="lg:col-span-5 flex justify-center tilt-wrapper">
+                        <div class="hero-card group relative w-full max-w-md bg-white border border-outline-variant rounded-xl p-5 sm:p-6 shadow-[0_4px_24px_rgba(0,34,23,0.04)] hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 ease-out cursor-pointer flex flex-col gap-5 overflow-hidden" id="heroCardInteractive">
+                            <!-- Delicate Light Sheen element -->
+                            <div class="sheen-layer"></div>
+
+                            <div class="relative w-full rounded-xl overflow-hidden border border-outline-variant/60 shadow-sm bg-surface-container-low">
+                                <img alt="Operasional Bank Sampah Digital Pintar ARUNA" class="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" src="{{ asset('uploads/beranda/hero-operasional-aruna.jpg') }}"/>
+                                <div class="float-bob-1 absolute top-3 left-3 bg-[#faf9f5]/90 backdrop-blur-md border border-outline-variant/80 px-2.5 py-1 rounded text-[10px] font-medium tracking-wide uppercase text-primary flex items-center gap-1.5 shadow-sm">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Operasional Bank Sampah Digital Pintar
+                                </div>
+                                <div class="float-bob-2 absolute bottom-3 right-3 bg-primary/90 backdrop-blur-md text-white text-[10px] font-mono px-2 py-0.5 rounded tracking-wide flex items-center gap-1 shadow-sm">
+                                    <span class="material-symbols-outlined text-[12px] text-secondary-fixed">verified</span> Live Cloud Synced
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="float-bob-2 p-3.5 rounded-lg bg-surface-container-low border border-outline-variant flex flex-col justify-between transition-colors duration-300 group-hover:border-primary/40 group-hover:bg-[#f8f7f2]">
+                                    <div class="flex items-center gap-1.5 text-secondary text-[11px] font-medium mb-1">
+                                        <span class="material-symbols-outlined text-[15px]">filter_alt</span>
+                                        <span>Presisi Pilah</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-headline-md text-xl sm:text-2xl text-primary font-normal">98.4%</div>
+                                        <p class="text-[10px] text-on-surface-variant font-light mt-0.5">Kemurnian sortir di sumber</p>
+                                    </div>
+                                </div>
+                                <div class="float-bob-3 p-3.5 rounded-lg bg-surface-container-low border border-outline-variant flex flex-col justify-between transition-colors duration-300 group-hover:border-primary/40 group-hover:bg-[#f8f7f2]">
+                                    <div class="flex items-center gap-1.5 text-secondary text-[11px] font-medium mb-1">
+                                        <span class="material-symbols-outlined text-[15px]">schedule</span>
+                                        <span>Pencairan</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-headline-md text-xl sm:text-2xl text-primary font-normal">&lt;24 Jam</div>
+                                        <p class="text-[10px] text-on-surface-variant font-light mt-0.5">Langsung ke buku warga</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-4 border-t border-outline-variant flex items-start gap-3">
+                                <span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">format_quote</span>
+                                <p class="font-headline-sm text-xs sm:text-[13px] text-primary italic font-normal leading-relaxed">“Mengubah timbulan sampah permukiman menjadi kemandirian ekonomi rukun warga yang terukur, transparan, dan terpercaya.”</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- METRICS GRID SECTION (Clean Editorial Hairline Table) -->
+        <section class="w-full border-b border-outline-variant bg-white" id="metrik">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-outline-variant">
+                    <div class="p-8 sm:p-10">
+                        <span class="text-[11px] font-semibold tracking-wider text-secondary uppercase block mb-3">Total Sampah Terolah</span>
+                        <div class="font-headline-lg text-3xl sm:text-4xl font-normal text-primary">12.450+ Kg</div>
+                        <p class="text-xs text-on-surface-variant mt-2 font-light">Sampah terpilah industri daur ulang</p>
+                        <div class="mt-4 text-[11px] font-medium text-secondary flex items-center gap-1">
+                            <span>+24% Pertumbuhan MoM</span>
+                        </div>
+                    </div>
+                    <div class="p-8 sm:p-10">
+                        <span class="text-[11px] font-semibold tracking-wider text-secondary uppercase block mb-3">Komunitas Nasabah</span>
+                        <div class="font-headline-lg text-3xl sm:text-4xl font-normal text-primary">1.284+ Warga</div>
+                        <p class="text-xs text-on-surface-variant mt-2 font-light">Keluarga aktif menyetor berkala</p>
+                        <div class="mt-4 text-[11px] font-medium text-secondary flex items-center gap-1">
+                            <span>Tersebar di 118 RT</span>
+                        </div>
+                    </div>
+                    <div class="p-8 sm:p-10">
+                        <span class="text-[11px] font-semibold tracking-wider text-secondary uppercase block mb-3">Nilai Finansial</span>
+                        <div class="font-headline-lg text-3xl sm:text-4xl font-normal text-primary">Rp 45,2 Jt+</div>
+                        <p class="text-xs text-on-surface-variant mt-2 font-light">Saldo dicairkan langsung ke warga</p>
+                        <div class="mt-4 text-[11px] font-medium text-secondary flex items-center gap-1">
+                            <span>100% Pencairan Sukses</span>
+                        </div>
+                    </div>
+                    <div class="p-8 sm:p-10">
+                        <span class="text-[11px] font-semibold tracking-wider text-secondary uppercase block mb-3">Dampak Iklim Nyata</span>
+                        <div class="font-headline-lg text-3xl sm:text-4xl font-normal text-primary">18 Ton CO2</div>
+                        <p class="text-xs text-on-surface-variant mt-2 font-light">Reduksi emisi gas rumah kaca</p>
+                        <div class="mt-4 text-[11px] font-medium text-secondary flex items-center gap-1">
+                            <span>Laporan Terverifikasi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE SIMULATION CALCULATOR SECTION -->
+        <section class="w-full px-6 sm:px-10 py-20 sm:py-24 border-b border-outline-variant" id="kalkulator">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <span class="text-[11px] font-semibold text-secondary uppercase tracking-widest block mb-2">Simulasi Finansial Mandiri</span>
+                    <h2 class="font-headline-lg text-3xl sm:text-4xl text-primary font-normal">
+                        Kalkulator Cuan Sampah Rumah Tangga
+                    </h2>
+                    <p class="text-sm text-on-surface-variant mt-3 font-light leading-relaxed">
+                        Hitung potensi penghasilan tabungan Anda dalam hitungan detik. Cukup pilih kategori sampah dan geser estimasi beratnya.
+                    </p>
+                </div>
+
+                <div class="bg-white border border-outline-variant rounded-xl p-6 sm:p-10 shadow-[0_4px_20px_rgba(0,34,23,0.03)]">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+                        <!-- Controls -->
+                        <div class="lg:col-span-7 flex flex-col justify-between space-y-8">
+                            <!-- Step 1 -->
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <label class="text-xs font-semibold text-primary uppercase tracking-wider">
+                                        1. Pilih Kategori Sampah
+                                    </label>
+                                    <span class="text-[11px] text-secondary font-medium">Bursa Acuan Real-Time</span>
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="calc-category-group">
+                                    <button class="calc-btn active flex items-start gap-3 p-3.5 rounded-lg border border-primary bg-surface-container-low text-left transition-all" data-rate="4500" data-unit="kg" type="button">
+                                        <div class="w-8 h-8 rounded border border-outline-variant bg-white flex items-center justify-center shrink-0 text-primary">
+                                            <span class="material-symbols-outlined text-[18px]">local_drink</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-xs font-semibold block text-primary">Plastik PET (Botol Bening)</span>
+                                            <span class="text-xs text-on-surface-variant mt-0.5 block">Rp 4.500 / kg</span>
+                                        </div>
+                                    </button>
+                                    <button class="calc-btn flex items-start gap-3 p-3.5 rounded-lg border border-outline-variant bg-white hover:bg-surface-container-low text-left transition-all" data-rate="2800" data-unit="kg" type="button">
+                                        <div class="w-8 h-8 rounded border border-outline-variant bg-white flex items-center justify-center shrink-0 text-primary">
+                                            <span class="material-symbols-outlined text-[18px]">inventory_2</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-xs font-semibold block text-primary">Kardus &amp; Kertas Campur</span>
+                                            <span class="text-xs text-on-surface-variant mt-0.5 block">Rp 2.800 / kg</span>
+                                        </div>
+                                    </button>
+                                    <button class="calc-btn flex items-start gap-3 p-3.5 rounded-lg border border-outline-variant bg-white hover:bg-surface-container-low text-left transition-all" data-rate="12000" data-unit="kg" type="button">
+                                        <div class="w-8 h-8 rounded border border-outline-variant bg-white flex items-center justify-center shrink-0 text-primary">
+                                            <span class="material-symbols-outlined text-[18px]">hardware</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-xs font-semibold block text-primary">Logam &amp; Kaleng Besi</span>
+                                            <span class="text-xs text-on-surface-variant mt-0.5 block">Rp 12.000 / kg</span>
+                                        </div>
+                                    </button>
+                                    <button class="calc-btn flex items-start gap-3 p-3.5 rounded-lg border border-outline-variant bg-white hover:bg-surface-container-low text-left transition-all" data-rate="7000" data-unit="Ltr" type="button">
+                                        <div class="w-8 h-8 rounded border border-outline-variant bg-white flex items-center justify-center shrink-0 text-primary">
+                                            <span class="material-symbols-outlined text-[18px]">oil_barrel</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-xs font-semibold block text-primary">Minyak Jelantah (UCO)</span>
+                                            <span class="text-xs text-on-surface-variant mt-0.5 block">Rp 7.000 / Liter</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <label class="text-xs font-semibold text-primary uppercase tracking-wider" for="weightRange">
+                                        2. Estimasi Berat / Volume Setor
+                                    </label>
+                                    <div class="flex items-baseline gap-1 text-sm font-semibold text-primary">
+                                        <span class="font-mono text-base" id="weightDisplay">15</span>
+                                        <span class="text-xs uppercase text-on-surface-variant" id="unitDisplay">kg</span>
+                                    </div>
+                                </div>
+                                <div class="py-2">
+                                    <input class="w-full h-1.5 bg-surface-container-high rounded cursor-pointer appearance-none" id="weightRange" max="100" min="1" type="range" value="15"/>
+                                </div>
+                                <div class="flex justify-between text-[11px] text-on-surface-variant mt-1">
+                                    <span>Minimal: 1 kg</span>
+                                    <span>Rata-rata warga: 25 kg</span>
+                                    <span>100 kg</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Result Box -->
+                        <div class="lg:col-span-5 rounded-lg bg-surface-container-low border border-outline-variant p-6 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between pb-3 border-b border-outline-variant">
+                                    <span class="text-[11px] uppercase tracking-wider font-semibold text-secondary">Hasil Simulasi Bersih</span>
+                                    <span class="text-[10px] font-mono text-on-surface-variant">0% Potongan</span>
+                                </div>
+                                <p class="text-xs text-on-surface-variant mt-3 font-light">Estimasi dana langsung masuk ke saldo rekening nasabah:</p>
+                                <div class="my-6 text-center py-6 px-4 bg-white border border-outline-variant rounded-lg">
+                                    <span class="text-[11px] uppercase font-semibold text-on-surface-variant tracking-wider block">Potensi Saldo Cair</span>
+                                    <div class="font-headline-lg text-3xl sm:text-4xl text-primary font-normal mt-1" id="totalEstimation">Rp 67.500</div>
+                                    <div class="mt-2 text-xs text-secondary font-light" id="co2ImpactText">Setara ~13.5 kg reduksi emisi karbon</div>
+                                </div>
+                            </div>
+                            <div>
+                                <a class="w-full py-3 px-4 rounded-lg bg-primary text-white text-xs font-semibold uppercase tracking-wider text-center hover:bg-primary-container transition-all flex items-center justify-center gap-2" href="#cara-kerja">
+                                    <span>Jadwalkan Setor Sekarang</span>
+                                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                                </a>
+                                <p class="text-[10px] text-center text-on-surface-variant mt-2 font-light">
+                                    *Harga acuan terintegrasi bursa daur ulang nasional. Bebas biaya penimbangan.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4 LANGKAH MUDAH (Clean Minimal Stepper) -->
+        <section class="w-full px-6 sm:px-10 py-20 sm:py-24 border-b border-outline-variant bg-white" id="cara-kerja">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-[11px] font-semibold text-secondary uppercase tracking-widest block mb-2">Alur Terintegrasi</span>
+                    <h2 class="font-headline-lg text-3xl sm:text-4xl text-primary font-normal">
+                        4 Langkah Mengubah Sampah Jadi Saldo
+                    </h2>
+                    <p class="text-sm text-on-surface-variant mt-3 font-light leading-relaxed">
+                        Sistem ARUNA dirancang transparan dan tanpa ribet, langsung dari depan pintu rumah Anda hingga dana masuk ke saldo rekening.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="flex flex-col border-t border-primary pt-5">
+                        <span class="font-mono text-xs font-semibold text-secondary mb-3">01</span>
+                        <h3 class="text-base font-semibold text-primary mb-2">Pilah dari Rumah</h3>
+                        <p class="text-xs text-on-surface-variant leading-relaxed font-light mb-4">
+                            Pisahkan botol plastik, kardus/karton, kaleng logam, dan jelantah dalam wadah terpisah dalam kondisi kering.
+                        </p>
+                        <div class="mt-auto text-[11px] text-secondary font-medium flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-[14px]">check</span>
+                            Panduan pilah gratis di web
+                        </div>
+                    </div>
+                    <div class="flex flex-col border-t border-primary pt-5">
+                        <span class="font-mono text-xs font-semibold text-secondary mb-3">02</span>
+                        <h3 class="text-base font-semibold text-primary mb-2">Drop Point / Jemput</h3>
+                        <p class="text-xs text-on-surface-variant leading-relaxed font-light mb-4">
+                            Bawa ke bank sampah terdekat atau gunakan layanan penjemputan armada ARUNA gratis untuk kuota minimal 10 kg.
+                        </p>
+                        <div class="mt-auto text-[11px] text-secondary font-medium flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-[14px]">check</span>
+                            Timbangan IoT Bluetooth
+                        </div>
+                    </div>
+                    <div class="flex flex-col border-t border-primary pt-5">
+                        <span class="font-mono text-xs font-semibold text-secondary mb-3">03</span>
+                        <h3 class="text-base font-semibold text-primary mb-2">Sinkronisasi Otomatis</h3>
+                        <p class="text-xs text-on-surface-variant leading-relaxed font-light mb-4">
+                            Data berat dan rupiah langsung masuk ke sistem cloud seketika. Notifikasi ringkasan langsung terkirim ke WhatsApp.
+                        </p>
+                        <div class="mt-auto text-[11px] text-secondary font-medium flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-[14px]">check</span>
+                            WA Notifikasi Instan
+                        </div>
+                    </div>
+                    <div class="flex flex-col border-t border-primary pt-5">
+                        <span class="font-mono text-xs font-semibold text-secondary mb-3">04</span>
+                        <h3 class="text-base font-semibold text-primary mb-2">Tarik Saldo Bebas Biaya</h3>
+                        <p class="text-xs text-on-surface-variant leading-relaxed font-light mb-4">
+                            Tarik saldo kapan saja ke rekening bank (BCA, Mandiri, BRI) atau e-wallet (GoPay, OVO, ShopeePay) tanpa potongan admin.
+                        </p>
+                        <div class="mt-auto text-[11px] text-secondary font-medium flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-[14px]">check</span>
+                            0% Biaya Penarikan
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KATALOG HARGA SAMPAH (Clean Hairline Cards) -->
+        <section class="w-full px-6 sm:px-10 py-20 sm:py-24 border-b border-outline-variant bg-surface" id="katalog">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                    <div>
+                        <span class="text-[11px] font-semibold text-secondary uppercase tracking-widest block mb-2">Katalog Nilai Ekonomi</span>
+                        <h2 class="font-headline-lg text-3xl sm:text-4xl text-primary font-normal">
+                            Daftar Sampah Diterima &amp; Estimasi Harga
+                        </h2>
+                        <p class="text-sm text-on-surface-variant mt-2 font-light">
+                            Pembaruan harga berkala mengikuti bursa material industri nasional untuk kepastian harga tertinggi.
+                        </p>
+                    </div>
+                    <div class="text-[11px] font-mono text-on-surface-variant border border-outline-variant bg-white px-3 py-1.5 rounded self-start md:self-auto">
+                        Update: Hari Ini, 08:00 WIB
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Item 1 -->
+                    <div class="bg-white border border-outline-variant rounded-xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between pb-3 border-b border-outline-variant mb-4">
+                                <span class="text-[11px] uppercase tracking-wider font-semibold text-secondary">Plastik</span>
+                                <span class="text-[10px] text-secondary font-medium">Naik +5%</span>
+                            </div>
+                            <h3 class="text-base font-semibold text-primary mb-2">Botol &amp; Gelas Plastik</h3>
+                            <p class="text-xs text-on-surface-variant font-light mb-6 leading-relaxed">
+                                PET bening bersih, botol detergen HDPE, tutup galon, cup minuman tebal tanpa sisa cairan.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="p-3 bg-surface-container-low rounded border border-outline-variant mb-3">
+                                <span class="text-[10px] uppercase font-semibold text-on-surface-variant block">Harga Acuan:</span>
+                                <span class="text-base font-semibold text-primary">Rp 4.000 - Rp 5.200 /kg</span>
+                            </div>
+                            <p class="text-[11px] text-on-surface-variant font-light">Tip: Lepaskan label &amp; pipihkan botol.</p>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="bg-white border border-outline-variant rounded-xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between pb-3 border-b border-outline-variant mb-4">
+                                <span class="text-[11px] uppercase tracking-wider font-semibold text-secondary">Kertas &amp; Karton</span>
+                                <span class="text-[10px] text-on-surface-variant font-medium">Stabil</span>
+                            </div>
+                            <h3 class="text-base font-semibold text-primary mb-2">Kardus &amp; Kertas Arsip</h3>
+                            <p class="text-xs text-on-surface-variant font-light mb-6 leading-relaxed">
+                                Kardus cokelat tebal packing, kertas arsip HVS, koran lama, buku dan majalah bekas daur ulang.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="p-3 bg-surface-container-low rounded border border-outline-variant mb-3">
+                                <span class="text-[10px] uppercase font-semibold text-on-surface-variant block">Harga Acuan:</span>
+                                <span class="text-base font-semibold text-primary">Rp 2.500 - Rp 3.400 /kg</span>
+                            </div>
+                            <p class="text-[11px] text-on-surface-variant font-light">Tip: Pastikan kering &amp; ikat rapi.</p>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="bg-white border border-outline-variant rounded-xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between pb-3 border-b border-outline-variant mb-4">
+                                <span class="text-[11px] uppercase tracking-wider font-semibold text-secondary">Logam &amp; Kaleng</span>
+                                <span class="text-[10px] text-secondary font-medium">Naik +8%</span>
+                            </div>
+                            <h3 class="text-base font-semibold text-primary mb-2">Aluminium &amp; Besi</h3>
+                            <p class="text-xs text-on-surface-variant font-light mb-6 leading-relaxed">
+                                Kaleng minuman ringan aluminium, kaleng biskuit/susu, perkakas besi tua, kawat tembaga kabel.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="p-3 bg-surface-container-low rounded border border-outline-variant mb-3">
+                                <span class="text-[10px] uppercase font-semibold text-on-surface-variant block">Harga Acuan:</span>
+                                <span class="text-base font-semibold text-primary">Rp 8.000 - Rp 14.500 /kg</span>
+                            </div>
+                            <p class="text-[11px] text-on-surface-variant font-light">Tip: Bilas sisa cairan manis.</p>
+                        </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="bg-white border border-outline-variant rounded-xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between pb-3 border-b border-outline-variant mb-4">
+                                <span class="text-[11px] uppercase tracking-wider font-semibold text-secondary">Minyak Jelantah</span>
+                                <span class="text-[10px] text-secondary font-medium">Tinggi</span>
+                            </div>
+                            <h3 class="text-base font-semibold text-primary mb-2">Used Cooking Oil (UCO)</h3>
+                            <p class="text-xs text-on-surface-variant font-light mb-6 leading-relaxed">
+                                Minyak goreng bekas pakai rumah tangga &amp; resto untuk diolah menjadi green energy biodiesel.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="p-3 bg-surface-container-low rounded border border-outline-variant mb-3">
+                                <span class="text-[10px] uppercase font-semibold text-on-surface-variant block">Harga Acuan:</span>
+                                <span class="text-base font-semibold text-primary">Rp 6.500 - Rp 8.000 /Ltr</span>
+                            </div>
+                            <p class="text-[11px] text-on-surface-variant font-light">Tip: Saring sisa remah makanan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KEUNGGULAN ARUNA SECTION -->
+        <section class="w-full px-6 sm:px-10 py-20 sm:py-24 border-b border-outline-variant bg-white" id="keunggulan">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-[11px] font-semibold text-secondary uppercase tracking-widest block mb-2">Standar Eco-Fintech Terpercaya</span>
+                    <h2 class="font-headline-lg text-3xl sm:text-4xl text-primary font-normal">
+                        Mengapa Menabung Sampah di ARUNA?
+                    </h2>
+                    <p class="text-sm text-on-surface-variant mt-3 font-light leading-relaxed">
+                        Standar transparansi perbankan digital kami aplikasikan ke sistem daur ulang agar warga merasa aman, dihargai, dan terlindungi.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="p-6 border border-outline-variant rounded-xl bg-surface-container-low/40">
+                        <span class="material-symbols-outlined text-[24px] text-secondary mb-4 block">price_check</span>
+                        <h3 class="text-base font-semibold text-primary mb-2">Harga Beli Adil &amp; Stabil</h3>
+                        <p class="text-xs text-on-surface-variant leading-relaxed font-light">
+                            Terkoneksi langsung dengan jaringan pabrik daur ulang resmi tanpa perantara calo, menjamin nasabah mendapatkan nilai tukar tertinggi.
+                        </p>
+                    </div>
+                    <div class="p-6 border border-outline-variant rounded-xl bg-surface-container-low/40">
+                        <span class="material-symbols-outlined text-[24px] text-secondary mb-4 block">sensors</span>
+                        <h3 class="text-base font-semibold text-primary mb-2">IoT Timbangan Digital</h3>
+                        <p class="text-xs text-on-surface-variant leading-relaxed font-light">
+                            Timbangan digital dengan sensor presisi 2 desimal yang sinkron langsung ke smartphone. Tidak ada manipulasi timbangan manual.
+                        </p>
+                    </div>
+                    <div class="p-6 border border-outline-variant rounded-xl bg-surface-container-low/40">
+                        <span class="material-symbols-outlined text-[24px] text-secondary mb-4 block">menu_book</span>
+                        <h3 class="text-base font-semibold text-primary mb-2">Buku Tabungan Online</h3>
+                        <p class="text-xs text-on-surface-variant leading-relaxed font-light">
+                            Catatan mutasi saldo dan riwayat setoran tersimpan rapi selamanya layaknya mobile banking. Transparan dan dapat diunduh kapan saja.
+                        </p>
+                    </div>
+                    <div class="p-6 border border-outline-variant rounded-xl bg-surface-container-low/40">
+                        <span class="material-symbols-outlined text-[24px] text-secondary mb-4 block">diversity_3</span>
+                        <h3 class="text-base font-semibold text-primary mb-2">Pemberdayaan RT/RW</h3>
+                        <p class="text-xs text-on-surface-variant leading-relaxed font-light">
+                            Membantu operasional kas warga, arisan lingkungan, dan gerakan sedekah sampah untuk pemukiman asri dan guyub rukun.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONI NASABAH -->
+        <section class="w-full px-6 sm:px-10 py-20 sm:py-24 border-b border-outline-variant bg-surface" id="testimoni">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-[11px] font-semibold text-secondary uppercase tracking-widest block mb-2">Cerita Nyata Nasabah</span>
+                    <h2 class="font-headline-lg text-3xl sm:text-4xl text-primary font-normal">
+                        Kata Mereka yang Telah Merasakan Manfaatnya
+                    </h2>
+                    <p class="text-sm text-on-surface-variant mt-3 font-light leading-relaxed">
+                        Dengarkan kisah warga, pegiat komunitas, dan pengurus rukun warga yang membuktikan sampah bisa menghasilkan berkah.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-7 bg-white border border-outline-variant rounded-xl flex flex-col justify-between">
+                        <p class="font-headline-sm text-base sm:text-lg text-primary font-normal leading-relaxed italic mb-8">
+                            "Dulu botol plastik bekas minuman anak-anak cuma numpuk di garasi dan dibakar. Sejak ikut ARUNA, tiap bulan bisa cair Rp 150.000 ke saldo e-wallet. Lumayan banget buat nambah uang belanja sayur!"
+                        </p>
+                        <div class="pt-4 border-t border-outline-variant flex items-center justify-between">
+                            <div>
+                                <p class="text-xs font-semibold text-primary">Siti Wardah (42 th)</p>
+                                <p class="text-[11px] text-on-surface-variant font-light">Ibu Rumah Tangga, Jakarta Timur</p>
+                            </div>
+                            <span class="text-[11px] font-mono text-secondary">Verified</span>
+                        </div>
+                    </div>
+                    <div class="p-7 bg-white border border-outline-variant rounded-xl flex flex-col justify-between">
+                        <p class="font-headline-sm text-base sm:text-lg text-primary font-normal leading-relaxed italic mb-8">
+                            "Sistem timbangan digital ARUNA sangat transparan, warga tidak ada yang komplain soal berat. Kas operasional RW 06 kami sekarang surplus Rp 2,8 juta per bulan dari akumulasi sampah warga satu komplek."
+                        </p>
+                        <div class="pt-4 border-t border-outline-variant flex items-center justify-between">
+                            <div>
+                                <p class="text-xs font-semibold text-primary">Bambang Susanto (56 th)</p>
+                                <p class="text-[11px] text-on-surface-variant font-light">Ketua RW 06, Tangerang Selatan</p>
+                            </div>
+                            <span class="text-[11px] font-mono text-secondary">Verified</span>
+                        </div>
+                    </div>
+                    <div class="p-7 bg-white border border-outline-variant rounded-xl flex flex-col justify-between">
+                        <p class="font-headline-sm text-base sm:text-lg text-primary font-normal leading-relaxed italic mb-8">
+                            "Dashboard jejak karbon ARUNA sangat memotivasi generasi muda di kampus. Kami tahu persis pohon yang terselamatkan dari tiap kilo kertas laporan yang kami kumpulkan bersama."
+                        </p>
+                        <div class="pt-4 border-t border-outline-variant flex items-center justify-between">
+                            <div>
+                                <p class="text-xs font-semibold text-primary">Dian Fakhira (23 th)</p>
+                                <p class="text-[11px] text-on-surface-variant font-light">Aktivis Lingkungan &amp; Mahasiswi</p>
+                            </div>
+                            <span class="text-[11px] font-mono text-secondary">Verified</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DOKUMENTASI & GALERI KEGIATAN -->
+        <section class="w-full px-6 sm:px-10 py-20 sm:py-24 border-b border-outline-variant bg-white" id="galeri">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+                    <div>
+                        <span class="text-[11px] font-semibold text-secondary uppercase tracking-widest block mb-2">Dokumentasi &amp; Jejak Lapangan</span>
+                        <h2 class="font-headline-lg text-3xl sm:text-4xl text-primary font-normal">
+                            Aktivitas Komunitas &amp; Operasional ARUNA
+                        </h2>
+                        <p class="text-sm text-on-surface-variant mt-2 font-light max-w-xl leading-relaxed">
+                            Transparansi kerja nyata dari penimbangan di lingkungan warga, edukasi pemilahan berkala, hingga rantai logistik daur ulang terintegrasi.
+                        </p>
+                    </div>
+                    <div class="inline-flex items-center gap-2 text-xs font-medium text-secondary border border-outline-variant px-3 py-1.5 rounded bg-surface-container-low self-start md:self-auto">
+                        <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                        <span>Terpantau di 118 Unit Wilayah</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Card 1 -->
+                    <div class="bg-surface rounded-xl border border-outline-variant overflow-hidden flex flex-col justify-between group hover:border-primary transition-all">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-[10px] font-semibold uppercase tracking-wider text-secondary bg-secondary-fixed/50 px-2 py-0.5 rounded">Operasional Warga</span>
+                                <span class="text-[11px] font-mono text-on-surface-variant">RT 04 / RW 06</span>
+                            </div>
+                            <div class="w-full h-48 rounded-lg overflow-hidden mb-4 border border-outline-variant/60">
+                                <img alt="Penimbangan Presisi Digital di RT 04" class="w-full h-full object-cover" src="{{ asset('uploads/beranda/galeri-penimbangan-rt04.jpg') }}"/>
+                            </div>
+                            <h3 class="text-base font-semibold text-primary mb-2">Penimbangan Presisi Digital di RT 04</h3>
+                            <p class="text-xs text-on-surface-variant font-light leading-relaxed">
+                                Warga bersama petugas loket menimbang kardus dan botol plastik secara terbuka. Data berat terhubung otomatis via Bluetooth ke smartphone nasabah.
+                            </p>
+                        </div>
+                        <div class="px-6 py-3.5 bg-surface-container-low/50 border-t border-outline-variant flex items-center justify-between text-[11px] text-on-surface-variant">
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">event</span> 12 Okt 2024</span>
+                            <span>Jakarta Timur</span>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-surface rounded-xl border border-outline-variant overflow-hidden flex flex-col justify-between group hover:border-primary transition-all">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-[10px] font-semibold uppercase tracking-wider text-secondary bg-secondary-fixed/50 px-2 py-0.5 rounded">Finansial &amp; Edukasi</span>
+                                <span class="text-[11px] font-mono text-on-surface-variant">Sesi Komunitas</span>
+                            </div>
+                            <div class="w-full h-48 rounded-lg overflow-hidden mb-4 border border-outline-variant/60">
+                                <img alt="Pencairan Saldo &amp; Edukasi Pilah" class="w-full h-full object-cover" src="{{ asset('uploads/beranda/galeri-pencairan-edukasi.jpg') }}"/>
+                            </div>
+                            <h3 class="text-base font-semibold text-primary mb-2">Pencairan Saldo &amp; Edukasi Pilah</h3>
+                            <p class="text-xs text-on-surface-variant font-light leading-relaxed">
+                                Sosialisasi pemilahan material kering dan demonstrasi pencairan saldo instan ke dompet digital (GoPay &amp; OVO) bagi ibu-ibu PKK.
+                            </p>
+                        </div>
+                        <div class="px-6 py-3.5 bg-surface-container-low/50 border-t border-outline-variant flex items-center justify-between text-[11px] text-on-surface-variant">
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">event</span> 18 Okt 2024</span>
+                            <span>Tangerang Selatan</span>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="bg-surface rounded-xl border border-outline-variant overflow-hidden flex flex-col justify-between group hover:border-primary transition-all">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-[10px] font-semibold uppercase tracking-wider text-secondary bg-secondary-fixed/50 px-2 py-0.5 rounded">Logistik Pabrik</span>
+                                <span class="text-[11px] font-mono text-on-surface-variant">Armada 03</span>
+                            </div>
+                            <div class="w-full h-48 rounded-lg overflow-hidden mb-4 border border-outline-variant/60">
+                                <img alt="Pengangkutan Logistik Berkelanjutan" class="w-full h-full object-cover" src="{{ asset('uploads/beranda/galeri-logistik-armada.jpg') }}"/>
+                            </div>
+                            <h3 class="text-base font-semibold text-primary mb-2">Pengangkutan Logistik Berkelanjutan</h3>
+                            <p class="text-xs text-on-surface-variant font-light leading-relaxed">
+                                Armada penjemputan ARUNA mengangkut lebih dari 1,4 ton anorganik terpilah dari bank unit pemukiman langsung ke fasilitas daur ulang rekanan.
+                            </p>
+                        </div>
+                        <div class="px-6 py-3.5 bg-surface-container-low/50 border-t border-outline-variant flex items-center justify-between text-[11px] text-on-surface-variant">
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">event</span> 25 Okt 2024</span>
+                            <span>Sentra Pengolahan</span>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="bg-surface rounded-xl border border-outline-variant overflow-hidden flex flex-col justify-between group hover:border-primary transition-all">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-[10px] font-semibold uppercase tracking-wider text-secondary bg-secondary-fixed/50 px-2 py-0.5 rounded">Pemberdayaan</span>
+                                <span class="text-[11px] font-mono text-on-surface-variant">Kelas Terbuka</span>
+                            </div>
+                            <div class="w-full h-48 rounded-lg overflow-hidden mb-4 border border-outline-variant/60">
+                                <img alt="Workshop Daur Ulang Mandiri" class="w-full h-full object-cover" src="{{ asset('uploads/beranda/galeri-workshop-daur-ulang.jpg') }}"/>
+                            </div>
+                            <h3 class="text-base font-semibold text-primary mb-2">Workshop Daur Ulang Mandiri</h3>
+                            <p class="text-xs text-on-surface-variant font-light leading-relaxed">
+                                Pelatihan pengumpulan minyak jelantah (UCO) rumah tangga dan pembentukan manajemen bank sampah mandiri berbasis pengurus lingkungan rukun warga.
+                            </p>
+                        </div>
+                        <div class="px-6 py-3.5 bg-surface-container-low/50 border-t border-outline-variant flex items-center justify-between text-[11px] text-on-surface-variant">
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">event</span> 02 Nov 2024</span>
+                            <span>Balai Warga Bekasi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section class="w-full px-6 sm:px-10 py-20 sm:py-24 border-b border-outline-variant bg-surface" id="faq">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-[11px] font-semibold text-secondary uppercase tracking-widest block mb-2">Tanya Jawab Nasabah</span>
+                    <h2 class="font-headline-lg text-3xl sm:text-4xl text-primary font-normal">
+                        Pertanyaan yang Sering Diajukan
+                    </h2>
+                    <p class="text-sm text-on-surface-variant mt-3 font-light leading-relaxed">
+                        Pelajari seluk-beluk mekanisme registrasi, penimbangan, hingga pencairan saldo bank sampah digital ARUNA.
+                    </p>
+                </div>
+
+                <!-- Accordion Group -->
+                <div class="bg-white border border-outline-variant rounded-xl divide-y divide-outline-variant overflow-hidden shadow-[0_4px_20px_rgba(0,34,23,0.02)] mb-10">
+                    <!-- Item 1 (Open by default) -->
+                    <details class="group p-6" open>
+                        <summary class="flex items-center justify-between cursor-pointer list-none gap-4 text-left">
+                            <h3 class="text-base font-semibold text-primary">
+                                Bagaimana cara membuka rekening tabungan bank sampah di ARUNA?
+                            </h3>
+                            <span class="material-symbols-outlined text-secondary transition-transform duration-300 group-open:rotate-180 shrink-0 text-[20px]">
+                                expand_more
+                            </span>
+                        </summary>
+                        <p class="text-xs sm:text-sm text-on-surface-variant mt-4 font-light leading-relaxed pr-8">
+                            Pendaftaran akun ARUNA sepenuhnya gratis dan dapat diselesaikan dalam 2 menit. Anda cukup menekan tombol 'Gabung Nasabah', mengisi nama, nomor WhatsApp aktif, dan alamat domisili. Setelah verifikasi OTP, Anda langsung mendapatkan nomor ID Buku Rekening Digital (ARN-XXXX) dan dapat segera menyetor sampah ke drop point atau mengajukan penjemputan.
+                        </p>
+                    </details>
+                    <!-- Item 2 -->
+                    <details class="group p-6">
+                        <summary class="flex items-center justify-between cursor-pointer list-none gap-4 text-left">
+                            <h3 class="text-base font-semibold text-primary">
+                                Apa saja jenis sampah yang diterima dan bagaimana kriteria pemilahannya?
+                            </h3>
+                            <span class="material-symbols-outlined text-secondary transition-transform duration-300 group-open:rotate-180 shrink-0 text-[20px]">
+                                expand_more
+                            </span>
+                        </summary>
+                        <p class="text-xs sm:text-sm text-on-surface-variant mt-4 font-light leading-relaxed pr-8">
+                            Kami menerima 4 kategori utama anorganik bernilai ekonomis: Plastik (botol PET, cup plastik, galon, botol detergen HDPE), Kertas &amp; Karton (kardus tebal, duplex, kertas arsip, majalah), Logam &amp; Kaleng (aluminium beverageware, besi tua, tembaga), serta Minyak Jelantah (Used Cooking Oil). Pastikan material dalam keadaan kering, bebas residu makanan basah, dan botol dipipihkan untuk optimalisasi volume.
+                        </p>
+                    </details>
+                    <!-- Item 3 -->
+                    <details class="group p-6">
+                        <summary class="flex items-center justify-between cursor-pointer list-none gap-4 text-left">
+                            <h3 class="text-base font-semibold text-primary">
+                                Kapan dan bagaimana saldo tabungan sampah dapat dicairkan?
+                            </h3>
+                            <span class="material-symbols-outlined text-secondary transition-transform duration-300 group-open:rotate-180 shrink-0 text-[20px]">
+                                expand_more
+                            </span>
+                        </summary>
+                        <p class="text-xs sm:text-sm text-on-surface-variant mt-4 font-light leading-relaxed pr-8">
+                            Saldo masuk seketika (real-time) begitu proses penimbangan digital selesai diverifikasi. Anda dapat mencairkan saldo kapan pun tanpa periode penguncian minimum melalui dashboard web nasabah ke rekening bank (BCA, Mandiri, BRI, BNI) maupun dompet digital ternama (GoPay, OVO, ShopeePay, DANA) dengan 0% biaya potongan admin.
+                        </p>
+                    </details>
+                    <!-- Item 4 -->
+                    <details class="group p-6">
+                        <summary class="flex items-center justify-between cursor-pointer list-none gap-4 text-left">
+                            <h3 class="text-base font-semibold text-primary">
+                                Apakah ada minimal berat setoran sampah untuk penjemputan ke rumah?
+                            </h3>
+                            <span class="material-symbols-outlined text-secondary transition-transform duration-300 group-open:rotate-180 shrink-0 text-[20px]">
+                                expand_more
+                            </span>
+                        </summary>
+                        <p class="text-xs sm:text-sm text-on-surface-variant mt-4 font-light leading-relaxed pr-8">
+                            Untuk penyerahan langsung ke Drop Point mitra RT/RW tidak ada batas minimum (mulai dari 1 kg diterima). Sedangkan untuk layanan penjemputan gratis armada kendaraan listrik/logistik ARUNA ke alamat rumah, kuota akumulasi minimum adalah 10 kg (bisa gabungan berbagai kategori jenis sampah).
+                        </p>
+                    </details>
+                    <!-- Item 5 -->
+                    <details class="group p-6">
+                        <summary class="flex items-center justify-between cursor-pointer list-none gap-4 text-left">
+                            <h3 class="text-base font-semibold text-primary">
+                                Apakah pengurus RT/RW atau komunitas bisa mendaftarkan unit secara kolektif?
+                            </h3>
+                            <span class="material-symbols-outlined text-secondary transition-transform duration-300 group-open:rotate-180 shrink-0 text-[20px]">
+                                expand_more
+                            </span>
+                        </summary>
+                        <p class="text-xs sm:text-sm text-on-surface-variant mt-4 font-light leading-relaxed pr-8">
+                            Tentu bisa. Kami menyediakan skema Rekening Unit Komunitas (Kemitraan RT/RW &amp; Perkantoran) lengkap dengan fasilitas peminjaman timbangan digital IoT ARUNA, dashboard pemantauan kas surplus warga, serta pendampingan edukasi pilah perdana oleh Duta ARUNA di wilayah Anda.
+                        </p>
+                    </details>
+                </div>
+
+                <!-- Help card banner -->
+                <div class="rounded-xl border border-outline-variant bg-white p-6 sm:p-7 flex flex-col sm:flex-row items-center justify-between gap-5">
+                    <div class="flex items-center gap-4 text-center sm:text-left">
+                        <div class="w-10 h-10 rounded-full bg-secondary-fixed/50 text-secondary flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[22px]">support_agent</span>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold text-primary">Punya pertanyaan lain seputar sistem ARUNA?</h4>
+                            <p class="text-xs text-on-surface-variant font-light mt-0.5">Tim layanan nasabah kami siap membantu Anda setiap Senin–Sabtu (08.00–17.00 WIB).</p>
+                        </div>
+                    </div>
+                    <a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-outline-variant bg-surface-container-low hover:border-primary text-primary text-xs font-semibold uppercase tracking-wider transition-all shrink-0" href="https://wa.me/6281289001234" target="_blank" rel="noopener">
+                        <span>Hubungi WhatsApp Support</span>
+                        <span class="material-symbols-outlined text-[16px]">chat</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA CLOSING BANNER -->
+        <section class="w-full px-6 sm:px-10 py-20 sm:py-24 bg-primary text-white" id="daftar">
+            <div class="max-w-5xl mx-auto text-center">
+                <span class="text-[11px] font-semibold text-primary-fixed-dim uppercase tracking-widest block mb-4">Mulai Langkah Kecilmu Hari Ini</span>
+                <h2 class="font-headline-lg text-3xl sm:text-4xl lg:text-5xl font-normal leading-tight text-white mb-6">
+                    Siap Mengubah Sampah Menjadi Tabungan Masa Depan?
+                </h2>
+                <p class="text-sm sm:text-base text-primary-fixed-dim font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+                    Bergabung bersama ribuan warga cerdas yang telah menikmati kemudahan setor sampah berinsentif rupiah. Bebas biaya pendaftaran seumur hidup.
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-4">
+                    <a class="inline-flex items-center gap-2 rounded-lg bg-white px-7 py-3.5 text-xs sm:text-sm font-semibold text-primary hover:bg-surface-container-low transition-all" href="{{ route('register') }}">
+                        <span>Daftar Nasabah Baru</span>
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                    </a>
+                    <a class="inline-flex items-center gap-2 rounded-lg border border-white/30 px-6 py-3.5 text-xs sm:text-sm font-medium text-white hover:border-white transition-all" href="https://wa.me/6281289001234" target="_blank" rel="noopener">
+                        <span>Kemitraan RT/RW &amp; Kantor</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="w-full bg-white border-t border-outline-variant text-on-surface">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-14">
+            <div class="lg:col-span-2 pr-0 lg:pr-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="{{ asset('storage/resource/icon.png') }}" alt="ARUNA" class="w-8 h-8 object-contain">
+                    <span class="font-headline-md text-lg font-semibold text-primary leading-none">ARUNA</span>
+                </div>
+                <p class="text-xs text-on-surface-variant max-w-sm mb-6 leading-relaxed font-light">
+                    Platform pengelolaan sirkular terintegrasi untuk mentransformasi sampah terpilah rumah tangga dan perkantoran menjadi nilai ekonomi bernilai tinggi demi kelestarian bumi nusantara.
+                </p>
+                <div class="flex items-center gap-2 text-on-surface-variant text-xs">
+                    <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                    <span>Sistem Berkelanjutan Terbuka</span>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-xs font-semibold text-primary uppercase tracking-wider mb-4">Layanan</h4>
+                <ul class="flex flex-col gap-2.5 text-xs text-on-surface-variant font-light">
+                    <li><a class="hover:text-primary transition-colors" href="{{ route('register') }}">Setor Sampah Rumah Tangga</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="https://wa.me/6281289001234" target="_blank" rel="noopener">Kemitraan Komersial &amp; Kantor</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#cara-kerja">Penjemputan Armada Terjadwal</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#kalkulator">Tukar Poin &amp; Saldo E-Wallet</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xs font-semibold text-primary uppercase tracking-wider mb-4">Edukasi &amp; Info</h4>
+                <ul class="flex flex-col gap-2.5 text-xs text-on-surface-variant font-light">
+                    <li><a class="hover:text-primary transition-colors" href="#cara-kerja">Panduan Pilah Sampah</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#kalkulator">Kalkulator Jejak Karbon</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#metrik">Laporan Dampak Ekologis</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#galeri">Program Duta Komunitas</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xs font-semibold text-primary uppercase tracking-wider mb-4">Drop Point &amp; Kantor</h4>
+                <div class="flex flex-col gap-2.5 text-xs text-on-surface-variant font-light">
+                    <p>Kawasan Hijau Terpadu No. 12, Jakarta</p>
+                    <p>+62 21 8900 1234</p>
+                    <p>Senin - Sabtu: 08:00 - 17:00 WIB</p>
+                </div>
+            </div>
+        </div>
+        <div class="pt-8 border-t border-outline-variant flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-on-surface-variant font-light">
+            <p>&copy; {{ date('Y') }} ARUNA Eco Solusi Nusantara. Hak Cipta Dilindungi.</p>
+            <div class="flex items-center gap-6">
+                <a class="hover:text-primary transition-colors" href="#">Kebijakan Privasi</a>
+                <a class="hover:text-primary transition-colors" href="#">Syarat &amp; Ketentuan</a>
+                <a class="hover:text-primary transition-colors" href="#">Sertifikasi Daur Ulang</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top -->
+<button id="backToTop" type="button" aria-label="Kembali ke atas"
+        class="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-primary text-white shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-primary-container [&.visible]:opacity-100 [&.visible]:visible">
+    <span class="material-symbols-outlined text-[20px]">arrow_upward</span>
+</button>
+
+<script>
+    (function () {
+        var activeRate = 4500;
+        var activeUnit = 'kg';
+        var weightInput = document.getElementById('weightRange');
+        var weightDisplay = document.getElementById('weightDisplay');
+        var unitDisplay = document.getElementById('unitDisplay');
+        var totalEstimation = document.getElementById('totalEstimation');
+        var co2ImpactText = document.getElementById('co2ImpactText');
+        var categoryBtns = document.querySelectorAll('#calc-category-group .calc-btn');
+
+        function calculate() {
+            if (!weightInput || !totalEstimation) return;
+            var weight = parseFloat(weightInput.value) || 0;
+            var total = weight * activeRate;
+            var co2Saved = (weight * 0.9).toFixed(1);
+
+            var formatted = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                maximumFractionDigits: 0
+            }).format(total);
+
+            if (weightDisplay) weightDisplay.textContent = weight;
+            if (unitDisplay) unitDisplay.textContent = activeUnit;
+            if (totalEstimation) totalEstimation.textContent = formatted.replace(/\s+/g, ' ');
+            if (co2ImpactText) co2ImpactText.textContent = 'Setara ~' + co2Saved + ' kg reduksi emisi karbon';
+        }
+
+        if (weightInput) {
+            weightInput.addEventListener('input', calculate);
+        }
+
+        categoryBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                categoryBtns.forEach(function (b) {
+                    b.classList.remove('border-primary', 'bg-surface-container-low');
+                    b.classList.add('border-outline-variant', 'bg-white');
+                });
+
+                this.classList.add('border-primary', 'bg-surface-container-low');
+                this.classList.remove('border-outline-variant', 'bg-white');
+
+                activeRate = parseFloat(this.getAttribute('data-rate')) || 0;
+                activeUnit = this.getAttribute('data-unit') || 'kg';
+                calculate();
+            });
+        });
+
+        calculate();
+
+        // Subtle mouse-tracking tilt effect for the hero card
+        var heroCard = document.getElementById('heroCardInteractive');
+        if (heroCard && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            var bounds;
+            function updateBounds() {
+                bounds = heroCard.getBoundingClientRect();
+            }
+            window.addEventListener('scroll', updateBounds);
+            window.addEventListener('resize', updateBounds);
+
+            heroCard.addEventListener('mouseenter', updateBounds);
+
+            heroCard.addEventListener('mousemove', function (e) {
+                if (!bounds) updateBounds();
+                var mouseX = e.clientX - bounds.left;
+                var mouseY = e.clientY - bounds.top;
+                var xPct = (mouseX / bounds.width) - 0.5;
+                var yPct = (mouseY / bounds.height) - 0.5;
+
+                // Delicately restrained angles (max ~4.5 degrees) for elegant editorial feel
+                var rotateX = (-yPct * 6.5).toFixed(2);
+                var rotateY = (xPct * 6.5).toFixed(2);
+
+                heroCard.style.transform = 'perspective(900px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-8px)';
+            });
+
+            heroCard.addEventListener('mouseleave', function () {
+                heroCard.style.transform = '';
+            });
+        }
+    })();
+
+    // ===== MOBILE NAV =====
+    (function () {
+        var toggle = document.getElementById('menuToggle');
+        var menu = document.getElementById('mobileMenu');
+        var icon = document.getElementById('menuIcon');
+
+        if (!toggle || !menu) return;
+
+        function closeMenu() {
+            menu.classList.add('hidden');
+            toggle.setAttribute('aria-expanded', 'false');
+            if (icon) icon.textContent = 'menu';
+        }
+
+        toggle.addEventListener('click', function () {
+            var isHidden = menu.classList.contains('hidden');
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                toggle.setAttribute('aria-expanded', 'true');
+                if (icon) icon.textContent = 'close';
+            } else {
+                closeMenu();
+            }
+        });
+
+        menu.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', closeMenu);
+        });
+
+        window.addEventListener('resize', function () {
+            if (window.innerWidth >= 1280) closeMenu();
+        });
+    })();
+
+    // ===== BACK TO TOP =====
+    (function () {
+        var backToTop = document.getElementById('backToTop');
+        if (!backToTop) return;
+
+        window.addEventListener('scroll', function () {
             if (window.scrollY > 500) {
                 backToTop.classList.add('visible');
             } else {
@@ -829,130 +1192,11 @@
             }
         });
 
-        // ===== MOBILE NAV =====
-        function toggleNav() {
-            const navLinks = document.getElementById('navLinks');
-            const isHidden = navLinks.classList.contains('max-lg:hidden');
-
-            if (isHidden) {
-                navLinks.classList.remove('max-lg:hidden');
-                navLinks.classList.add('!flex', '!flex-col', 'absolute', 'top-full', 'left-0', 'right-0', 'bg-white', 'p-6', 'rounded-b-2xl', 'shadow-2xl', 'gap-4', 'border-t', 'border-neutral-100');
-                navLinks.querySelectorAll('.nav-link-item').forEach(l => l.style.color = '#374151');
-                navbar.classList.add('menu-open');
-            } else {
-                navLinks.classList.add('max-lg:hidden');
-                navLinks.classList.remove('!flex', '!flex-col', 'absolute', 'top-full', 'left-0', 'right-0', 'bg-white', 'p-6', 'rounded-b-2xl', 'shadow-2xl', 'gap-4', 'border-t', 'border-neutral-100');
-                navLinks.querySelectorAll('.nav-link-item').forEach(l => l.style.color = '');
-                navbar.classList.remove('menu-open');
-            }
-            updateNavbarState();
-        }
-
-        // Close mobile nav when clicking a link
-        document.querySelectorAll('#navLinks a').forEach(link => {
-            link.addEventListener('click', () => {
-                const navLinks = document.getElementById('navLinks');
-                navLinks.classList.add('max-lg:hidden');
-                navLinks.classList.remove('!flex', '!flex-col', 'absolute', 'top-full', 'left-0', 'right-0', 'bg-white', 'p-6', 'rounded-b-2xl', 'shadow-2xl', 'gap-4', 'border-t', 'border-neutral-100');
-                navLinks.querySelectorAll('.nav-link-item').forEach(l => l.style.color = '');
-                navbar.classList.remove('menu-open');
-                updateNavbarState();
-            });
-        });
-
-        // ===== SCROLL TO TOP =====
-        function scrollToTop() {
+        backToTop.addEventListener('click', function () {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // ===== SCROLL ANIMATIONS =====
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            observer.observe(el);
         });
-
-        // ===== COUNTER ANIMATION =====
-        function animateCounters() {
-            const counters = document.querySelectorAll('.stat-number[data-target]');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const suffix = counter.querySelector('.text-2xl, .text-xl')?.textContent || '';
-                const duration = 2000;
-                const startTime = performance.now();
-
-                function updateCounter(currentTime) {
-                    const elapsed = currentTime - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
-
-                    // Easing function for smooth animation
-                    const easeOut = 1 - Math.pow(1 - progress, 3);
-                    const current = Math.floor(easeOut * target);
-
-                    counter.innerHTML = current.toLocaleString('id-ID') + '<span class="text-xl sm:text-2xl text-green-300">' + suffix + '</span>';
-
-                    if (progress < 1) {
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        counter.innerHTML = target.toLocaleString('id-ID') + '<span class="text-xl sm:text-2xl text-green-300">' + suffix + '</span>';
-                    }
-                }
-
-                requestAnimationFrame(updateCounter);
-            });
-        }
-
-        // Trigger counter animation when stats section is visible
-        const statsSection = document.querySelector('.stats-bg');
-        if (statsSection) {
-            const statsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateCounters();
-                        statsObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.3 });
-
-            statsObserver.observe(statsSection);
-        }
-
-        // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-
-                // Abaikan jika hanya "#"
-                if (href === '#') return;
-
-                e.preventDefault();
-
-                const target = document.querySelector(href);
-
-                if (target) {
-                    const headerOffset = 80;
-                    const elementPosition = target.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+    })();
+</script>
 </body>
+
 </html>

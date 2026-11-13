@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_standard" name="shell-type"/>
+<title>ARUNA — Bank Sampah Digital</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+        background-color: #faf9f5;
+        color: #1b1c1a;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      main > :first-child {
+        margin-top: 0 !important;
+      }
+      main > :last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    input[type=range] {
+      accent-color: #002217;
+    }
+
+    /* Subtle floating animation keyframes */
+    @keyframes subtleBobbing {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+    @keyframes subtleBobbingAlt {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-3.5px);
+      }
+    }
+
+    .float-bob-1 {
+      animation: subtleBobbing 3.8s ease-in-out infinite;
+    }
+    .float-bob-2 {
+      animation: subtleBobbingAlt 4.4s ease-in-out infinite 0.7s;
+    }
+    .float-bob-3 {
+      animation: subtleBobbing 3.4s ease-in-out infinite 1.2s;
+    }
+
+    /* Light sheen sweep effect */
+    .sheen-layer {
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.35) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: skewX(-22deg);
+      pointer-events: none;
+      transition: left 0.85s ease-out;
+    }
+    .hero-card:hover .sheen-layer {
+      left: 170%;
+    }
+
+    /* Perspective 3D Tilt container */
+    .tilt-wrapper {
+      perspective: 1000px;
+    }
+    .hero-card {
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease;
+      will-change: transform;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .float-bob-1,
+      .float-bob-2,
+      .float-bob-3 {
+        animation: none !important;
+      }
+      .hero-card {
+        transform: none !important;
+        transition: none !important;
+      }
+      .sheen-layer {
+        display: none !important;
+      }
+    }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary": "#002217",
+            "on-primary-fixed-variant": "#274e3f",
+            "primary-fixed": "#c1ecd7",
+            "inverse-on-surface": "#f2f1ed",
+            "on-surface": "#1b1c1a",
+            "on-tertiary-fixed": "#0c1f11",
+            "on-tertiary": "#ffffff",
+            "on-secondary-fixed": "#002114",
+            "tertiary-fixed": "#d1e9d1",
+            "on-primary-container": "#79a28f",
+            "primary-fixed-dim": "#a5d0bc",
+            "surface": "#faf9f5",
+            "on-primary": "#ffffff",
+            "on-secondary-fixed-variant": "#0e5138",
+            "inverse-surface": "#2f312e",
+            "surface-variant": "#e3e2df",
+            "background": "#faf9f5",
+            "surface-container-highest": "#e3e2df",
+            "tertiary": "#0d2112",
+            "on-tertiary-container": "#899f8a",
+            "outline-variant": "#e2e1dc",
+            "surface-container-high": "#e9e8e4",
+            "surface-container-low": "#f4f4f0",
+            "on-error": "#ffffff",
+            "secondary-fixed-dim": "#95d4b3",
+            "outline": "#717974",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed-variant": "#374c3b",
+            "secondary": "#2c694e",
+            "surface-tint": "#3f6656",
+            "error": "#ba1a1a",
+            "surface-bright": "#faf9f5",
+            "on-error-container": "#93000a",
+            "on-primary-fixed": "#002116",
+            "on-secondary": "#ffffff",
+            "error-container": "#ffdad6",
+            "surface-dim": "#dbdad6",
+            "tertiary-fixed-dim": "#b5cdb6",
+            "on-background": "#1b1c1a",
+            "inverse-primary": "#a5d0bc",
+            "secondary-container": "#aeeecb",
+            "secondary-fixed": "#b1f0ce",
+            "on-surface-variant": "#545a55",
+            "on-secondary-container": "#316e52",
+            "primary-container": "#0f382a",
+            "tertiary-container": "#223626",
+            "surface-container": "#efeeea"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Newsreader", "serif"],
+            "display-lg": ["Newsreader", "serif"],
+            "headline-md": ["Newsreader", "serif"],
+            "title-md": ["Plus Jakarta Sans", "sans-serif"],
+            "body-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "title-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "label-md": ["Plus Jakarta Sans", "sans-serif"],
+            "display-lg-mobile": ["Newsreader", "serif"],
+            "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg-mobile": ["Newsreader", "serif"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"],
+            "label-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg": ["Newsreader", "serif"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary selection:text-white">
+<!-- NAVIGATION HEADER -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#faf9f5]/90 backdrop-blur-md border-b border-outline-variant transition-all">
+<div class="h-20 w-full max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between">
+<!-- Logo Brand -->
+<a class="flex items-center gap-3.5 group" href="#">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white transition-transform duration-300">
+<span class="material-symbols-outlined text-[19px]">recycling</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-xl tracking-tight text-primary font-semibold leading-none">
+          ARUNA
+        </span>
+<span class="font-label-sm text-[10px] text-on-surface-variant tracking-widest uppercase mt-0.5">Bank Sampah Digital</span>
+</div>
+</a>
+<!-- Desktop Nav Links -->
+<nav class="hidden lg:flex items-center gap-7">
+<a aria-current="page" class="text-sm font-medium text-primary tracking-normal" data-path="beranda" href="#">Beranda</a>
+<a class="text-sm font-normal text-on-surface-variant hover:text-primary transition-colors" data-path="tentang-kami" href="#keunggulan">Tentang Kami</a>
+<a class="text-sm font-normal text-on-surface-variant hover:text-primary transition-colors" data-path="cara-kerja" href="#cara-kerja">Cara Kerja</a>
+<a class="text-sm font-normal text-on-surface-variant hover:text-primary transition-colors" data-path="dampak-lingkungan" href="#metrik">Dampak</a>
+<a class="text-sm font-normal text-on-surface-variant hover:text-primary transition-colors" data-path="katalog-sampah-dan-harga" href="#katalog">Katalog &amp; Harga</a>
+<a class="text-sm font-normal text-on-surface-variant hover:text-primary transition-colors" data-path="kontak-faq" href="#testimoni">Kisah Nasabah</a>
+</nav>
+<!-- Action Buttons -->
+<div class="flex items-center gap-3 sm:gap-4">
+<a class="hidden sm:inline-block text-xs font-semibold text-primary hover:text-secondary uppercase tracking-wider px-3 py-2 transition-colors" data-path="login-admin" href="#">
+        Masuk Admin
+      </a>
+<a class="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg bg-primary text-white text-xs sm:text-sm font-medium hover:bg-primary-container transition-all" data-path="registrasi-nasabah" href="#kalkulator">
+<span class="">Gabung Nasabah</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</header>
+<main class="w-full pt-20 bg-surface">
+<div class="flex flex-col w-full">
+<!-- HERO SECTION -->
+<section class="relative w-full border-b border-outline-variant px-6 sm:px-10 py-16 sm:py-24 lg:py-28">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+<!-- Left Hero Content -->
+<div class="flex flex-col lg:col-span-7">
+<div class="mb-5 inline-flex items-center gap-2 self-start py-1 px-2.5 rounded border border-outline-variant bg-surface-container-low text-on-surface-variant text-[11px] font-medium tracking-wide uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+              Sirkularitas Presisi Rumah Tangga
+            </div>
+<h1 class="font-display-lg text-4xl sm:text-5xl lg:text-6xl text-primary font-normal tracking-tight leading-[1.12] mb-6">
+              Ubah Sampah Jadi <em class="italic font-light">Berkah &amp; Saldo Nyata</em> Bersama ARUNA.
+            </h1>
+<p class="font-body-lg text-base sm:text-lg text-on-surface-variant max-w-xl mb-10 leading-relaxed font-light">
+              Platform bank sampah digital modern yang memudahkan warga memilah, menimbang presisi dengan IoT, dan menukarkan sampah anorganik menjadi saldo terverifikasi.
+            </p>
+<div class="flex flex-wrap items-center gap-4 mb-12">
+<a class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3.5 text-sm font-medium text-white hover:bg-primary-container transition-all" href="#kalkulator">
+<span class="">Daftar Jadi Nasabah Sekarang</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+<a class="inline-flex items-center gap-2 rounded-lg border border-outline-variant bg-white px-5 py-3.5 text-sm font-medium text-primary hover:border-primary transition-all" href="#katalog">
+<span class="">Cek Harga Sampah Hari Ini</span>
+</a>
+</div>
+<!-- Clean hairline benefits -->
+<div class="grid grid-cols-1 sm:grid-cols-3 border-t border-outline-variant pt-6 gap-6 sm:gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px] text-secondary">scale</span>
+<span class="text-xs text-on-surface-variant font-medium">Timbangan Digital IoT</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px] text-secondary">bolt</span>
+<span class="text-xs text-on-surface-variant font-medium">Pencairan Saldo Instan</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px] text-secondary">nest_eco_leaf</span>
+<span class="text-xs text-on-surface-variant font-medium">100% Daur Ulang Sah</span>
+</div>
+</div>
+</div>
+<!-- Right Minimalist Financial Graphic -->
+<div class="lg:col-span-5 flex justify-center tilt-wrapper">
+<div class="hero-card group relative w-full max-w-md bg-white border border-outline-variant rounded-xl p-5 sm:p-6 shadow-[0_4px_24px_rgba(0,34,23,0.04)] hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 ease-out cursor-pointer flex flex-col gap-5 overflow-hidden" id="heroCardInteractive">
+<!-- Delicate Light Sheen element -->
+<div class="sheen-layer"></div>
+<div class="relative w-full rounded-xl overflow-hidden border border-outline-variant/60 shadow-sm bg-surface-container-low">
+<img alt="Operasional Bank Sampah Digital Pintar ARUNA" class="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" src="assets/hero-operasional-aruna.jpg"/>
+<div class="float-bob-1 absolute top-3 left-3 bg-[#faf9f5]/90 backdrop-blur-md border border-outline-variant/80 px-2.5 py-1 rounded text-[10px] font-medium tracking-wide uppercase text-primary flex items-center gap-1.5 shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Operasional Bank Sampah Digital Pintar
+</div>
+<div class="float-bob-2 absolute bottom-3 right-3 bg-primary/90 backdrop-blur-md text-white text-[10px] font-mono px-2 py-0.5 rounded tracking-wide flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[12px] text-secondary-fixed">verified</span> Live Cloud Synced
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="float-bob-2 p-3.5 rounded-lg bg-surface-container-low border border-outline-variant flex flex-col justify-between transition-colors duration-300 group-hover:border-primary/40 group-hover:bg-[#f8f7f2]">
+<div class="flex items-center gap-1.5 text-secondary text-[11px] font-medium mb-1">
+<span class="material-symbols-outlined text-[15px]">filter_alt</span>
+<span class="">Presisi Pilah</span>
+</div>
+<div>
+<div class="font-headline-md text-xl sm:text-2xl text-primary font-normal">98.4%</div>
+<p class="text-[10px] text-on-surface-variant font-light mt-0.5">Kemurnian sortir di sumber</p>
+</div>
+</div>
+<div class="float-bob-3 p-3.5 rounded-lg bg-surface-container-low border border-outline-variant flex flex-col justify-between transition-colors duration-300 group-hover:border-primary/40 group-hover:bg-[#f8f7f2]">
+<div class="flex items-center gap-1.5 text-secondary text-[11px] font-medium mb-1">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span class="">Pencairan</span>
+</div>
+<div>
+<div class="font-headline-md text-xl sm:text-2xl text-primary font-normal">&lt;24 Jam</div>
+<p class="text-[10px] text-on-surface-variant font-light mt-0.5">Langsung ke buku warga</p>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">format_quote</span>
+<p class="font-headline-sm text-xs sm:text-[13px] text-primary italic font-normal leading-relaxed">“Mengubah timbulan sampah permukiman menjadi kemandirian ekonomi rukun warga yang terukur, transparan, dan terpercaya.”</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- METRICS GRID SECTION (Clean Editorial Hairline Table) -->
+<section class="w-full border-b border-outline-variant bg-white" id="metrik">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-outline-variant">
+<div class="p-8 sm:p-10">
+<span class="text-[11px] font-semibold tracking-wider text-secondary uppercase block mb-3">Total Sampah Terolah</span>
+<div class="font-headline-lg text-3xl sm:text-4xl font-normal text-primary">12.450+ Kg</div>
+<p class="text-xs text-on-surface-variant mt-2 font-light">Sampah terpilah industri daur ulang</p>
+<div class="mt-4 text-[11px] font-medium text-secondary flex items-center gap-1">
+<span class="">+24% Pertumbuhan MoM</span>
+</div>
+</div>
+<div class="p-8 sm:p-10">
+<span class="text-[11px] font-semibold tracking-wider text-secondary uppercase block mb-3">Komunitas Nasabah</span>
+<div class="font-headline-lg text-3xl sm:text-4xl font-normal text-primary">1.284+ Warga</div>
+<p class="text-xs text-on-surface-variant mt-2 font-light">Keluarga aktif menyetor berkala</p>
+<div class="mt-4 text-[11px] font-medium text-secondary flex items-center gap-1">
+<span class="">Tersebar di 118 RT</span>
+</div>
+</div>
+<div class="p-8 sm:p-10">
+<span class="text-[11px] font-semibold tracking-wider text-secondary uppercase block mb-3">Nilai Finansial</span>
+<div class="font-headline-lg text-3xl sm:text-4xl font-normal text-primary">Rp 45,2 Jt+</div>
+<p class="text-xs text-on-surface-variant mt-2 font-light">Saldo dicairkan langsung ke warga</p>
+<div class="mt-4 text-[11px] font-medium text-secondary flex items-center gap-1">
+<span class="">100% Pencairan Sukses</span>
+</div>
+</div>
+<div class="p-8 sm:p-10">
+<span class="text-[11px] font-semibold tracking-wider text-secondary uppercase block mb-3">Dampak Iklim Nyata</span>
+<div class="font-headline-lg text-3xl sm:text-4xl font-normal text-primary">18 Ton CO2</div>
+<p class="text-xs text-on-surface-variant mt-2 font-light">Reduksi emisi gas rumah kaca</p>
+<div class="mt-4 text-[11px] font-medium text-secondary flex items-center gap-1">
+<span class="">Laporan Terverifikasi</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- INTERACTIVE SIMULATION CALCULATOR SECTION -->
+<section class="w-full px-6 sm:px-10 py-20 sm:py-24 border-b border-outline-variant" id="kalkulator">
+<div class="max-w-5xl mx-auto">
+<div class="text-center max-w-2xl mx-auto mb-14">
+<span class="text-[11px] font-semibold text-secondary uppercase tracking-widest block mb-2">Simulasi Finansial Mandiri</span>
+<h2 class="font-headline-lg text-3xl sm:text-4xl text-primary font-normal">
+            Kalkulator Cuan Sampah Rumah Tangga
+          </h2>
+<p class="text-sm text-on-surface-variant mt-3 font-light leading-relaxed">
+            Hitung potensi penghasilan tabungan Anda dalam hitungan detik. Cukup pilih kategori sampah dan geser estimasi beratnya.
+          </p>
+</div>
+<div class="bg-white border border-outline-variant rounded-xl p-6 sm:p-10 shadow-[0_4px_20px_rgba(0,34,23,0.03)]">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+<!-- Controls -->
+<div class="lg:col-span-7 flex flex-col justify-between space-y-8">
+<!-- Step 1 -->
+<div>
+<div class="flex items-center justify-between mb-3">
+<label class="text-xs font-semibold text-primary uppercase tracking-wider">
+                    1. Pilih Kategori Sampah
+                  </label>
+<span class="text-[11px] text-secondary font-medium">Bursa Acuan Real-Time</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="calc-category-group">
+<button class="calc-btn active flex items-start gap-3 p-3.5 rounded-lg border border-primary bg-surface-container-low text-left transition-all" data-rate="4500" data-unit="kg" type="button">
+<div class="w-8 h-8 rounded border border-outline-variant bg-white flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[18px]">local_drink</span>
+</div>
+<div>
+<span class="text-xs font-semibold block text-primary">Plastik PET (Botol Bening)</span>
+<span class="text-xs text-on-surface-variant mt-0.5 block">Rp 4.500 / kg</span>
+</div>
+</button>
+<button class="calc-btn flex items-start gap-3 p-3.5 rounded-lg border border-outline-variant bg-white hover:bg-surface-container-low text-left transition-all" data-rate="2800" data-unit="kg" type="button">
+<div class="w-8 h-8 rounded border border-outline-variant bg-white flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+</div>
+<div>
+<span class="text-xs font-semibold block text-primary">Kardus &amp; Kertas Campur</span>
+<span class="text-xs text-on-surface-variant mt-0.5 block">Rp 2.800 / kg</span>
+</div>
+</button>
+<button class="calc-btn flex items-start gap-3 p-3.5 rounded-lg border border-outline-variant bg-white hover:bg-surface-container-low text-left transition-all" data-rate="12000" data-unit="kg" type="button">
+<div class="w-8 h-8 rounded border border-outline-variant bg-white flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[18px]">hardware</span>
+</div>
+<div>
+<span class="text-xs font-semibold block text-primary">Logam &amp; Kaleng Besi</span>
+<span class="text-xs text-on-surface-variant mt-0.5 block">Rp 12.000 / kg</span>
+</div>
+</button>
+<button class="calc-btn flex items-start gap-3 p-3.5 rounded-lg border border-outline-variant bg-white hover:bg-surface-container-low text-left transition-all" data-rate="7000" data-unit="Ltr" type="button">
+<div class="w-8 h-8 rounded border border-outline-variant bg-white flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[18px]">oil_barrel</span>
+</div>
+<div>
+<span class="text-xs font-semibold block text-primary">Minyak Jelantah (UCO)</span>
+<span class="text-xs text-on-surface-variant mt-0.5 block">Rp 7.000 / Liter</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Step 2 -->
+<div>
+<div class="flex items-center justify-between mb-3">
+<label class="text-xs font-semibold text-primary uppercase tracking-wider" for="weightRange">
+                    2. Estimasi Berat / Volume Setor
+                  </label>
+<div class="flex items-baseline gap-1 text-sm font-semibold text-primary">
+<span class="font-mono text-base" id="weightDisplay">15</span>
+<span class="text-xs uppercase text-on-surface-variant" id="unitDisplay">kg</span>
+</div>
+</div>
+<div class="py-2">
+<input class="w-full h-1.5 bg-surface-container-high rounded cursor-pointer appearance-none" id="weightRange" max="100" min="1" type="range" value="15"/>
+</div>
+<div class="flex justify-between text-[11px] text-on-surface-variant mt-1">
+<span class="">Minimal: 1 kg</span>
+<span class="">Rata-rata warga: 25 kg</span>
+<span class="">100 kg</span>
+</div>
+</div>
+</div>
+<!-- Result Box -->
+<div class="lg:col-span-5 rounded-lg bg-surface-container-low border border-outline-variant p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant">
+<span class="text-[11px] uppercase tracking-wider font-semibold text-secondary">Hasil Simulasi Bersih</span>
+<span class="text-[10px] font-mono text-on-surface-variant">0% Potongan</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-3 font-light">Estimasi dana langsung masuk ke saldo rekening nasabah:</p>
+<div class="my-6 text-center py-6 px-4 bg-white border border-outline-variant rounded-lg">
+<span class="text-[11px] uppercase font-semibold text-on-surface-variant tracking-wider block">Potensi Saldo Cair</span>
+<div class="font-headline-lg text-3xl sm:text-4xl text-primary font-normal mt-1" id="totalEstimation">Rp 67.500</div>
+<div class="mt-2 text-xs text-secondary font-light" id="co2ImpactText">Setara ~13.5 kg reduksi emisi karbon</div>
+</div>
+</div>
+<div>
+<a class="w-full py-3 px-4 rounded-lg bg-primary text-white text-xs font-semibold uppercase tracking-wider text-center hover:bg-primary-container transition-all flex items-center justify-center gap-2" href="#cara-kerja">
+<span class="">Jadwalkan Setor Sekarang</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+<p class="text-[10px] text-center text-on-surface-variant mt-2 font-light">
+                  *Harga acuan terintegrasi bursa daur ulang nasional. Bebas biaya penimbangan.
+                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4 LANGKAH MUDAH (Clean Minimal Stepper) -->
+<section class="w-full px-6 sm:px-10 py-20 sm:py-24 border-b border-outline-variant bg-white" id="cara-kerja">
+<div class="max-w-7xl mx-auto">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="text-[11px] font-semibold text-secondary uppercase tracking-widest block mb-2">Alur Terintegrasi</span>
+<h2 class="font-headline-lg text-3xl sm:text-4xl text-primary font-normal">
+            4 Langkah Mengubah Sampah Jadi Saldo
+          </h2>
+<p class="text-sm text-on-surface-variant mt-3 font-light leading-relaxed">
+            Sistem ARUNA dirancang transparan dan tanpa ribet, langsung dari depan pintu rumah Anda hingga dana masuk ke saldo rekening.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="flex flex-col border-t border-primary pt-5">
+<span class="font-mono text-xs font-semibold text-secondary mb-3">01</span>
+<h3 class="text-base font-semibold text-primary mb-2">Pilah dari Rumah</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed font-light mb-4">
+              Pisahkan botol plastik, kardus/karton, kaleng logam, dan jelantah dalam wadah terpisah dalam kondisi kering.
+            </p>
+<div class="mt-auto text-[11px] text-secondary font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">check</span>
+              Panduan pilah gratis di web
+            </div>
+</div>
+<div class="flex flex-col border-t border-primary pt-5">
+<span class="font-mono text-xs font-semibold text-secondary mb-3">02</span>
+<h3 class="text-base font-semibold text-primary mb-2">Drop Point / Jemput</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed font-light mb-4">
+              Bawa ke bank sampah terdekat atau gunakan layanan penjemputan armada ARUNA gratis untuk kuota minimal 10 kg.
+            </p>
+<div class="mt-auto text-[11px] text-secondary font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">check</span>
+              Timbangan IoT Bluetooth
+            </div>
+</div>
+<div class="flex flex-col border-t border-primary pt-5">
+<span class="font-mono text-xs font-semibold text-secondary mb-3">03</span>
+<h3 class="text-base font-semibold text-primary mb-2">Sinkronisasi Otomatis</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed font-light mb-4">
+              Data berat dan rupiah langsung masuk ke sistem cloud seketika. Notifikasi ringkasan langsung terkirim ke WhatsApp.
+            </p>
+<div class="mt-auto text-[11px] text-secondary font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">check</span>
+              WA Notifikasi Instan
+            </div>
+</div>
+<div class="flex flex-col border-t border-primary pt-5">
+<span class="font-mono text-xs font-semibold text-secondary mb-3">04</span>
+<h3 class="text-base font-semibold text-primary mb-2">Tarik Saldo Bebas Biaya</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed font-light mb-4">
+              Tarik saldo kapan saja ke rekening bank (BCA, Mandiri, BRI) atau e-wallet (GoPay, OVO, ShopeePay) tanpa potongan admin.
+            </p>
+<div class="mt-auto text-[11px] text-secondary font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">check</span>
+              0% Biaya Penarikan
+            </div>
+</div>
+</div>
+</div>
+</section>
+<!-- KATALOG HARGA SAMPAH (Clean Hairline Cards) -->
+<section class="w-full px-6 sm:px-10 py-20 sm:py-24 border-b border-outline-variant bg-surface" id="katalog">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+<div>
+<span class="text-[11px] font-semibold text-secondary uppercase tracking-widest block mb-2">Katalog Nilai Ekonomi</span>
+<h2 class="font-headline-lg text-3xl sm:text-4xl text-primary font-normal">
+              Daftar Sampah Diterima &amp; Estimasi Harga
+            </h2>
+<p class="text-sm text-on-surface-variant mt-2 font-light">
+              Pembaruan harga berkala mengikuti bursa material industri nasional untuk kepastian harga tertinggi.
+            </p>
+</div>
+<div class="text-[11px] font-mono text-on-surface-variant border border-outline-variant bg-white px-3 py-1.5 rounded self-start md:self-auto">
+            Update: Hari Ini, 08:00 WIB
+          </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Item 1 -->
+<div class="bg-white border border-outline-variant rounded-xl p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant mb-4">
+<span class="text-[11px] uppercase tracking-wider font-semibold text-secondary">Plastik</span>
+<span class="text-[10px] text-secondary font-medium">Naik +5%</span>
+</div>
+<h3 class="text-base font-semibold text-primary mb-2">Botol &amp; Gelas Plastik</h3>
+<p class="text-xs text-on-surface-variant font-light mb-6 leading-relaxed">
+                PET bening bersih, botol detergen HDPE, tutup galon, cup minuman tebal tanpa sisa cairan.
+              </p>
+</div>
+<div>
+<div class="p-3 bg-surface-container-low rounded border border-outline-variant mb-3">
+<span class="text-[10px] uppercase font-semibold text-on-surface-variant block">Harga Acuan:</span>
+<span class="text-base font-semibold text-primary">Rp 4.000 - Rp 5.200 /kg</span>
+</div>
+<p class="text-[11px] text-on-surface-variant font-light">Tip: Lepaskan label &amp; pipihkan botol.</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-white border border-outline-variant rounded-xl p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant mb-4">
+<span class="text-[11px] uppercase tracking-wider font-semibold text-secondary">Kertas &amp; Karton</span>
+<span class="text-[10px] text-on-surface-variant font-medium">Stabil</span>
+</div>
+<h3 class="text-base font-semibold text-primary mb-2">Kardus &amp; Kertas Arsip</h3>
+<p class="text-xs text-on-surface-variant font-light mb-6 leading-relaxed">
+                Kardus cokelat tebal packing, kertas arsip HVS, koran lama, buku dan majalah bekas daur ulang.
+              </p>
+</div>
+<div>
+<div class="p-3 bg-surface-container-low rounded border border-outline-variant mb-3">
+<span class="text-[10px] uppercase font-semibold text-on-surface-variant block">Harga Acuan:</span>
+<span class="text-base font-semibold text-primary">Rp 2.500 - Rp 3.400 /kg</span>
+</div>
+<p class="text-[11px] text-on-surface-variant font-light">Tip: Pastikan kering &amp; ikat rapi.</p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="bg-white border border-outline-variant rounded-xl p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant mb-4">
+<span class="text-[11px] uppercase tracking-wider font-semibold text-secondary">Logam &amp; Kaleng</span>
+<span class="text-[10px] text-secondary font-medium">Naik +8%</span>
+</div>
+<h3 class="text-base font-semibold text-primary mb-2">Aluminium &amp; Besi</h3>
+<p class="text-xs text-on-surface-variant font-light mb-6 leading-relaxed">
+                Kaleng minuman ringan aluminium, kaleng biskuit/susu, perkakas besi tua, kawat tembaga kabel.
+              </p>
+</div>
+<div>
+<div class="p-3 bg-surface-container-low rounded border border-outline-variant mb-3">
+<span class="text-[10px] uppercase font-semibold text-on-surface-variant block">Harga Acuan:</span>
+<span class="text-base font-semibold text-primary">Rp 8.000 - Rp 14.500 /kg</span>
+</div>
+<p class="text-[11px] text-on-surface-variant font-light">Tip: Bilas sisa cairan manis.</p>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="bg-white border border-outline-variant rounded-xl p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant mb-4">
+<span class="text-[11px] uppercase tracking-wider font-semibold text-secondary">Minyak Jelantah</span>
+<span class="text-[10px] text-secondary font-medium">Tinggi</span>
+</div>
+<h3 class="text-base font-semibold text-primary mb-2">Used Cooking Oil (UCO)</h3>
+<p class="text-xs text-on-surface-variant font-light mb-6 leading-relaxed">
+                Minyak goreng bekas pakai rumah tangga &amp; resto untuk diolah menjadi green energy biodiesel.
+              </p>
+</div>
+<div>
+<div class="p-3 bg-surface-container-low rounded border border-outline-variant mb-3">
+<span class="text-[10px] uppercase font-semibold text-on-surface-variant block">Harga Acuan:</span>
+<span class="text-base font-semibold text-primary">Rp 6.500 - Rp 8.000 /Ltr</span>
+</div>
+<p class="text-[11px] text-on-surface-variant font-light">Tip: Saring sisa remah makanan.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- KEUNGGULAN ARUNA SECTION -->
+<section class="w-full px-6 sm:px-10 py-20 sm:py-24 border-b border-outline-variant bg-white" id="keunggulan">
+<div class="max-w-7xl mx-auto">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="text-[11px] font-semibold text-secondary uppercase tracking-widest block mb-2">Standar Eco-Fintech Terpercaya</span>
+<h2 class="font-headline-lg text-3xl sm:text-4xl text-primary font-normal">
+            Mengapa Menabung Sampah di ARUNA?
+          </h2>
+<p class="text-sm text-on-surface-variant mt-3 font-light leading-relaxed">
+            Standar transparansi perbankan digital kami aplikasikan ke sistem daur ulang agar warga merasa aman, dihargai, dan terlindungi.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="p-6 border border-outline-variant rounded-xl bg-surface-container-low/40">
+<span class="material-symbols-outlined text-[24px] text-secondary mb-4 block">price_check</span>
+<h3 class="text-base font-semibold text-primary mb-2">Harga Beli Adil &amp; Stabil</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed font-light">
+              Terkoneksi langsung dengan jaringan pabrik daur ulang resmi tanpa perantara calo, menjamin nasabah mendapatkan nilai tukar tertinggi.
+            </p>
+</div>
+<div class="p-6 border border-outline-variant rounded-xl bg-surface-container-low/40">
+<span class="material-symbols-outlined text-[24px] text-secondary mb-4 block">sensors</span>
+<h3 class="text-base font-semibold text-primary mb-2">IoT Timbangan Digital</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed font-light">
+              Timbangan digital dengan sensor presisi 2 desimal yang sinkron langsung ke smartphone. Tidak ada manipulasi timbangan manual.
+            </p>
+</div>
+<div class="p-6 border border-outline-variant rounded-xl bg-surface-container-low/40">
+<span class="material-symbols-outlined text-[24px] text-secondary mb-4 block">menu_book</span>
+<h3 class="text-base font-semibold text-primary mb-2">Buku Tabungan Online</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed font-light">
+              Catatan mutasi saldo dan riwayat setoran tersimpan rapi selamanya layaknya mobile banking. Transparan dan dapat diunduh kapan saja.
+            </p>
+</div>
+<div class="p-6 border border-outline-variant rounded-xl bg-surface-container-low/40">
+<span class="material-symbols-outlined text-[24px] text-secondary mb-4 block">diversity_3</span>
+<h3 class="text-base font-semibold text-primary mb-2">Pemberdayaan RT/RW</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed font-light">
+              Membantu operasional kas warga, arisan lingkungan, dan gerakan sedekah sampah untuk pemukiman asri dan guyub rukun.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- TESTIMONI NASABAH -->
+<section class="w-full px-6 sm:px-10 py-20 sm:py-24 border-b border-outline-variant bg-surface" id="testimoni">
+<div class="max-w-7xl mx-auto">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="text-[11px] font-semibold text-secondary uppercase tracking-widest block mb-2">Cerita Nyata Nasabah</span>
+<h2 class="font-headline-lg text-3xl sm:text-4xl text-primary font-normal">
+            Kata Mereka yang Telah Merasakan Manfaatnya
+          </h2>
+<p class="text-sm text-on-surface-variant mt-3 font-light leading-relaxed">
+            Dengarkan kisah warga, pegiat komunitas, dan pengurus rukun warga yang membuktikan sampah bisa menghasilkan berkah.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="p-7 bg-white border border-outline-variant rounded-xl flex flex-col justify-between">
+<p class="font-headline-sm text-base sm:text-lg text-primary font-normal leading-relaxed italic mb-8">
+              "Dulu botol plastik bekas minuman anak-anak cuma numpuk di garasi dan dibakar. Sejak ikut ARUNA, tiap bulan bisa cair Rp 150.000 ke saldo e-wallet. Lumayan banget buat nambah uang belanja sayur!"
+            </p>
+<div class="pt-4 border-t border-outline-variant flex items-center justify-between">
+<div>
+<p class="text-xs font-semibold text-primary">Siti Wardah (42 th)</p>
+<p class="text-[11px] text-on-surface-variant font-light">Ibu Rumah Tangga, Jakarta Timur</p>
+</div>
+<span class="text-[11px] font-mono text-secondary">Verified</span>
+</div>
+</div>
+<div class="p-7 bg-white border border-outline-variant rounded-xl flex flex-col justify-between">
+<p class="font-headline-sm text-base sm:text-lg text-primary font-normal leading-relaxed italic mb-8">
+              "Sistem timbangan digital ARUNA sangat transparan, warga tidak ada yang komplain soal berat. Kas operasional RW 06 kami sekarang surplus Rp 2,8 juta per bulan dari akumulasi sampah warga satu komplek."
+            </p>
+<div class="pt-4 border-t border-outline-variant flex items-center justify-between">
+<div>
+<p class="text-xs font-semibold text-primary">Bambang Susanto (56 th)</p>
+<p class="text-[11px] text-on-surface-variant font-light">Ketua RW 06, Tangerang Selatan</p>
+</div>
+<span class="text-[11px] font-mono text-secondary">Verified</span>
+</div>
+</div>
+<div class="p-7 bg-white border border-outline-variant rounded-xl flex flex-col justify-between">
+<p class="font-headline-sm text-base sm:text-lg text-primary font-normal leading-relaxed italic mb-8">
+              "Dashboard jejak karbon ARUNA sangat memotivasi generasi muda di kampus. Kami tahu persis pohon yang terselamatkan dari tiap kilo kertas laporan yang kami kumpulkan bersama."
+            </p>
+<div class="pt-4 border-t border-outline-variant flex items-center justify-between">
+<div>
+<p class="text-xs font-semibold text-primary">Dian Fakhira (23 th)</p>
+<p class="text-[11px] text-on-surface-variant font-light">Aktivis Lingkungan &amp; Mahasiswi</p>
+</div>
+<span class="text-[11px] font-mono text-secondary">Verified</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA CLOSING BANNER (Peaceful Clean Forest Invitation) -->
+<!-- DOKUMENTASI & GALERI KEGIATAN -->
+<section class="w-full px-6 sm:px-10 py-20 sm:py-24 border-b border-outline-variant bg-white" id="galeri">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+<div>
+<span class="text-[11px] font-semibold text-secondary uppercase tracking-widest block mb-2">Dokumentasi &amp; Jejak Lapangan</span>
+<h2 class="font-headline-lg text-3xl sm:text-4xl text-primary font-normal">
+          Aktivitas Komunitas &amp; Operasional ARUNA
+        </h2>
+<p class="text-sm text-on-surface-variant mt-2 font-light max-w-xl leading-relaxed">
+          Transparansi kerja nyata dari penimbangan di lingkungan warga, edukasi pemilahan berkala, hingga rantai logistik daur ulang terintegrasi.
+        </p>
+</div>
+<div class="inline-flex items-center gap-2 text-xs font-medium text-secondary border border-outline-variant px-3 py-1.5 rounded bg-surface-container-low self-start md:self-auto">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="">Terpantau di 118 Unit Wilayah</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface rounded-xl border border-outline-variant overflow-hidden flex flex-col justify-between group hover:border-primary transition-all">
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<span class="text-[10px] font-semibold uppercase tracking-wider text-secondary bg-secondary-fixed/50 px-2 py-0.5 rounded">Operasional Warga</span>
+<span class="text-[11px] font-mono text-on-surface-variant">RT 04 / RW 06</span>
+</div>
+<div class="w-full h-48 rounded-lg overflow-hidden mb-4 border border-outline-variant/60"><img alt="Penimbangan Presisi Digital di RT 04" class="w-full h-full object-cover" src="assets/galeri-penimbangan-rt04.jpg"/></div>
+<h3 class="text-base font-semibold text-primary mb-2">Penimbangan Presisi Digital di RT 04</h3>
+<p class="text-xs text-on-surface-variant font-light leading-relaxed">
+            Warga bersama petugas loket menimbang kardus dan botol plastik secara terbuka. Data berat terhubung otomatis via Bluetooth ke smartphone nasabah.
+          </p>
+</div>
+<div class="px-6 py-3.5 bg-surface-container-low/50 border-t border-outline-variant flex items-center justify-between text-[11px] text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">event</span> 12 Okt 2024</span>
+<span class="">Jakarta Timur</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface rounded-xl border border-outline-variant overflow-hidden flex flex-col justify-between group hover:border-primary transition-all">
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<span class="text-[10px] font-semibold uppercase tracking-wider text-secondary bg-secondary-fixed/50 px-2 py-0.5 rounded">Finansial &amp; Edukasi</span>
+<span class="text-[11px] font-mono text-on-surface-variant">Sesi Komunitas</span>
+</div>
+<div class="w-full h-48 rounded-lg overflow-hidden mb-4 border border-outline-variant/60"><img alt="Pencairan Saldo &amp; Edukasi Pilah" class="w-full h-full object-cover" src="assets/galeri-pencairan-edukasi.jpg"/></div>
+<h3 class="text-base font-semibold text-primary mb-2">Pencairan Saldo &amp; Edukasi Pilah</h3>
+<p class="text-xs text-on-surface-variant font-light leading-relaxed">
+            Sosialisasi pemilahan material kering dan demonstrasi pencairan saldo instan ke dompet digital (GoPay &amp; OVO) bagi ibu-ibu PKK.
+          </p>
+</div>
+<div class="px-6 py-3.5 bg-surface-container-low/50 border-t border-outline-variant flex items-center justify-between text-[11px] text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">event</span> 18 Okt 2024</span>
+<span class="">Tangerang Selatan</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface rounded-xl border border-outline-variant overflow-hidden flex flex-col justify-between group hover:border-primary transition-all">
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<span class="text-[10px] font-semibold uppercase tracking-wider text-secondary bg-secondary-fixed/50 px-2 py-0.5 rounded">Logistik Pabrik</span>
+<span class="text-[11px] font-mono text-on-surface-variant">Armada 03</span>
+</div>
+<div class="w-full h-48 rounded-lg overflow-hidden mb-4 border border-outline-variant/60"><img alt="Pengangkutan Logistik Berkelanjutan" class="w-full h-full object-cover" src="assets/galeri-logistik-armada.jpg"/></div>
+<h3 class="text-base font-semibold text-primary mb-2">Pengangkutan Logistik Berkelanjutan</h3>
+<p class="text-xs text-on-surface-variant font-light leading-relaxed">
+            Armada penjemputan ARUNA mengangkut lebih dari 1,4 ton anorganik terpilah dari bank unit pemukiman langsung ke fasilitas daur ulang rekanan.
+          </p>
+</div>
+<div class="px-6 py-3.5 bg-surface-container-low/50 border-t border-outline-variant flex items-center justify-between text-[11px] text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">event</span> 25 Okt 2024</span>
+<span class="">Sentra Pengolahan</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface rounded-xl border border-outline-variant overflow-hidden flex flex-col justify-between group hover:border-primary transition-all">
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<span class="text-[10px] font-semibold uppercase tracking-wider text-secondary bg-secondary-fixed/50 px-2 py-0.5 rounded">Pemberdayaan</span>
+<span class="text-[11px] font-mono text-on-surface-variant">Kelas Terbuka</span>
+</div>
+<div class="w-full h-48 rounded-lg overflow-hidden mb-4 border border-outline-variant/60"><img alt="Workshop Daur Ulang Mandiri" class="w-full h-full object-cover" src="assets/galeri-workshop-daur-ulang.jpg"/></div>
+<h3 class="text-base font-semibold text-primary mb-2">Workshop Daur Ulang Mandiri</h3>
+<p class="text-xs text-on-surface-variant font-light leading-relaxed">
+            Pelatihan pengumpulan minyak jelantah (UCO) rumah tangga dan pembentukan manajemen bank sampah mandiri berbasis pengurus lingkungan rukun warga.
+          </p>
+</div>
+<div class="px-6 py-3.5 bg-surface-container-low/50 border-t border-outline-variant flex items-center justify-between text-[11px] text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">event</span> 02 Nov 2024</span>
+<span class="">Balai Warga Bekasi</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ SECTION -->
+<section class="w-full px-6 sm:px-10 py-20 sm:py-24 border-b border-outline-variant bg-surface" id="faq">
+<div class="max-w-5xl mx-auto">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="text-[11px] font-semibold text-secondary uppercase tracking-widest block mb-2">Tanya Jawab Nasabah</span>
+<h2 class="font-headline-lg text-3xl sm:text-4xl text-primary font-normal">
+        Pertanyaan yang Sering Diajukan
+      </h2>
+<p class="text-sm text-on-surface-variant mt-3 font-light leading-relaxed">
+        Pelajari seluk-beluk mekanisme registrasi, penimbangan, hingga pencairan saldo bank sampah digital ARUNA.
+      </p>
+</div>
+<!-- Accordion Group -->
+<div class="bg-white border border-outline-variant rounded-xl divide-y divide-outline-variant overflow-hidden shadow-[0_4px_20px_rgba(0,34,23,0.02)] mb-10">
+<!-- Item 1 (Open by default) -->
+<details class="group p-6" open="">
+<summary class="flex items-center justify-between cursor-pointer list-none gap-4 text-left">
+<h3 class="text-base font-semibold text-primary">
+            Bagaimana cara membuka rekening tabungan bank sampah di ARUNA?
+          </h3>
+<span class="material-symbols-outlined text-secondary transition-transform duration-300 group-open:rotate-180 shrink-0 text-[20px]">
+            expand_more
+          </span>
+</summary>
+<p class="text-xs sm:text-sm text-on-surface-variant mt-4 font-light leading-relaxed pr-8">
+          Pendaftaran akun ARUNA sepenuhnya gratis dan dapat diselesaikan dalam 2 menit. Anda cukup menekan tombol 'Gabung Nasabah', mengisi nama, nomor WhatsApp aktif, dan alamat domisili. Setelah verifikasi OTP, Anda langsung mendapatkan nomor ID Buku Rekening Digital (ARN-XXXX) dan dapat segera menyetor sampah ke drop point atau mengajukan penjemputan.
+        </p>
+</details>
+<!-- Item 2 -->
+<details class="group p-6">
+<summary class="flex items-center justify-between cursor-pointer list-none gap-4 text-left">
+<h3 class="text-base font-semibold text-primary">
+            Apa saja jenis sampah yang diterima dan bagaimana kriteria pemilahannya?
+          </h3>
+<span class="material-symbols-outlined text-secondary transition-transform duration-300 group-open:rotate-180 shrink-0 text-[20px]">
+            expand_more
+          </span>
+</summary>
+<p class="text-xs sm:text-sm text-on-surface-variant mt-4 font-light leading-relaxed pr-8">
+          Kami menerima 4 kategori utama anorganik bernilai ekonomis: Plastik (botol PET, cup plastik, galon, botol detergen HDPE), Kertas &amp; Karton (kardus tebal, duplex, kertas arsip, majalah), Logam &amp; Kaleng (aluminium beverageware, besi tua, tembaga), serta Minyak Jelantah (Used Cooking Oil). Pastikan material dalam keadaan kering, bebas residu makanan basah, dan botol dipipihkan untuk optimalisasi volume.
+        </p>
+</details>
+<!-- Item 3 -->
+<details class="group p-6">
+<summary class="flex items-center justify-between cursor-pointer list-none gap-4 text-left">
+<h3 class="text-base font-semibold text-primary">
+            Kapan dan bagaimana saldo tabungan sampah dapat dicairkan?
+          </h3>
+<span class="material-symbols-outlined text-secondary transition-transform duration-300 group-open:rotate-180 shrink-0 text-[20px]">
+            expand_more
+          </span>
+</summary>
+<p class="text-xs sm:text-sm text-on-surface-variant mt-4 font-light leading-relaxed pr-8">
+          Saldo masuk seketika (real-time) begitu proses penimbangan digital selesai diverifikasi. Anda dapat mencairkan saldo kapan pun tanpa periode penguncian minimum melalui dashboard web nasabah ke rekening bank (BCA, Mandiri, BRI, BNI) maupun dompet digital ternama (GoPay, OVO, ShopeePay, DANA) dengan 0% biaya potongan admin.
+        </p>
+</details>
+<!-- Item 4 -->
+<details class="group p-6">
+<summary class="flex items-center justify-between cursor-pointer list-none gap-4 text-left">
+<h3 class="text-base font-semibold text-primary">
+            Apakah ada minimal berat setoran sampah untuk penjemputan ke rumah?
+          </h3>
+<span class="material-symbols-outlined text-secondary transition-transform duration-300 group-open:rotate-180 shrink-0 text-[20px]">
+            expand_more
+          </span>
+</summary>
+<p class="text-xs sm:text-sm text-on-surface-variant mt-4 font-light leading-relaxed pr-8">
+          Untuk penyerahan langsung ke Drop Point mitra RT/RW tidak ada batas minimum (mulai dari 1 kg diterima). Sedangkan untuk layanan penjemputan gratis armada kendaraan listrik/logistik ARUNA ke alamat rumah, kuota akumulasi minimum adalah 10 kg (bisa gabungan berbagai kategori jenis sampah).
+        </p>
+</details>
+<!-- Item 5 -->
+<details class="group p-6">
+<summary class="flex items-center justify-between cursor-pointer list-none gap-4 text-left">
+<h3 class="text-base font-semibold text-primary">
+            Apakah pengurus RT/RW atau komunitas bisa mendaftarkan unit secara kolektif?
+          </h3>
+<span class="material-symbols-outlined text-secondary transition-transform duration-300 group-open:rotate-180 shrink-0 text-[20px]">
+            expand_more
+          </span>
+</summary>
+<p class="text-xs sm:text-sm text-on-surface-variant mt-4 font-light leading-relaxed pr-8">
+          Tentu bisa. Kami menyediakan skema Rekening Unit Komunitas (Kemitraan RT/RW &amp; Perkantoran) lengkap dengan fasilitas peminjaman timbangan digital IoT ARUNA, dashboard pemantauan kas surplus warga, serta pendampingan edukasi pilah perdana oleh Duta ARUNA di wilayah Anda.
+        </p>
+</details>
+</div>
+<!-- Help card banner -->
+<div class="rounded-xl border border-outline-variant bg-white p-6 sm:p-7 flex flex-col sm:flex-row items-center justify-between gap-5">
+<div class="flex items-center gap-4 text-center sm:text-left">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed/50 text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">support_agent</span>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-primary">Punya pertanyaan lain seputar sistem ARUNA?</h4>
+<p class="text-xs text-on-surface-variant font-light mt-0.5">Tim layanan nasabah kami siap membantu Anda setiap Senin–Sabtu (08.00–17.00 WIB).</p>
+</div>
+</div>
+<a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-outline-variant bg-surface-container-low hover:border-primary text-primary text-xs font-semibold uppercase tracking-wider transition-all shrink-0" href="https://wa.me/6281289001234" target="_blank">
+<span class="">Hubungi WhatsApp Support</span>
+<span class="material-symbols-outlined text-[16px]">chat</span>
+</a>
+</div>
+</div>
+</section><section class="w-full px-6 sm:px-10 py-20 sm:py-24 bg-primary text-white" id="daftar">
+<div class="max-w-5xl mx-auto text-center">
+<span class="text-[11px] font-semibold text-primary-fixed-dim uppercase tracking-widest block mb-4">Mulai Langkah Kecilmu Hari Ini</span>
+<h2 class="font-headline-lg text-3xl sm:text-4xl lg:text-5xl font-normal leading-tight text-white mb-6">
+          Siap Mengubah Sampah Menjadi Tabungan Masa Depan?
+        </h2>
+<p class="text-sm sm:text-base text-primary-fixed-dim font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+          Bergabung bersama ribuan warga cerdas yang telah menikmati kemudahan setor sampah berinsentif rupiah. Bebas biaya pendaftaran seumur hidup.
+        </p>
+<div class="flex flex-wrap items-center justify-center gap-4">
+<a class="inline-flex items-center gap-2 rounded-lg bg-white px-7 py-3.5 text-xs sm:text-sm font-semibold text-primary hover:bg-surface-container-low transition-all" href="#kalkulator">
+<span class="">Daftar Nasabah Baru</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+<a class="inline-flex items-center gap-2 rounded-lg border border-white/30 px-6 py-3.5 text-xs sm:text-sm font-medium text-white hover:border-white transition-all" href="#">
+<span class="">Kemitraan RT/RW &amp; Kantor</span>
+</a>
+</div>
+</div>
+</section>
+</div>
+<!-- SCRIPT FOR CALCULATOR INTERACTION & HERO 3D TILT -->
+<script>
+    (function () {
+      var activeRate = 4500;
+      var activeUnit = 'kg';
+      var weightInput = document.getElementById('weightRange');
+      var weightDisplay = document.getElementById('weightDisplay');
+      var unitDisplay = document.getElementById('unitDisplay');
+      var totalEstimation = document.getElementById('totalEstimation');
+      var co2ImpactText = document.getElementById('co2ImpactText');
+      var categoryBtns = document.querySelectorAll('#calc-category-group .calc-btn');
+
+      function calculate() {
+        if (!weightInput || !totalEstimation) return;
+        var weight = parseFloat(weightInput.value) || 0;
+        var total = weight * activeRate;
+        var co2Saved = (weight * 0.9).toFixed(1);
+
+        var formatted = new Intl.NumberFormat('id-ID', {
+          style: 'currency',
+          currency: 'IDR',
+          maximumFractionDigits: 0
+        }).format(total);
+
+        if (weightDisplay) weightDisplay.textContent = weight;
+        if (unitDisplay) unitDisplay.textContent = activeUnit;
+        if (totalEstimation) totalEstimation.textContent = formatted.replace(/\s+/g, ' ');
+        if (co2ImpactText) co2ImpactText.textContent = 'Setara ~' + co2Saved + ' kg reduksi emisi karbon';
+      }
+
+      if (weightInput) {
+        weightInput.addEventListener('input', calculate);
+      }
+
+      categoryBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          categoryBtns.forEach(function (b) {
+            b.classList.remove('border-primary', 'bg-surface-container-low');
+            b.classList.add('border-outline-variant', 'bg-white');
+          });
+
+          this.classList.add('border-primary', 'bg-surface-container-low');
+          this.classList.remove('border-outline-variant', 'bg-white');
+
+          activeRate = parseFloat(this.getAttribute('data-rate')) || 0;
+          activeUnit = this.getAttribute('data-unit') || 'kg';
+          calculate();
+        });
+      });
+
+      calculate();
+
+      // Subtle mouse-tracking tilt effect for the hero card
+      var heroCard = document.getElementById('heroCardInteractive');
+      if (heroCard && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        var bounds;
+        function updateBounds() {
+          bounds = heroCard.getBoundingClientRect();
+        }
+        window.addEventListener('scroll', updateBounds);
+        window.addEventListener('resize', updateBounds);
+
+        heroCard.addEventListener('mouseenter', updateBounds);
+
+        heroCard.addEventListener('mousemove', function (e) {
+          if (!bounds) updateBounds();
+          var mouseX = e.clientX - bounds.left;
+          var mouseY = e.clientY - bounds.top;
+          var xPct = (mouseX / bounds.width) - 0.5;
+          var yPct = (mouseY / bounds.height) - 0.5;
+
+          // Delicately restrained angles (max ~4.5 degrees) for elegant editorial feel
+          var rotateX = (-yPct * 6.5).toFixed(2);
+          var rotateY = (xPct * 6.5).toFixed(2);
+
+          heroCard.style.transform = 'perspective(900px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-8px)';
+        });
+
+        heroCard.addEventListener('mouseleave', function () {
+          heroCard.style.transform = '';
+        });
+      }
+    })();
+  </script>
+</main>
+<!-- FOOTER -->
+<footer class="w-full bg-white border-t border-outline-variant text-on-surface">
+<div class="max-w-7xl mx-auto px-6 sm:px-10 py-16">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-14">
+<div class="lg:col-span-2 pr-0 lg:pr-8">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-7 h-7 rounded bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[17px]">recycling</span>
+</div>
+<span class="font-headline-md text-lg font-semibold text-primary leading-none">ARUNA</span>
+</div>
+<p class="text-xs text-on-surface-variant max-w-sm mb-6 leading-relaxed font-light">
+          Platform pengelolaan sirkular terintegrasi untuk mentransformasi sampah terpilah rumah tangga dan perkantoran menjadi nilai ekonomi bernilai tinggi demi kelestarian bumi nusantara.
+        </p>
+<div class="flex items-center gap-2 text-on-surface-variant text-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="">Sistem Berkelanjutan Terbuka</span>
+</div>
+</div>
+<div>
+<h4 class="text-xs font-semibold text-primary uppercase tracking-wider mb-4">Layanan</h4>
+<ul class="flex flex-col gap-2.5 text-xs text-on-surface-variant font-light">
+<li class=""><a class="hover:text-primary transition-colors" href="#">Setor Sampah Rumah Tangga</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">Kemitraan Komersial &amp; Kantor</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">Penjemputan Armada Terjadwal</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">Tukar Poin &amp; Saldo E-Wallet</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-xs font-semibold text-primary uppercase tracking-wider mb-4">Edukasi &amp; Info</h4>
+<ul class="flex flex-col gap-2.5 text-xs text-on-surface-variant font-light">
+<li class=""><a class="hover:text-primary transition-colors" href="#">Panduan Pilah Sampah</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">Kalkulator Jejak Karbon</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">Laporan Dampak Ekologis</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">Program Duta Komunitas</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-xs font-semibold text-primary uppercase tracking-wider mb-4">Drop Point &amp; Kantor</h4>
+<div class="flex flex-col gap-2.5 text-xs text-on-surface-variant font-light">
+<p class="">Kawasan Hijau Terpadu No. 12, Jakarta</p>
+<p class="">+62 21 8900 1234</p>
+<p class="">Senin - Sabtu: 08:00 - 17:00 WIB</p>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-on-surface-variant font-light">
+<p class="">© 2025 ARUNA Eco Solusi Nusantara. Hak Cipta Dilindungi.</p>
+<div class="flex items-center gap-6">
+<a class="hover:text-primary transition-colors" href="#">Kebijakan Privasi</a>
+<a class="hover:text-primary transition-colors" href="#">Syarat &amp; Ketentuan</a>
+<a class="hover:text-primary transition-colors" href="#">Sertifikasi Daur Ulang</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
