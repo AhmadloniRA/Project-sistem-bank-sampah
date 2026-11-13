@@ -9,6 +9,45 @@
     nasabahList: {{ $nasabahList->toJson() }},
     get selectedNasabah() {
         return this.nasabahList.find(n => n.no_id.toLowerCase().trim() === this.no_id.toLowerCase().trim());
+    },
+    submitForm() {
+        const nasabah = this.selectedNasabah;
+        if (!nasabah) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Validasi Gagal!',
+                text: 'Nomor rekening nasabah tidak valid atau belum terdaftar.',
+                confirmButtonText: 'Mengerti',
+                confirmButtonColor: '#dc2626'
+            });
+            return;
+        }
+        const jenis = document.getElementsByName('jenis_sampah')[0].value;
+        const berat = document.getElementsByName('berat_kg')[0].value;
+        if (!jenis || !berat || berat <= 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Validasi Gagal!',
+                text: 'Silakan isi jenis sampah dan timbangan berat dengan benar.',
+                confirmButtonText: 'Mengerti',
+                confirmButtonColor: '#dc2626'
+            });
+            return;
+        }
+        Swal.fire({
+            title: 'Konfirmasi Setoran',
+            html: `<p class='text-sm font-medium text-slate-600 dark:text-slate-300 leading-relaxed'>Apakah Anda yakin ingin menyimpan setoran sampah <b class='text-primary font-bold'>${jenis}</b> seberat <b class='text-primary font-bold'>${berat} kg</b> untuk nasabah <b class='text-slate-900 dark:text-white font-bold'>${nasabah.name}</b>?</p>`,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#004532',
+            cancelButtonColor: '#64748b',
+            confirmButtonText: 'Ya, Simpan!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('setoranForm').submit();
+            }
+        });
     }
 }" class="space-y-6">
 
@@ -21,44 +60,7 @@
                 Form Setoran Sampah Nasabah
             </h3>
 
-            <form id="setoranForm" action="{{ route('admin.setoran.store') }}" method="POST" class="space-y-4"
-                  @submit.prevent="
-                      const nasabah = selectedNasabah;
-                      if (!nasabah) {
-                          Swal.fire({
-                              icon: 'error',
-                              title: 'Gagal',
-                              text: 'Nomor rekening nasabah tidak valid atau belum terdaftar.',
-                              confirmButtonColor: '#ba1a1a'
-                          });
-                          return;
-                      }
-                      const jenis = document.getElementsByName('jenis_sampah')[0].value;
-                      const berat = document.getElementsByName('berat_kg')[0].value;
-                      if (!jenis || !berat || berat <= 0) {
-                          Swal.fire({
-                              icon: 'error',
-                              title: 'Gagal',
-                              text: 'Silakan isi jenis sampah dan timbangan berat dengan benar.',
-                              confirmButtonColor: '#ba1a1a'
-                          });
-                          return;
-                      }
-                      Swal.fire({
-                          title: 'Konfirmasi Setoran',
-                          html: `Apakah Anda yakin ingin menyimpan setoran sampah <b>${jenis}</b> seberat <b>${berat} kg</b> untuk nasabah <b>${nasabah.name}</b>?`,
-                          icon: 'question',
-                          showCancelButton: true,
-                          confirmButtonColor: '#004532',
-                          cancelButtonColor: '#ba1a1a',
-                          confirmButtonText: 'Ya, Simpan!',
-                          cancelButtonText: 'Batal'
-                      }).then((result) => {
-                          if (result.isConfirmed) {
-                              $el.submit();
-                          }
-                      });
-                  ">
+            <form id="setoranForm" action="{{ route('admin.setoran.store') }}" method="POST" class="space-y-4" @submit.prevent="submitForm()">
                 @csrf
 
                 {{-- Nomor Rekening --}}

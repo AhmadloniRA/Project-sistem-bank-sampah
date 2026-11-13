@@ -455,44 +455,11 @@
 
     </div>
 
-    {{-- System Success/Error Notifications via SweetAlert2 --}}
+    {{-- System Notifications via SweetAlert2 --}}
+    @include('partials.sweetalert')
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            @if(session('success'))
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil!',
-                    text: "{{ session('success') }}",
-                    confirmButtonColor: '#004532',
-                });
-            @endif
-
-            @if(session('error'))
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Terjadi Kesalahan!',
-                    text: "{{ session('error') }}",
-                    confirmButtonColor: '#ba1a1a',
-                });
-            @endif
-
-            @if($errors->any())
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Validasi Gagal!',
-                    html: `
-                        <div class="text-left font-sans">
-                            <ul class="list-disc pl-5 space-y-1 text-xs text-red-650 font-medium">
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    `,
-                    confirmButtonColor: '#ba1a1a',
-                });
-            @endif
-
             // Micro-interactions for button presses
             const interactiveBtns = document.querySelectorAll('button, [role="button"]');
             interactiveBtns.forEach(btn => {

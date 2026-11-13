@@ -354,58 +354,7 @@
         }
     </script>
     
-    {{-- SweetAlert2 --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            @if(session('success'))
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil!',
-                    text: {!! json_encode(session('success')) !!},
-                    confirmButtonColor: '#059669',
-                    timer: 3500,
-                    timerProgressBar: true
-                });
-            @endif
-
-            @if(session('status'))
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil!',
-                    text: {!! json_encode(session('status')) !!},
-                    confirmButtonColor: '#059669',
-                    timer: 3500,
-                    timerProgressBar: true
-                });
-            @endif
-
-            @if(session('error'))
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Gagal!',
-                    text: {!! json_encode(session('error')) !!},
-                    confirmButtonColor: '#dc2626',
-                });
-            @endif
-
-            @if($errors->any())
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Terjadi Kesalahan!',
-                    html: `
-                        <div class="text-left font-sans">
-                            <ul class="list-disc pl-5 space-y-1 text-sm text-red-650">
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    `,
-                    confirmButtonColor: '#dc2626',
-                });
-            @endif
-        });
-    </script>
+    {{-- System Notifications via SweetAlert2 --}}
+    @include('partials.sweetalert')
 </body>
 </html>
